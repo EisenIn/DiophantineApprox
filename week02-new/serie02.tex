@@ -123,7 +123,7 @@ Fall 2023
 
 
   \exercise{
-    Let $0< α <1 $ be an irrational real number, $ℓ$ be the line of slope $α$ and $v_1 = (1,0)$ and $v_2 = (0,1)$.
+    Let $0< α <1 $ be an irrational real number, $ℓ$ be the line of slope $α$ through  $0$ and $v_1 = (1,0)$ and $v_2 = (0,1)$.
     Consider the following algorithm (that carries out an infinite loop): 
     \begin{itemize}    
     \item $v_1 := v_1 + q_{\max} v_2$ \hfill {\scriptsize Here $q_{\max}$ is as in the exercise above.}
@@ -141,7 +141,7 @@ Fall 2023
     Show the following invariants after each iteration of the loop:
     \begin{enumerate}
       \setcounter{enumi}{1}
-    \item $v_1,v_2 ∈ ℤ_{≥0}^2$ is a lattice basis of $ℤ^2$, i.e. for each $b ∈ℤ^2$ there exist $x_1,x_2 ∈ℤ$ such that $b = v_1,v_2$.
+    \item $v_1,v_2 ∈ ℤ_{≥0}^2$ is a lattice basis of $ℤ^2$, i.e. for each $b ∈ℤ^2$ there exist $x_1,x_2 ∈ℤ$ such that $b = x_2 ⋅v_1+ x_2 ⋅v_2$.
     \item $v_2$ is strictly closer to the line $ℓ$ than $v_1$. 
     \item Every second iteration, the second component of $v_2$ has doubled.
     \item If $v_2 = (p , q)^T$, then ${p}/{q}$ is a best approximation of $α$. (i.e. if $(r,s) ∈ ℕ × ℕ_+$ satisfies $| α - r/s| < | α - p/q|$, then $s>q$ holds).   
@@ -176,6 +176,11 @@ Fall 2023
     \end{enumerate}    
   }{}
 
+
+  \exercise{
+    Let $a/b$ be a rational number with $a>b ∈ ℕ_+$. Can you see a connection between the Euclidean algorithm applied to $(a,b)$ and the continued fraction expansion of $a/b$? 
+  }{}
+  
 \end{document}
 
 
