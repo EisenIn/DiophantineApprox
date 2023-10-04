@@ -7,3 +7,11 @@
 *.aux
 *.el
 *.tex~
+*.bib~
+*.bbl
+*.blg
+*.sty~
+week02-new/Figure.pdf.autosave.ipe
+.DS_Store
+week02-new/ \*Minibuf-1\*
+week02-new/ \*Minibuf-1\*~
