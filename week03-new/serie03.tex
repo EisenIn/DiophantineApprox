@@ -103,7 +103,7 @@ Fall 2023
 % 		\exercise{ Exercise }{ Solution }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \exercise{
-	Let $d \in \N$ be a squarefree integer. Show that the equation
+	Let $d \in \N$ be a non square integer. Show that the equation
 		\[ x^2 - dy^2 = N \]
 	admits infinitely many integer solutions $(x,y)$ for some integer $N < 1 + 2 \sqrt{d}$.
 }
@@ -115,26 +115,45 @@ Fall 2023
 }
 
 \exercise{
-	Consider the expansion $a = [a_0; a_1, \dots]$ of some $a \in \R\setminus\Q$, with convergents $\{p_{k}/q_{k}\}_k$ given by the truncated expansion \footnote{We also define $p_{-1} := 1$, and $q_{-1} := 0$.}.
+	Consider the expansion $\alpha = [a_0; a_1, \dots]$ of some $\alpha \in \R\setminus\Q$, with convergents $\{p_{k}/q_{k}\}_k$ given by the truncated expansion \footnote{Recall we also defined $p_{-1} := 1$, and $q_{-1} := 0$.}.
 
 	Define $x_k := [a_k; a_{k+1} \dots]$ for each $k\geq0$. Show that the sequence $\{x_k\}_k$ verifies
 		\[ x_k = a_k + \frac{1}{x_{k+1}}, \]
 	and that one has, for all $k\geq0$, 
-		\[ a = \frac{x_{k+1}p_k + p_{k-1}}{x_{k+1}q_k + q_{k-1}}. \]
+		\[ \alpha = \frac{x_{k+1}p_k + p_{k-1}}{x_{k+1}q_k + q_{k-1}}. \]
 }
 
 \exercise{
-	Consider the expansion $a = [a_0; a_1, \dots]$ of some $a \in \R\setminus\Q$.
+	Consider the expansion $\alpha = [a_0; a_1, \dots]$ of some $\alpha \in \R\setminus\Q$.
 
 	We say that the expansion of $a$ is \emph{eventually periodic} if there exist distinct integers $m, n$, such that
 		\[ a_{m+k} = a_{n+k} \]
 	for all $k\geq0$.
 
-	Show, using the previous exercise, that if the expansion of $a$ is eventually periodic, then $a$ must be a quadratic irrationality (that is, the root of a degree 2 polynomial).
+	Show, using the previous exercise, that if the expansion of $\alpha$ is eventually periodic, then $\alpha$ must be a quadratic irrationality (that is, the root of a degree 2 polynomial with integer coefficients).
 }
 
 \exercise{
-	TODO: quadratic irrationality implies periodic expansion.
+	The following exercise will show the converse of exercise 4.
+	That is, all quadratic irrationalities $\alpha \in \R\setminus\Q$ admit eventually periodic expansions.
+	
+	Suppose to that end that there exist some $a, b \in \Q$ such that
+		\[ \alpha^2 + a \alpha + c = 0. \]
+
+	\begin{enumerate}
+		\item Show that it is enough to show that, in the notation of exercise 3, $x_n = x_m$ for two distinct integers $n, m$.
+		\item Using exercise 3, show that the quantity $x_{n+1}$ verifies, for each $n\geq0$,
+			\[ Ax_{n+1}^2 + Bx_{n+1} + C = 0, \]
+		where
+			\begin{align*}
+			 A &= p_n^2 + a p_n q_n + b q_n^2,
+			\qquad C = p_{n-1}^2 + b q_{n_1}^2 + a p_{n-1}q_{n-1},\\
+			 B &= 2p_n p_{n-1} + 2b q_n q_{n-1} + a(p_n q_{n-1} + p_{n-1}q_{n}).
+			\end{align*}
+		\item Show that $|A|, |C| \leq |a| + (2|\alpha|+1)$.
+		\item Show that $|B| \leq 6|\alpha| + 3|a| + 2$. (crude bounds are enough here)
+		\item Conclude that there exist two distinct integers $n, m$ such that $x_n = x_m$.
+	\end{enumerate}
 }
 
 \end{document}
