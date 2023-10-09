@@ -54,8 +54,8 @@
 		\newif\ifsolutions
 		
 		% ENABLE or DISABLE display of solutions
-		%\solutionstrue
-		\solutionsfalse
+		\solutionstrue
+		%\solutionsfalse
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -87,7 +87,7 @@ Fall 2023
 \bigskip
 
 \textbf{Set 2}
-\ifsolutions{\textbf{- Corrig\'e}} \else{} \fi
+\ifsolutions{\textbf{- Solutions}} \else{} \fi
 \end{center}
 
 \hrule\vspace{\baselineskip}
@@ -174,12 +174,38 @@ Fall 2023
     \item Show  $q_k ≥ 2^{⌊k/2⌋}$ for $k≥ 0$.
       \item Use the formulas above to show that the sequence of the values of $[a_0;a_1,\dots,a_k]$ $k ∈ ℕ$ converges. 
     \end{enumerate}    
-  }{}
+  }{
+	\begin{enumerate}
+		\item The recursive formula for $q_k$ is 
+			\[ q_{k+1} = a_{k+1} q_k + q_{k-1}, \]
+			which means, since $a_k \geq 1$ for all $k \geq 1$, that $q_{k+1} \geq 2 q_{k-1}$.
+	
+		\item The first formula shows an exponential decrease in the difference of terms
+			\[ |\frac{p_{k-1}}{q_{k-1}} - \frac{p_k}{q_k}| = \frac{1}{q_k q_{k-1}} \leq \frac{1}{2^{\lfloor \frac{k}2 \rfloor + \lfloor \frac{k-1}2 \rfloor }} = \frac{1}{2^{k-1}}. \]
+			This implies that the sequence of convergents $\{p_k/q_k\}_k$ is Cauchy: for all $m < n$,
+			\[ |\frac{p_{m}}{q_{m}} - \frac{p_n}{q_n}| \leq \sum_{k \geq m} 2^{-k} = 2^{-m+1}, \]
+			which is sufficiently small for $m$ large enough.
+	\end{enumerate}
+	
+
+}
 
 
   \exercise{
     Let $a/b$ be a rational number with $a>b ∈ ℕ_+$. Can you see a connection between the Euclidean algorithm applied to $(a,b)$ and the continued fraction expansion of $a/b$? 
-  }{}
+  }{
+	To construct the continued fraction expansion of $a/b$, we first take its integer part $q \geq 1$.
+	This means that $a/b - q$ belongs in $[0,1)$, ie. that
+		\[ a - qb = r \in [0, b), \]
+	which is exactly the Euclidian division of $a$ by $b$.
+
+	Next, we take the reciprocal of the difference, and proceed.
+		\[ ( a/b - q )^{-1} = b/r. \]
+	The roles have now changed: we divide $b$ by the first rest $r$, which gives in turn the second rest $r_2 < r$.
+	
+	Taking the reciprocal of the difference once again leads to $r/r_2$, and etc until the final rest is $0$.
+	This is exactly how the Euclidian algorithm finds the gcd of $a$ and $b$ (being the last nonzero rest).
+}
   
 \end{document}
 
