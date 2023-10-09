@@ -55,8 +55,8 @@
 		\newif\ifsolutions
 		
 		% ENABLE or DISABLE display of solutions
-		%\solutionstrue
-		\solutionsfalse
+		\solutionstrue
+		%\solutionsfalse
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -88,7 +88,7 @@ Fall 2023
 \bigskip
 
 \textbf{Set 3}
-\ifsolutions{\textbf{- Corrig\'e}} \else{} \fi
+\ifsolutions{\textbf{- Solutions}} \else{} \fi
 \end{center}
 
 \hrule\vspace{\baselineskip}
@@ -113,6 +113,20 @@ Fall 2023
 		\[ | q \alpha - p | < \frac{1}{2q}, \]
 	then $p/q$ is a best approximation of $\alpha$.
 }
+{
+	Consider a fraction $r/s$ such that
+		\[ | s \alpha - r | < |q \alpha - p | < \frac{1}{2q}. \]
+	Then one has
+		\[ | r/s - p/q | \leq | \alpha - r/s | + | \alpha - p/q | < \frac1{2qs} + \frac1{2q^2}.\]
+	On the other hand, the difference of convergents is equal to
+		\[| r/s - p/q | = | \frac{rq - ps}{sq} | \geq \frac{1}{sq}, \]
+	provided that $rq - ps$ is nonzero. In fact, if that was the case, then the fractions $p/q$ and $r/s$ would be equal.
+
+	Combining everything yields
+		\[ \frac{1}{sq} \leq \frac1{2qs} + \frac1{2q^2}, \]
+	which means that $q \leq s$.
+}
+
 
 \exercise{
 	Consider the expansion $\alpha = [a_0; a_1, \dots]$ of some $\alpha \in \R\setminus\Q$, with convergents $\{p_{k}/q_{k}\}_k$ given by the truncated expansion \footnote{Recall we also defined $p_{-1} := 1$, and $q_{-1} := 0$.}.
@@ -132,6 +146,18 @@ Fall 2023
 
 	Show, using the previous exercise, that if the expansion of $\alpha$ is eventually periodic, then $\alpha$ must be a quadratic irrationality (that is, the root of a degree 2 polynomial with integer coefficients).
 }
+{
+	In the notations of exercise 3, we have by assumption that $x_m = x_n$ for some distinct integers $m,n$.
+
+	Exercise 3 implies that
+		\[ \alpha = \frac{x_{m}p_{m-1} + p_{m-2}}{x_{m}q_{m-1} + q_{m-2}} =  \frac{x_{m}p_{n-1} + p_{n-2}}{x_{m}q_{n-1} + q_{n-2}}. \]
+	 Manipulating the expression yields a degree two polynomial to which $x_m$ is solution.
+
+	The number $\alpha$ belongs to the field $\Q(x_m)$ which has degree at most 2. In fact it cannot have degree 1, since $\alpha$ was assumed irrational.
+	As such, $\alpha$ is a quadratic irrationality.
+
+}
+
 
 %\exercise{
 %	The following exercise will show the converse of exercise 4.
