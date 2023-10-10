@@ -153,7 +153,7 @@ Fall 2023
 		\[ \alpha = \frac{x_{m}p_{m-1} + p_{m-2}}{x_{m}q_{m-1} + q_{m-2}} =  \frac{x_{m}p_{n-1} + p_{n-2}}{x_{m}q_{n-1} + q_{n-2}}. \]
 	 Manipulating the expression yields a degree two polynomial to which $x_m$ is solution.
 
-	The number $\alpha$ belongs to the field $\Q(x_m)$ which has degree at most 2. In fact it cannot have degree 1, since $\alpha$ was assumed irrational.
+	The number $\alpha$ belongs to the field $\Q(x_m)$ which has degree at most 2 over $\Q$. In fact it cannot have degree 1, since $\alpha$ was assumed irrational.
 	As such, $\alpha$ is a quadratic irrationality.
 
 }
@@ -191,7 +191,29 @@ Fall 2023
 
   Suppose that $α$ is not a fraction of the form $p/q$ with $q≤2 ⋅N^2$. 
   Show that there exists an $ε_0>0$ such that the set of best approximations with denominator bound $N$ of $α$ and those of  $α +ε$ are the same for each $0<ε < ε_0$. 
-}{}
+}{
+	Suppose that the fraction $p/q$ with $q \leq N$ is a best approximation of $\alpha$, but not $\alpha + \epsilon$.
+
+	In that case, there exist integers $r, s$ verifying
+		\[\begin{cases}
+		s < q, \text{ and}\\
+		| (\alpha+\epsilon) - r/s | < | (\alpha + \epsilon) - p/q |.
+		\end{cases}\]
+	The sequence of inequalities thus follows
+		\[ | \alpha - r/s | - \epsilon < | (\alpha+\epsilon) - r/s | < | (\alpha + \epsilon) - p/q |  < | \alpha - p/q | + \epsilon,  \]
+	which implies that
+		\[  | \alpha - r/s | -  | \alpha - p/q | < 2 \epsilon.\]
+	Since $p/q$ is a best approximation of $\alpha$ and $s < q$, the LHS of the above inequality is smallest when $r/s$ is the best approximation of $\alpha$ that precedes $p/q$.
+	However, the theory of continued fractions says that $r/s$ and $p/q$ are on distinct sides of $\alpha$: one is above, the other below.
+	Consequently, one has
+		\[ | \alpha - r/s | -  | \alpha - p/q |  = | 2\alpha - (r/s + p/q) | < 2 \epsilon, \]
+	which simplifies to
+		\[ | \alpha - \frac{ps + qr}{2qs} | < \epsilon. \]
+	By assumption on $\alpha$, the LHS cannot be zero, since $2qs \leq 2N^2$.
+	The above inequality is therefore a contradiction for $\epsilon$ small enough.
+	Remark how the size of $\epsilon$ does not depend on the choice of $p/q$, but rather the quality of the best approximation of $\alpha$ with denominator bound $2N^2$.
+
+}
 
 \exercise{Compute the best approximation of $α = 21/13$ with denominator bounded by $10$.}{}
 
