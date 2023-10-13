@@ -1,0 +1,174 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption} 
+\usepackage{enumerate}
+\usepackage{polynom}
+\usepackage[utf8]{inputenc} 
+\usepackage{utf8math}
+\usepackage{xfrac}
+
+\date{}
+
+\usepackage[boldsans]{concmath}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Th\'eor\`eme}
+\newtheorem{Sol}{Solution}
+\newtheorem*{Sol*}{Solution}
+\theoremstyle{definition}
+\newtheorem{Ex}{Exercice}
+
+
+\def \N {\mathbb N}
+\def \Q {\mathbb Q}
+\def \R {\mathbb R}
+\def \Z {\mathbb Z}
+\def \K {\mathbb K}
+\def \C {\mathbb C}
+\def \id {{\rm id}\,}
+\def \Ker {{\rm Ker}\,}
+\def \Im {{\rm Im}\,}
+\def \Vect {{\rm Vect}\,}
+
+\newcommand{\df}{\mathrel{\mathop:}=}
+\newcommand{\dx}{ \ \text{d} \, x}
+
+\newcommand{\pscal}[1]{\langle {#1} \rangle}
+\DeclareMathOperator{\spa}{span}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%       ENABLE or DISABLE dislpay of solutions
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\newif\ifsolutions
+		
+		% ENABLE or DISABLE display of solutions
+		%\solutionstrue
+		\solutionsfalse
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Dont touch much, just change the correct number and date :). Based on the setup above, the solutions will be automaticelly displayed or hidden.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\newcommand{\exercise}[2]{
+			\begin{Ex} #1 \end{Ex}
+			\ifsolutions  \begin{Sol*} #2 \end{Sol*} \bigskip \else \bigskip  \fi
+		}
+
+		
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Beginning of the document. Make sure to add the correct dates and numbers everywhere.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+{Prof. Friedrich Eisenbrand \hfill October 19th 2023}
+\end{center}
+	
+\hrule\vspace{\baselineskip}
+
+\begin{center}
+\textbf{Diophantine approximation}
+
+Fall 2023
+
+\bigskip
+
+\textbf{Set 4}
+\ifsolutions{\textbf{- Solutions}} \else{} \fi
+\end{center}
+
+\hrule\vspace{\baselineskip}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Beginning of the exercises
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Each exercise should look like 
+% 		\exercise{ Exercise }{ Solution }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\exercise{ Let $α = \sqrt{d}$ where $d ∈ ℕ_+$ is not a perfect square. We consider the field $ℚ(α) = \{ x + y α ： x, y ∈ℚ \}$.  The \emph{norm} of an element $x +  y α ∈ ℚ(α)$ is defined as
+  \begin{displaymath}
+    N(x +  y α) = (x +  y α)(x -  y α). 
+  \end{displaymath}
+  Show that the norm is multiplicative, i.e. that one has
+  \begin{displaymath}
+    N(u⋅v) = N(u)⋅N(v) \text{ for each } u,v ∈ℚ(α). 
+  \end{displaymath}
+
+{\bigskip \noindent  \small \emph{ Hint: Show that the map $φ: ℚ(α) → ℚ(α)$, $φ( x + y α ) =  x - y α $ is an isomorphism (endomorphism) of $ℚ(α)$.} }
+}
+
+
+\exercise{Find a nontrivial  solution to the Pell equation $x^2 - 5 y^2 =1$, $x,y ∈ ℤ$.}{}
+
+\exercise{Suppose $d ∈ℕ_+$ is not a perfect square such that $d ≡ 3 \pmod(4)$. Show that $ℤ[\sqrt{d}$ has no units of norm $-1$. }{}
+
+
+\exercise{Let $d ∈ ℕ_+$ be not a perfect square. The \emph{fundamental unit} of $ℤ[\sqrt{d}]$ is the smallest (as number in $ℝ$) unit $x + y \sqrt{d}$ of $ℤ[\sqrt{d}]$ with $x,y ∈ℕ_+$.
+
+\bigskip 
+
+\noindent
+\begin{enumerate}[i)]
+\item 
+  Show that the fundamental unit exists and that it is uniquely defined.
+\item Show that the fundamental unit is the smallest $ε>1$ in $ℤ[\sqrt{d}]$ such that $|N(ε)| =  1$. 
+\end{enumerate}
+}{}
+
+\exercise{ Let $d ∈ ℕ_+$ be not a perfect square and let $ε$ be the fundamental unit of $ℤ[\sqrt{d}]$. Show that $G = \{ ε ^z ： z ∈ℤ\}$  is precisely the group of units of $ℤ[\sqrt{d}]$.
+
+  \bigskip
+  
+  \noindent
+  Describe all solutions to the Pell equation. 
+}{}
+
+
+
+\exercise{
+  Show the following variant of Liouville's Theorem:
+
+  \bigskip 
+  
+  \noindent  
+    Suppose that $α∈ ℝ$ is an non-zero algebraic number of degree $\mathbf{d ≥1}$. There exists a positive constant $c_α>0$ such that for each $(p,q) ∈ ℤ×ℕ_+$ with $\gcd(p,q) = 1$ one has
+  \begin{displaymath}
+    |α - p/q| > c_α/q^d. 
+  \end{displaymath}
+\smallskip 
+\noindent 
+\emph{Hint: Only the case when $α$ is rational needs to be considered, because of Lioville original.}
+}{}
+
+
+\exercise{Show that the number $∑_{n=0}^{∞} 2^{-n!}$ is transcendental.
+
+  \bigskip
+
+\emph{Hint:   Consider integers  $p_j = 2^{j!} ∑_{n=0}^j 2^{-n!}$ and $q_j = 2^{j!}$. }
+  
+}{}
+  
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
