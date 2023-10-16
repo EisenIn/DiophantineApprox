@@ -113,11 +113,29 @@ Fall 2023
 
 {\bigskip \noindent  \small \emph{ Hint: Show that the map $φ: ℚ(α) → ℚ(α)$, $φ( x + y α ) =  x - y α $ is an isomorphism (endomorphism) of $ℚ(α)$.} }
 }
+{
+	The norm of an element of the field may be understood as the determinant of its multiplication matrix (in any basis).
+	Indeed, take $\alpha = x + y \sqrt{d}$, and write the multiplication by $\alpha$ matrix in the basis $\{ 1, \sqrt{d} \}$
+	\[
+		[ \times \alpha ] = \begin{pmatrix} x & d y \\ y & x \end{pmatrix},
+	\]
+	which has determinant $x^2 - d y^2$.
 
+	By commutativity of the field, the multiplication maps commute, which yields
+		\[
+		N(u \cdot v) = \det([ \times (u \cdot v) ]) = \det( [\times u] \cdot [\times v] ) = N(u) \cdot N(v), \]
+	as required.
+
+}
 
 \exercise{Find a nontrivial  solution to the Pell equation $x^2 - 5 y^2 =1$, $x,y ∈ ℤ$.}{}
 
-\exercise{Suppose $d ∈ℕ_+$ is not a perfect square such that $d ≡ 3 \pmod{4}$. Show that $ℤ[\sqrt{d}]$ has no units of norm $-1$. }{}
+\exercise{Suppose $d ∈ℕ_+$ is not a perfect square such that $d ≡ 3 \pmod{4}$. Show that $ℤ[\sqrt{d}]$ has no units of norm $-1$. }
+{
+	If an element $x+y\sqrt{d} \in \Z[\sqrt{d}]$ has norm $-1$, then one has
+		\[ x^2 + y^2 \equiv 3 \pmod{4}. \]
+	Since squares have residue 0 or 1 mod 4, this equation admits no solution.
+}
 
 
 \exercise{Let $d ∈ ℕ_+$ be not a perfect square. The \emph{fundamental unit} of $ℤ[\sqrt{d}]$ is the smallest (as number in $ℝ$) unit $x + y \sqrt{d}$ of $ℤ[\sqrt{d}]$ with $x,y ∈ℕ_+$.
@@ -130,15 +148,47 @@ Fall 2023
   Show that the fundamental unit exists and that it is uniquely defined.
 \item Show that the fundamental unit is the smallest $ε>1$ in $ℤ[\sqrt{d}]$ such that $|N(ε)| =  1$. 
 \end{enumerate}
-}{}
+}{
+	\begin{enumerate}[i)]
+		\item
+		By exercise 1 of set 3, there exist infinitely many solutions of the equation $N(\alpha) = k, \alpha \in \Z[\sqrt{d}]$ for some integer $k < 1 + 2\sqrt{d}$.
+			As such, there must exist two elements $\alpha, \beta \in \Z[\sqrt{d}]$ with coordinates in the basis $\{1, \sqrt{d}\}$ congruent mod $k$.
 
-\exercise{ Let $d ∈ ℕ_+$ be not a perfect square and let $ε$ be the fundamental unit of $ℤ[\sqrt{d}]$. Show that $G = \{ ε ^z ： z ∈ℤ\}$  is precisely the group of units of $ℤ[\sqrt{d}]$.
+		One then verifies that $\frac1k \alpha \bar{\beta} \in \Z[\sqrt{d}]$, which concludes, since
+			\[  N\left(\frac1k \alpha \bar{\beta}\right) \in \Z[\sqrt{d}] = \frac1{k^2} N(u) N(v) = 1. \]
+
+		The uniqueness is then given by the fact that 1 and $\sqrt{d}$ are linearly independent over $\Q$.
+		\item
+		Let $\alpha = x + y\sqrt{d}$ be the fundamental unit of $\Z[\sqrt{d}]$. Clearly, $\alpha > 1$, since both $x$ and $y$ are positive.
+		To conclude, it suffices to show that $\alpha$ is a unit if and only if $| N(\alpha) | = 1$.
+
+		On one hand, if $\alpha$ is a unit, then $N(\alpha) N(\alpha^{-1}) = N(1) = 1$, which means that $N(\alpha)$ is a unit of $\Z$, ie. $\pm1$.
+
+		On the other hand, if $N(\alpha)=1$, then $\alpha \bar{\alpha} = 1$, where $\bar{\alpha} = x - y \sqrt{d} \in \Z[\sqrt{d}]$.
+	\end{enumerate}
+}
+
+\exercise{ Let $d ∈ ℕ_+$ be not a perfect square and let $ε$ be the fundamental unit of $ℤ[\sqrt{d}]$. Show that $G = \{ \pm ε ^z ： z ∈ℤ\}$  is precisely the group of units of $ℤ[\sqrt{d}]$.
 
   \bigskip
   
   \noindent
   Describe all solutions to the Pell equation. 
-}{}
+}
+{
+	Let $\alpha = x + y\sqrt{d}$ be a unit of $Z[\sqrt{d}]$. We show that $\alpha$ belongs to $G$.
+
+	We may write $x - y\sqrt{d}, -x + y\sqrt{d}$, and $-x - y\sqrt{d}$ as $\pm \alpha^{-1}$ and $-\alpha$, so that we may suppose $x, y \geq 0$.
+
+	The case $x=1, y=0$ corresponds to $n=0$ in $G$, which lets us assume that $\alpha > 1$.
+
+	There therefore exists an $n \geq 1$ such that
+		\[ \epsilon^n \leq \alpha < \epsilon^{n+1}, \]
+	by minimality of $\epsilon$.
+
+	This means that $1 \leq \alpha \epsilon^{-n} < \alpha$. 
+	By exercise 4ii), one must have $\alpha = \epsilon^n$, which concludes.
+}
 
 
 
