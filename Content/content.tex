@@ -267,7 +267,85 @@ Solution to the best approximation problem.
 
 \subsection*{13. October 2023}
 
-The Pell equation. 
+We consider the Diophantine equation
+\begin{equation}
+  \label{eq:6}
+  x^2 - d \,y^2  = 1, \, x,y ∈ℤ,
+\end{equation}
+where $d ∈ ℕ$. A trivial solution is $(x,y) = (\pm 1, 0)$.
+\begin{exercise}
+  \label{exe:1}
+  Convince yourself of the fact that, if a non-trivial solution exists, then $d$ is not a perfect square. 
+\end{exercise}
+
+We also consider the field $Q(\sqrt{d}) = \{ x+ y \sqrt{d} ： x,y ∈ℚ \}$ and  the ring $ℤ[ \sqrt{d}] = \{ x+ y \sqrt{d} ： x,y ∈ℤ\}$.
+\begin{exercise}
+  \label{exe:2}
+  Convince yourself that the above are indeed a field and a ring. 
+\end{exercise}
+
+
+
+
+The \emph{norm} of an element $x + y \sqrt{d} ∈ ℚ(\sqrt{d})$ is the rational number $(x + y \sqrt{d}) (x - y \sqrt{d} ) = x^2 -d y^2$. It is denoted by $N(x+y\sqrt{d})$. 
+\begin{exercise}
+  \label{exe:3}
+  Show that the norm is multiplicative, i.e. that for $α,β ∈ℚ(\sqrt{d})$ one has $N(α⋅β) = N(α) ⋅N(β)$. 
+\end{exercise}
+
+
+If $(x,y) ∈ℤ^2$ is a solution to~\eqref{eq:6}, then $x + y \sqrt{d}$ is a \emph{unit} in $ℤ[ \sqrt{d}]$, since $(x + y \sqrt{d})(x - y \sqrt{d}) =1$. However, not each unit corresponds to a solution of \eqref{eq:6}. For example, $1 - \sqrt{2} ∈ℤ[\sqrt{2}]$ is  unit, but $1^2 - 2 ⋅ 1^2 = -1$. This is a \emph{unit of norm $-1$}.
+
+There is a correspondence between units of norm $1$ and solutions of the Pell equation~\eqref{eq:6}. 
+
+
+
+\begin{theorem}
+  \label{thr:4}
+  If $d ∈ ℕ_+$ is not a perfect square, then \eqref{eq:6} has a nontrivial solution. 
+\end{theorem}
+
+
+\begin{proof}
+  We recall Dirichlet's Theorem~\ref{thr:1}. This implies that there exist infinitely many pairs $(p,q) ∈ ℕ × ℕ_+$ with $\gcd(p,q) = 1$ such that 
+   \begin{displaymath}
+    | p - q \sqrt{d}  | < 1/q. 
+  \end{displaymath}
+
+  For such $(p,q)$ one has, by the triangle inequality also  $ | p +  q \sqrt{d}  | ≤ 1/q + 2 q \sqrt{d} $. By multiplying both inequalities, one obtains
+  \begin{displaymath}
+    | p^2 - d q^2 | <  1/q^2 + 2 \sqrt{d} ≤ 1 + 2 \sqrt{d},
+  \end{displaymath}
+  which is a constant. Consequently, there exits a constant $r ∈ ℤ$
+  and infinitely many pairs $(p,q) ∈(ℕ × ℕ_+)$ with
+  \begin{equation}
+    \label{eq:7}    
+    p^2 - d q^2  = r.
+  \end{equation}
+
+  There are only $r^2$ many elements in $ℤ_r × ℤ_r$. This implies that
+  there exists one such vector $(u,v) ∈ ℤ_r × ℤ_r$ and infinitely many
+  pairs $(p,q) ∈(ℕ × ℕ_+)$ with $(p,q) ≡ (u,v) \pmod{r}$ that satisfy
+  \eqref{eq:7}.
+
+
+  Now let   $(p_1,q_1) ≠  (p_2,q_2) ∈(ℕ × ℕ_+)$ be two such pairs. We show that
+  \begin{equation}
+    \label{eq:8}   
+  α =  (p_1 + \sqrt{d} q_1 ) (p_2 + \sqrt{d} q_2)^{-1} ∈ ℤ[\sqrt{d}]. 
+  \end{equation}
+  Since $N(α) = 1$, $α$ is a unit of norm one and if it is non-trivial, we are done, once we have established~\eqref{eq:8}.
+
+  We have
+  \begin{displaymath}
+    α = \frac{p_1 p_2 - d q_1 q_2}{r} + \frac{-p_1q_2 + q_1p_2}{r} \sqrt{d}.  
+  \end{displaymath} 
+  Since $p_1 p_2 - d q_1 q_2 ≡ p_1^2 - d q_1^2 ≡ 0\pmod{r}$ and since $-p_1q_2 + q_1p_2 ≡ 0 \pmod{r}$, it follows that $α ∈ℤ[\sqrt{d}]$.  On the other hand, since $\gcd(p_1,q_1) =\gcd(p_2,q_2)=1$,   $p_1q_2 = q_1p_2$ implies $p_1 = p_2$ and $q_1 = q_2$ which is excluded. Thus $α$ is not rational and this yields a nontrivial solution of~\eqref{eq:6}, namely $x = (p_1 p_2 - d q_1 q_2)/r$ and $y = (-p_1q_2 + q_1p_2)/{r}$. 
+  
+
+
+  
+\end{proof}
 
 \bibliographystyle{alpha}
 \bibliography{references}
