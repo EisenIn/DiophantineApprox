@@ -158,6 +158,8 @@ Reading: \cite{eisenbrand2012pope,WikiDirichlet}
 
 \subsection*{29. September 2023}
 
+Reading: The book of Khinchine~\cite[Section~2]{khinchin1997continued}.
+
 Explain the geometric intuition behind the theory of continued fractions, as in \cite{eisenbrand2012pope}. 
 
 Explain  continued fraction expansion of a number $α ∈ ℝ / ℚ$:
@@ -256,7 +258,7 @@ We always assume $a_0∈ℤ$ and $a_i ∈ ℕ_+$ for $i≥1$.
 
 
 
-Convergence of convergents.  
+\subsubsection*{Convergence of convergents}
 
 Then Corollary~\ref{co:2} implies that even convergents are increasing sequence and off convergents are decreasing. Together with Corollary~\ref{co:1} and the exponential growth of the sequence $p_k$ we have fast convergence of the convergents.
 
@@ -341,11 +343,113 @@ There is a correspondence between units of norm $1$ and solutions of the Pell eq
     α = \frac{p_1 p_2 - d q_1 q_2}{r} + \frac{-p_1q_2 + q_1p_2}{r} \sqrt{d}.  
   \end{displaymath} 
   Since $p_1 p_2 - d q_1 q_2 ≡ p_1^2 - d q_1^2 ≡ 0\pmod{r}$ and since $-p_1q_2 + q_1p_2 ≡ 0 \pmod{r}$, it follows that $α ∈ℤ[\sqrt{d}]$.  On the other hand, since $\gcd(p_1,q_1) =\gcd(p_2,q_2)=1$,   $p_1q_2 = q_1p_2$ implies $p_1 = p_2$ and $q_1 = q_2$ which is excluded. Thus $α$ is not rational and this yields a nontrivial solution of~\eqref{eq:6}, namely $x = (p_1 p_2 - d q_1 q_2)/r$ and $y = (-p_1q_2 + q_1p_2)/{r}$. 
-  
-
-
-  
 \end{proof}
+
+  \subsubsection*{Solving the Pell equation with continued fractions}
+
+
+  If $d ∈ ℕ_+$ is not a perfect square, then $\sqrt{d}$ is irrational. One can compute the continued fraction expansion of $\sqrt{d}$. Recall that one has  \eqref{eq:4} from which we conclude
+  \begin{displaymath}
+    | \sqrt{d} - p_k / q_k | ≤ 1 (q_k q_{k+1}) ≤ 1/ q_k^2 
+  \end{displaymath}
+  and that the fraction $p_k/q_k$ are reduced for $k≥0$. This means that we can attractively compute solutions $(p_k^2 - d q_k^2) = r$ with $|r| ≤ 1 + 2 \sqrt{d}$. Once we have computed  $k ≥ ⌈ 2( 1  + 2\sqrt{d} ) +1 ⌉  ⋅ ⌈1 + 2 \sqrt{d}⌉^2 $ convergents,  we can identify two of them that yield $(p_1,q_1)$ and $(p_2,q_2)$ as in the proof of Theorem~\ref{thr:4} and construct a nontrivial solution of $x^2 - d y^2 = 1$. The running time of this naive algorithm is $O(d^{3/2})$  which is polynomial in the \emph{value } of  $d$ but \emph{exponential} in the \emph{binary encoding length} of $d$. It is also known that there exist $d$ such that each nontrivial solution of the Pell equation requires an exponential number of bits in $\ln (d)$, see~\cite{lenstra2002solving}. 
+
+
+  \begin{example}
+    \label{exe:4}
+
+    We want to find a nontrivial solution of
+    \begin{displaymath}
+      x^2 - 3 y^2 = 1, \, x,y ∈ℤ. 
+    \end{displaymath}
+    The continued fraction expansion of $\sqrt{3} = [1; \overline{1,2}]$.    Starting with
+    \begin{displaymath}
+      \begin{pmatrix}
+        p_{-1} & p_{-2}  \\
+        q_{-1} & q_{-2}  
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        1 & 0 \\
+        0 & 1
+      \end{pmatrix} 
+    \end{displaymath}
+    we compute
+    \begin{displaymath}
+      \begin{pmatrix}
+        p_{0} & p_{-1}  \\
+        q_{0} & q_{-1}  
+      \end{pmatrix} =
+      \begin{pmatrix}
+        1 & 1  \\
+        1 & 0  
+      \end{pmatrix},
+    \end{displaymath}
+ \begin{displaymath}
+      \begin{pmatrix}
+        p_{1} & p_{0}  \\
+        q_{1} & q_{0}  
+      \end{pmatrix} =
+      \begin{pmatrix}
+        1 & 1  \\
+        1 & 0  
+      \end{pmatrix}
+       \begin{pmatrix}
+        1 & 1  \\
+        1 & 0  
+      \end{pmatrix}  =
+      \begin{pmatrix}
+        2 & 1  \\
+        1 & 1  
+      \end{pmatrix} 
+    \end{displaymath}
+
+
+    \begin{displaymath}
+      \begin{pmatrix}
+        p_{2} & p_{1}  \\
+        q_{2} & q_{1}  
+      \end{pmatrix} =
+      \begin{pmatrix}
+        2 & 1  \\
+        1 & 1  
+      \end{pmatrix}
+       \begin{pmatrix}
+        2 & 1  \\
+        1 & 0  
+      \end{pmatrix}  =
+      \begin{pmatrix}
+        5 & 2  \\
+        3 & 1  
+      \end{pmatrix} 
+    \end{displaymath}
+    and
+    
+    \begin{displaymath}
+      \begin{pmatrix}
+        p_{3} & p_{2}  \\
+        q_{3} & q_{2}  
+      \end{pmatrix} =
+      \begin{pmatrix}
+        5 & 2  \\
+        3 & 1  
+      \end{pmatrix}
+       \begin{pmatrix}
+        1 & 1  \\
+        1 & 0  
+      \end{pmatrix}  =
+      \begin{pmatrix}
+        7 & 5  \\
+        4 & 3  
+      \end{pmatrix}. 
+    \end{displaymath}
+    We find a non-trivial solution
+    \begin{displaymath}
+      (x,y) = (7,4)  ∈ℤ^2
+    \end{displaymath}
+    $7^2 - 3⋅ 4^2 = 1$. In this example, we did not search for convergents of same value and remainder pattern as in the proof. instead, we just computed some convergents until we found a solution. We have not argued that  this always works. 
+  \end{example}
+
 
 \bibliographystyle{alpha}
 \bibliography{references}
