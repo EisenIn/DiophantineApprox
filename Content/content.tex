@@ -1,3 +1,4 @@
+
 \documentclass[a4paper,11pt,american]{article} 
  
 
@@ -447,11 +448,46 @@ There is a correspondence between units of norm $1$ and solutions of the Pell eq
     \begin{displaymath}
       (x,y) = (7,4)  ∈ℤ^2
     \end{displaymath}
-    $7^2 - 3⋅ 4^2 = 1$. In this example, we did not search for convergents of same value and remainder pattern as in the proof. instead, we just computed some convergents until we found a solution. We have not argued that  this always works. 
+    $7^2 - 3⋅ 4^2 = 1$. In this example, we did not search for convergents of same value and remainder pattern as in the proof. Instead, we just computed some convergents until we found a solution. We have not argued that  this always works. 
   \end{example}
 
 
-\bibliographystyle{alpha}
+\subsubsection*{Liouville's Theorem}
+
+
+Α number $α ∈ℂ$ is \emph{algebraic}, if there exist a nonzero polynomial $p(x) ∈ ℚ[x]$ with $p(α) = 0$. The \emph{minimal polynomial} of $α$ is the unique monic nonzero polynomial $p(x) ∈ℚ[x]$ with $p(α) = 0$. The degree of $α$ is the degree of this polynomial.  By multiplying with the least common multiple of the denominators of the coefficients of $p(x)$, we obtain a polynomial $q(x) ∈ℤ[x]$ of \emph{content} one, meaning that the greatest common divisor of the coefficients of $q$ is one. One can easily see that there is a unique nonzero polynomial $q(x) ∈ℤ[x]$ with content one and positive leading coefficient of minimal degree that has $α$ as a root.
+
+\begin{theorem}[Liouville's Theorem]
+  \label{thr:5}
+  Let $α∈ℝ$ be algebraic of degree $d≥2$. There exists a positive constant $c_α ∈ ℝ_+$ such that for each $(p,q) ∈ ℤ × ℕ_+$ one has
+  \begin{displaymath}
+    | α - p/q | > c_α 1/q^d. 
+  \end{displaymath}
+\end{theorem}
+
+\begin{proof}
+  Let $(p,q) ∈ ℤ ×ℕ_+$ such that  $| α - p/q | ≤1$. We only have to consider those. 
+
+  Let $f(x) ∈ ℤ[x]$ be a nonzero polynomial of degree $d$ with $f(α) = 0$.  One has $f(p/q) ≠ 0$. Otherwise, $x- p/q$ divides $f$ and we find a polynomial of smaller degree with root $α$. \emph{(Recall $α ≠ p/q$!)}.  But $q^d ⋅ f(p/q) ∈ℤ$ from which we infer $q^d ⋅ |f(p/q)| ≥1$ and therefore 
+  \begin{displaymath}
+     |f(p/q)| ≥1 / q^d. 
+   \end{displaymath}
+   Both $α$ and $p/q$ are contained in the interval $[α -1, α+1]$. 
+  By the mean-value theorem, there exits $x^* ∈ [α -1, α+1]$ with
+  \begin{displaymath}
+    |f'(x^*)| = |f(α) - f(p/q)| / |α - p/q| = |f(p/q)| / |α - p/q| . 
+  \end{displaymath}
+  Set $β = (\sup\{ |f'(x)| ： x ∈ [α-1 ,α+1]\}$. This is a number bigger than $0$.   Then, by the above, we have 
+  \begin{displaymath}
+    β ≥ 1/ ( |α - p/q| q^d). 
+  \end{displaymath}
+  Setting $c_α = 1/ β$ we conclude 
+  \begin{displaymath}
+    |α - p/q| ≥ c_α / |f(p/q)|. 
+  \end{displaymath}
+\end{proof}
+
+\bibliographystyle{plain}
 \bibliography{references}
 \end{document}
 
