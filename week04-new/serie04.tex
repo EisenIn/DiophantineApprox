@@ -55,8 +55,8 @@
 		\newif\ifsolutions
 		
 		% ENABLE or DISABLE display of solutions
-		%\solutionstrue
-		\solutionsfalse
+		\solutionstrue
+		%\solutionsfalse
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -159,12 +159,20 @@ Fall 2023
 
 		The uniqueness is then given by the fact that 1 and $\sqrt{d}$ are linearly independent over $\Q$.
 		\item
-		Let $\alpha = x + y\sqrt{d}$ be the fundamental unit of $\Z[\sqrt{d}]$. Clearly, $\alpha > 1$, since both $x$ and $y$ are positive.
-		To conclude, it suffices to show that $\alpha$ is a unit if and only if $| N(\alpha) | = 1$.
+		We show that units of $\Z[\sqrt{d}]$ which belong in $\N_+[\sqrt{d}]$ are exactly the elements of $\Z[\sqrt{d}]$ greater than 1 and of unit norm.
 
-		On one hand, if $\alpha$ is a unit, then $N(\alpha) N(\alpha^{-1}) = N(1) = 1$, which means that $N(\alpha)$ is a unit of $\Z$, ie. $\pm1$.
+		First, let $\alpha = x + y\sqrt{d}$ be a unit of $\Z[\sqrt{d}]$ with $x, y > 0$. Clearly, $\alpha > 1$.
+		Furthermore, $N(\alpha) N(\alpha^{-1}) = N(1) = 1$, which means that $N(\alpha)$ is a unit of $\Z$, ie. $\pm1$.
 
-		On the other hand, if $N(\alpha)=1$, then $\alpha \bar{\alpha} = 1$, where $\bar{\alpha} = x - y \sqrt{d} \in \Z[\sqrt{d}]$.
+		On the other hand, let $\epsilon = x + y\sqrt{d} \in \Z[\sqrt{d}]$ such that $\epsilon > 1$ and $|N(\alpha)|$ = 1.
+		Then $N(\epsilon) = \epsilon \bar{\epsilon} = \pm1$, where $\bar{\epsilon} = x - y \sqrt{d} \in \Z[\sqrt{d}]$.
+		Hence $\epsilon^{-1} = \pm \epsilon$, and $\epsilon$ is a unit.
+
+		Finally, we show that the cases $(x \leq 0, y \leq 0)$, $(x \leq 0, y \geq 0)$, $(x \geq 0, y \leq 0)$ are impossible.
+		The first case is clear.
+		In the second case, since $\epsilon^{-1} = \pm \bar{\epsilon}$, then either $\bar{\epsilon} < 0$ or $-\bar{\epsilon} \geq \epsilon > 1$ allows us to find a contradiction.
+		The third case is similar.
+
 	\end{enumerate}
 }
 
