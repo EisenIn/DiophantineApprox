@@ -1,0 +1,140 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption} 
+\usepackage{enumerate}
+\usepackage{polynom}
+\usepackage[utf8]{inputenc} 
+\usepackage{utf8math}
+\usepackage{xfrac}
+
+\date{}
+
+\usepackage[boldsans]{concmath}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Th\'eor\`eme}
+\newtheorem{Sol}{Solution}
+\newtheorem*{Sol*}{Solution}
+\theoremstyle{definition}
+\newtheorem{Ex}{Exercice}
+
+
+\def \N {\mathbb N}
+\def \Q {\mathbb Q}
+\def \R {\mathbb R}
+\def \Z {\mathbb Z}
+\def \K {\mathbb K}
+\def \C {\mathbb C}
+\def \id {{\rm id}\,}
+\def \Ker {{\rm Ker}\,}
+\def \Im {{\rm Im}\,}
+\def \Vect {{\rm Vect}\,}
+
+\newcommand{\df}{\mathrel{\mathop:}=}
+\newcommand{\dx}{ \ \text{d} \, x}
+
+\newcommand{\pscal}[1]{\langle {#1} \rangle}
+\DeclareMathOperator{\spa}{span}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%       ENABLE or DISABLE dislpay of solutions
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\newif\ifsolutions
+		
+		% ENABLE or DISABLE display of solutions
+		%\solutionstrue
+		\solutionsfalse
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Dont touch much, just change the correct number and date :). Based on the setup above, the solutions will be automaticelly displayed or hidden.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\newcommand{\exercise}[2]{
+			\begin{Ex} #1 \end{Ex}
+			\ifsolutions  \begin{Sol*} #2 \end{Sol*} \bigskip \else \bigskip  \fi
+		}
+
+		
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Beginning of the document. Make sure to add the correct dates and numbers everywhere.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+{Prof. Friedrich Eisenbrand \hfill October 27th 2023}
+\end{center}
+	
+\hrule\vspace{\baselineskip}
+
+\begin{center}
+\textbf{Diophantine approximation}
+
+Fall 2023
+
+\bigskip
+
+\textbf{Set 5}
+\ifsolutions{\textbf{- Solutions}} \else{} \fi
+\end{center}
+
+\hrule\vspace{\baselineskip}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Beginning of the exercises
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Each exercise should look like 
+% 		\exercise{ Exercise }{ Solution }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\exercise{
+	Let $d$ be a non square integer.
+	We study the equation 
+	\begin{align}\label{eq:1} x^2 - dy^2 = k \end{align}
+	for integers $N$.
+
+	Recall that if $\alpha = x + y\sqrt{d} \in \Z[\sqrt{d}]$ has norm equal to $k$, then $(x,y)$ is a solution to \eqref{eq:1}.
+	Further, for any element $\epsilon = u + v \sqrt{d} \in \N_+[\sqrt{d}]$ such that $N(\epsilon)=1$, then $\alpha \cdot \epsilon$ gives a solution to \eqref{eq:1} as well.
+
+	\begin{enumerate}[i)]
+		\item Assume that $x > 0$. Show that, up to inverting $\epsilon$, one has $v \cdot y < 0$, and that
+			\[ \alpha \cdot \epsilon \in x \cdot \left(u+ \frac{vyd}{x} \right) + \sqrt{d} \cdot \Q. \]
+		Deduce that
+			\[ u+ \frac{vyd}{x} \leq u \left( 1 - \sqrt{1-\frac{N}{x^2}} \right).\]
+
+		\item Prove that, whenever
+			\[ x \geq \sqrt{\frac{N \cdot u}{2}}, \]
+		one has
+			\[ u+ \frac{vyd}{x} < 1. \]
+
+		\item Conclude that the solutions of $\eqref{eq:1}$ each belong to an orbit $\{ \pm \alpha \epsilon^n \ | \ n \in \Z \}$, where $N(\epsilon)=1$, and $\alpha = x + y\sqrt{d}$ gives a solution to $\eqref{eq:1}$ which verifies $\sqrt{N} \leq x < \sqrt{\frac{N \cdot u}{2}}$.
+		
+		\item Express all integer solutions to the equation
+			\[ x^2 - 5y^2 = 11. \]
+	\end{enumerate}
+
+}
+{}
+  
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
