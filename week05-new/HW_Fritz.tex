@@ -1,0 +1,129 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx,color}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amsthm, amssymb, latexsym}
+\usepackage{amsfonts}
+
+\textheight=20.3cm
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{claim}[theorem]{Claim}
+
+\renewcommand{\d}{\partial}
+
+\newcommand{\grad}{\nabla}
+\newcommand{\remove}[1]{}
+
+\def \R {\mathrm{R}}
+\def \C {\cal{R}}
+\def \F {\cal{F}}
+\def \conv {\mbox{conv}}
+\def \la {\langle}
+\def \ra {\rangle}
+\renewcommand{\vec}[1]{{\overrightarrow{#1}}}
+
+\begin{document}
+
+\title{\bf Problem set}
+\maketitle
+
+\begin{enumerate}
+
+\item What is the distance of the line
+through $(2,5)$ and $(20, 65)$ to the closest
+point in $\mathbb{Z}^2$ not on this line?
+
+\item Show that there is no analogue to Pick's theorem in $\mathbb{R}^3$. In particular show that there are pyramids with integer vertices and not other integer points that have arbitrarily large volume.
+
+\item Show that is $a$ and $b$ are two integers that can be written as a sum of two squares, then so is the integer $ab$.
+
+\item We have see in class that every prime $p$ that is equal to $1$ modulo $4$ can be written as a sum of two squares, and that no integer that is equal to $2$ modulo $4$ can be written as a sum of two squares.
+
+Give a full characterization of which natural numbers can be written as a sum of two squares given their prime factorization.
+
+\item Let $P$ be a polygon with integer vertices in the plane. Show that if $P$ is not a triangle of area $1/2$, then we can find two integer points on the boundary of $P$ and a polygonal path (possibly just one segment) between them with integer vertices passing through the interior of $P$.
+
+\item Let $u$ and $v$ be two vectors in the plane. Show that the area of the parallelogram
+$\{au+bv \mid ~0 \leq a, b \leq 1\}$ is equal to $|det(u,v)|$.
+
+
+\end{enumerate}
+
+
+\noindent {\bf Week 5: Fritz' class: Minkowsky}
+
+\begin{itemize}
+
+\item State and prove Minkowsky's Theorem I in $\mathbb{R}^d$.
+
+\item Show tighness.
+
+\item Corollary: True also for lattices - Define. Linear transformations.
+
+\item Define a convex set + examples.
+\item $C$ is convex iff $a,b \in A$ implies
+$\lambda a +(1-\lambda)b \in C$.
+
+\item Minkowsky's theorem II: If $C$ is centerally symmetric and convex around $O$, with area $>4$, then it contains an integer point different than $O$.
+
+\item Proof: consider $\frac{1}{2}C$.
+We have $x, y \in \frac{1}{2}C$ such that 
+$x-y \in \mathbb{Z}^2$ and is not $O$.
+Notice: $x-y=\frac{1}{2}a-\frac{1}{2}b=
+\frac{1}{2}a+\frac{1}{2}(-b) \in C$.
+
+\item Example: The area of a triangle with integer vertices and no other integer point is 
+$\frac{1}{2}$.
+
+\item Proof: We can assume without loss of generality that $a,b,O$ are the three vertices. Then $a+b,a-b,b-a,-a-b$ are vertices of a parallelogram whose only other integer point is
+the origin. We conclude that the area of the triangle $\Delta Oab$ is less than or equal to $\frac{1}{2}$. It now follows that it is equal to $\frac{1}{2}$.
+
+Consequences:
+
+\item Pick's theorem. By induction.
+
+\item Farey sequences. Choose $n$.
+Then write all the numbers in $(0,1)$ with denominator
+smaller than or equal to $n$ in co-primes form
+$p/q$.
+Then $q_{i+1}p_{i}-q_{i}p_{i+1}=1$.
+Give example with $n=6$.
+
+\item Most classical example: A prime
+$P$ can be written as a sum of two squares iff $P \equiv 1 (mod 4)$.
+
+\item One direction is clear. Sum of two squares cannot be $3$ modulo $4$.
+
+\item If $P \equiv 1 (mod 4)$, then 
+$-1$ is a square. This is because 
+$(p-1)!=-1 (mod p)$ for any prime $p$.
+Next we arrange the numbers $1, \ldots, p-1$
+in pairs of $a, -a$. number of pairs
+$(p-1)/2$. it is even if $p \equiv 1 (mod 4)$,
+showing that $-1$ is a square.
+If $p \equiv 3 (mod 4)$, then $-1$ cannot be a square because a square is always $0,1$ mod $4$
+and $p-1$ would be $2$ mod $4$.
+
+\item Let $a^2=-1$ and consider the set 
+$\{(x,y) \in \mathbb{R}^2 \mid 
+(px+ay)^2+y^2<2p$.
+The area of this set is $2\pi>4$.
+Take an integer point $(x,y)$. 
+Then it must be that $(px+ay)^2+y^2=p$ because
+it is equal to $0$ mod $p$ and not equal to $0$.
+
+\item It is enough to show this for primes.
+This because if $a$ and $b$ can be written as sum of two squares, then so is $ab$.
+Also $2=1^2+1^2$
+
+
+
+
+
+\end{itemize}
+
+\end{document}
