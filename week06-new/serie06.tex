@@ -1,0 +1,179 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption} 
+\usepackage{enumerate}
+\usepackage{polynom}
+\usepackage[utf8]{inputenc} 
+\usepackage{utf8math}
+\usepackage{xfrac}
+
+\date{}
+
+\usepackage[boldsans]{concmath}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Th\'eor\`eme}
+\newtheorem{Sol}{Solution}
+\newtheorem*{Sol*}{Solution}
+\theoremstyle{definition}
+\newtheorem{Ex}{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+
+
+\def \N {\mathbb N}
+\def \Q {\mathbb Q}
+\def \R {\mathbb R}
+\def \Z {\mathbb Z}
+\def \K {\mathbb K}
+\def \C {\mathbb C}
+\def \id {{\rm id}\,}
+\def \Ker {{\rm Ker}\,}
+\def \Im {{\rm Im}\,}
+\def \Vect {{\rm Vect}\,}
+
+\newcommand{\df}{\mathrel{\mathop:}=}
+\newcommand{\dx}{ \ \text{d} \, x}
+
+\newcommand{\pscal}[1]{\langle {#1} \rangle}
+\DeclareMathOperator{\spa}{span}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%       ENABLE or DISABLE dislpay of solutions
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\newif\ifsolutions
+		
+		% ENABLE or DISABLE display of solutions
+		%\solutionstrue
+		\solutionsfalse
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Dont touch much, just change the correct number and date :). Based on the setup above, the solutions will be automaticelly displayed or hidden.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\newcommand{\exercise}[2]{
+			\begin{Ex} #1 \end{Ex}
+			\ifsolutions  \begin{Sol*} #2 \end{Sol*} \bigskip \else \bigskip  \fi
+		}
+
+		
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Beginning of the document. Make sure to add the correct dates and numbers everywhere.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+{Prof. Friedrich Eisenbrand \hfill November 3rd 2023}
+\end{center}
+	
+\hrule\vspace{\baselineskip}
+
+\begin{center}
+\textbf{Diophantine approximation}
+
+Fall 2023
+
+\bigskip
+
+\textbf{Set 6}
+\ifsolutions{\textbf{- Solutions}} \else{} \fi
+\end{center}
+
+\hrule\vspace{\baselineskip}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Beginning of the exercises
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Each exercise should look like 
+% 		\exercise{ Exercise }{ Solution }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\exercise{
+	Let $\mathcal{C} \subset \R^n$ be a \emph{compact}, convex set symmetric about the origin such that
+		\[ {\rm vol}(\mathcal{C}) \geq 2^n.\]
+	Show that $\mathcal{C}$ must containt a non-zero integer point.
+}
+{}
+
+\exercise{
+	Let $\mathcal{C} \subset \R^n$ be a convex set symmetric about the origin, and $A \in \R^{n \times n}$.
+	Show that the set
+		\[ A \cdot \mathcal{C} = \{ A u \ | \ u \in \mathcal{C} \} \]
+	is also convex, symmetric about the origin.
+}
+{}
+
+\exercise{
+	  This exercise shows that the bound on $q≤ Q^n$  in Dirichlet's theorem is essentially tight.
+	To this end, let $Q ∈ ℕ_+$ be an arbitrary integer.
+	A tuple $(q,p_1,\dots,p_n) ∈ ℤ^{n+1}$ is said to \emph{cover} $α ∈ ℝ^n$ if $| q⋅α_i - p_i | ≤ 1/Q$ holds for each $i$. 
+	We call $q$ the \emph{cost} of the tuple $(q,p_1,\dots,p_n) ∈ ℤ^{n+1}$. 
+	  \begin{enumerate}
+	  \item Let $S = \{ α ∈ ℝ^n ： α \text{ covered by } (q,p_1,\dots,p_n)\}$. Show that ${\rm vol}(S) = \left( 2 / ( q ⋅ Q)\right)^n$.
+	  \item Let  $α ∈ ℝ^n$ satisfy  $\|α\|_∞ ≤1$. If $α$ is covered by a tuple of cost $q$, then  $α$ is covered by a tuple  $(q,p_1,\dots,p_n) ∈ ℤ^{n+1}$  satisfying  $|p_i| ≤ q$ for each $i$. 
+	  \item Use a covering argument to show that there exists $α ∈ [-1,1]^n$ that is not covered by any tuple $(q,p_1,\dots,p_n) ∈ ℤ^{n+1}$  of cost  $q< (Q/2)^n$.
+	  \end{enumerate}
+	\item Derive a lower bound ${\rm vol} (K)$ where 
+	  \begin{displaymath}
+	    K = \{α ∈ [-1,1]^n ： α \text{ not covered with cost } ≤ (Q/4)^n\}. 
+	  \end{displaymath} 
+}
+{}
+
+The following lemma is taken from Drmota, Tichy.  \emph{Sequences, discrepancies and applications}. Springer, 2006. Section 1.4.
+\begin{lemma}[Khintchine's transference principle]\label{lem:1}
+	Let $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ such that $1, \alpha_1, \dots, \alpha_n$ are linearly independent over $\Q$.
+	The following properties are equivalent.
+	\begin{enumerate}[i)]
+		\item For every $c > 0$, there are infinitely many integers $q \geq 1, p \in \Z^n$ with
+			\[ \| q \alpha - p \|_\infty \leq \frac{c}{q^{1/n}}. \]
+		\item For every $c > 0$, there are infinitely many integers $x \in \Z^n, y \in \Z$ with
+			\[ | x^T \alpha - y | \leq \frac{c}{ \| x \|_\infty^n}. \]
+	\end{enumerate}
+\end{lemma}
+
+\exercise{
+	The goal of this exercise is to show Khintchine's transference principle (lemma \ref{lem:1}) between the two versions of Dirichlet's theorem.
+	TODO STEPS :)
+}
+{}
+
+\exercise{
+	Let $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$. We say $\alpha$ is \emph{badly approximable} if there exists a constant $c > 0$ such that
+		\[ \| q \alpha - p \|_\infty > \frac{c}{q^{1/n}}, \]
+	for all integers $q \in \Z, p \in \Z^n$.
+
+	\begin{enumerate}[i)]
+		\item Show that if $\alpha \in \R^n$ is badly approximable, then $1, \alpha_1, \dots, \alpha_n$ are linearly independent over $\Q$.
+		\item Suppose that $\alpha \in \R$ is an algebraic integer of degree $n+1$. That is, there exist integers $a_0, \dots, a_{n} \in \Z$ such that
+			\[ \alpha^{n+1} + a_{n} \alpha^{n} + \dots +  a_{0} = 0. \]
+		Define $\alpha_1, \dots, \alpha_{n+1}$ the $n+1$ conjugate roots of the above polynomial.
+		Show that the vector $(\alpha_1, \dots, \alpha_n) \in \R^n$ is badly approximable using lemma \ref{lem:1}.
+
+		\emph{Hint: algebraic integers form a ring. Hence the minimal polynomial of $x^T \alpha$ is also integer for $x \in Z^n$.}
+	\end{enumerate}
+}
+{}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
