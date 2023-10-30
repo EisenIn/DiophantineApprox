@@ -1,0 +1,680 @@
+
+\documentclass[a4paper,11pt,american]{article} 
+ 
+
+
+\usepackage[utf8]{inputenc} 
+%\usepackage{utf8math}
+
+%\usepackage[euler-digits,euler-hat-accent]{eulervm}
+\usepackage[boldsans]{concmath}
+
+\usepackage{mathrsfs}
+\usepackage[american]{babel}
+\usepackage{mathtools} % includes amsmath
+\usepackage{tikz}
+\usepackage{quiver}
+\usepackage{amssymb}
+\usepackage{amscd}
+\usepackage{todonotes}
+
+\usepackage{amsthm}
+
+%\usepackage{multirow}
+\usepackage{enumerate}
+
+%\usepackage{tikz}
+\usepackage{framed}
+%\usepackage[colorlinks]{hyperref}
+%\usepackage{showlabels}  
+
+
+\newcommand{\smat}[1]{ \big(\begin{smallmatrix} #1 \end{smallmatrix}\big)}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\X}{\mathscr{X}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\pscal}[1]{\langle {#1} \rangle}
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\car}{\mathrm{Char}}
+
+
+
+\providecommand{\one}{\mathbf{1}}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\rank}{rang}
+\DeclareMathOperator{\noy}{noyau}
+\DeclareMathOperator{\cone}{cone}
+\DeclareMathOperator{\tcone}{tcone}
+\DeclareMathOperator{\SV}{SV}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\cof}{cof}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\sign}{sgn}
+\DeclareMathOperator{\poly}{poly}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\relint}{relint}
+\DeclareMathOperator{\spa}{span}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\pspace}{\mathcal{PSPACE}}
+\DeclarePairedDelimiter\mnorm{\lvert\lvert\lvert}{\rvert\rvert\rvert} % matrix norm
+
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem*{notation}{Notation}
+\newtheorem{example}{Exemple}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}{Problem}
+
+\newtheorem{exercise}{Exercise}
+\newtheorem{algorithm}{Algorithm}
+
+\setlength{\parindent}{0pt}  % No indents 
+
+\newcommand{\iunit}{\mathrm{i}}
+\newcommand{\CC}{{\mathbb C}}
+\newcommand{\EE}{{\mathbb E}}
+\newcommand{\FF}{{\mathbb F}}
+\newcommand{\KK}{{\mathbb K}}
+\newcommand{\NN}{{\mathbb N}}
+\newcommand{\QQ}{{\mathbb Q}}
+\newcommand{\RR}{{\mathbb R}}
+\newcommand{\ZZ}{{\mathbb Z}}
+
+\newcommand{\calB}{{\mathcal B}}
+
+
+%opening
+
+\title{Diophantine Approximation}
+\author{Friedrich Eisenbrand}
+
+\begin{document}
+
+
+\maketitle
+
+
+
+\subsection*{22. September 2023}
+
+Motivation for the neeed for approximation by rationals with small denominator: Calendar design.
+
+Let $\alpha\in\R$. A fraction $(p/q)$ with $p,q\in \Z$ and $q\geq 1$ is a \emph{best approximation} of $\alpha$ if for each fraction $c/d \neq p/q$  with $c,d \in\Z$ and $d\geq1$ one has:
+\begin{displaymath}
+  0 < d \leq q \text{ implies } \vert \alpha - p/q \vert < \vert\alpha - c/d \vert. 
+\end{displaymath}
+
+\emph{Rounding with denominator bound}: Given $\alpha\in\R$ and $N \in \N_+$, find $(p/q)$ with $1\leq q \leq N$ and  $\vert \alpha - p/q\vert $ minimal.\\\\
+\emph{Notations}: For $x\in \R$ we note:
+\begin{displaymath}
+    \lfloor x\rfloor=\max\{z\in\N:z\leq x\},\text{and}\;
+    \lceil x\rceil=\min\{z\in\N:z\geq x\}
+\end{displaymath}
+We define the \emph{fractionnal part} of $x$ as follows:
+\begin{displaymath}
+    \{x\}=x-\lfloor x\rfloor
+\end{displaymath}
+\emph{Notations}: For $x\in \R$ we note:
+\begin{displaymath}
+    \lfloor x\rceil=\lfloor x\rfloor\;\text{if}\; \{x\}\leq 1/2\; \text{and}\; \lceil x\rceil\; \text{otherwise}
+\end{displaymath}
+\emph{Simple $N$-rounding}: Approximate $\alpha$ with $ \lfloor N \cdot \alpha \rceil / N$. With this type of approximation we get that $\vert \alpha-\frac{\lfloor \alpha\cdot N\rceil}{N}\vert \leq\frac{1}{2N}$.\\\\
+\emph{Remark} We cannot get a much better bound:\\
+Let $\alpha\in \R\backslash\Q$ we then it exists $z\in \Z$ such that $\alpha=\frac{N\cdot z +\frac{1}{2}-\epsilon}{N}$. Hence simple rounding gives us an error of $\frac{\frac{1}{2}-\epsilon}{N}$
+\begin{theorem}[Dirichlet]
+  \label{thr:1}
+  Let  $\alpha\in \R$ and  $N \in \N_+$. There exists a fraction $p/q$ with $p,q\in\Z $ such that
+  \begin{enumerate}[i)]
+  \item $1 \leq q \leq N$, and
+  \item $\vert \alpha - p/q\vert < 1/(q\cdot N)$ 
+  \end{enumerate}
+\end{theorem}
+  This is much better than $1/(2N)$ as soon as $q$ gets larger. The more you \emph{pay} for the denominator $q$, the better the approximation is.
+
+  \begin{proof}[Proof of Dirichlet's Theorem] 
+    For $0 \leq q \leq N$ consider the points $\{q \cdot\alpha\}$. These points lie in $[0,1)$ and there are $N+1$ many of them. This means that two of them are at a distance of strictly less than $1/N$ from each other. Therefore, there exist $q_1,q_2 \in \{0,\dots,N\}$ such that $\vert\{q_1 \cdot\alpha\} -\{q_2 \cdot \alpha\} \vert < 1/N$. Since $\{q_i \cdot\alpha\} = q_i \cdot\alpha - x_i$  for some suitable $x_i \in\Z$ we have:
+    \begin{displaymath}
+          \vert (q_1 -q_2)\cdot\alpha - (x_1-x_2) \vert < 1/N.
+    \end{displaymath}
+    Now we can just set $q= q_1-q_2 \in \{1,\dots,N\}$ and $p=x_2-x_1$
+  \end{proof}
+  
+Reading: \cite{eisenbrand2012pope,WikiDirichlet}  
+
+
+\subsection*{29. September 2023}
+
+%Reading: The book of Khinchine~\cite[Section~2]{khinchin1997continued}.
+\emph{Best Approximation Geometric algorithm}\\
+Let $\alpha\in\R_{>0}$ and $N\in \N_+$. We want to find $(p,q)\in(\N\times\N_+)$ such that $\vert \alpha-p/q\vert$ is minimal among all such duples $(r,s)$ with $s\leq N$.\\
+\emph{ ALgorithm}: First take $V_1=(0,1)$, $V_2=(1,0)$ a basis of $\Z^2$.\\
+Secondly we add $\lambda\in \N$ times the vector $V_1$ to $V_2$ where $\lambda$ is the biggest integer such that $V_2+\lambda V_1$ does not cross the line passing through $0$ with slope $\alpha$. We obtain a new basis $V_1,V_3=V_2+\lambda V_1$.\\
+Now for the iteration step :
+\begin{enumerate}
+    \item Add the longer vector ($V_i$) to the shorter one ($V_j$) until the last moment such that the sum.
+    \begin{enumerate}[i)]
+    \item does not cross the line
+    \item \label{ii} does not cross the vertical denominator
+\end{enumerate}
+\item Create your new basis $\{V_i,V_j+\lambda V_i\}$.
+\end{enumerate}
+%Explain the geometric intuition behind the theory of continued fractions, as in \cite{eisenbrand2012pope}.\\ 
+Here is an example of this algorithm:
+\[\begin{tikzcd}
+	&&&&&& {} & {} \\
+	{} &&&&&& \bullet \\
+	&&&&&& {} \\
+	{} && \bullet && \bullet \\
+	\\
+	\bullet & {} & {} && {} && {}
+	\arrow[""{name=0, anchor=center, inner sep=0}, from=6-1, to=2-1]
+	\arrow[color={rgb,255:red,0;green,8;blue,235}, from=4-1, to=4-3]
+	\arrow["{V_1}"', color={rgb,255:red,0;green,8;blue,235}, from=6-1, to=6-3]
+	\arrow["{V_3=V_1+V_2}"{pos=0.6}, color={rgb,255:red,255;green,51;blue,235}, from=6-1, to=4-3]
+	\arrow[color={rgb,255:red,255;green,51;blue,235}, from=6-3, to=4-5]
+	\arrow[color={rgb,255:red,255;green,51;blue,235}, from=4-5, to=2-7]
+	\arrow["{\text{line through 0 with slope}\; \alpha}"{pos=0.7}, color={rgb,255:red,233;green,1;blue,17}, no head, from=6-1, to=1-8]
+	\arrow["{V_4=V_1+2V_3}"'{pos=0.2}, color={rgb,255:red,79;green,79;blue,227}, from=6-1, to=2-7]
+	\arrow[from=6-1, to=6-5]
+	\arrow["{\text{Bound}\; N}", color={rgb,255:red,233;green,1;blue,17}, no head, from=1-7, to=6-7]
+	\arrow["{V_2}", color={rgb,255:red,4;green,169;blue,4}, from=6-1, to=0]
+\end{tikzcd}\]
+\emph{Observation}\begin{itemize}
+    \item The algorithm only stops when $V_1+V_2$ cross the denominator bound.
+    \item The vectors $V_i,V_j$ remain positive in both components.
+    \item The second component has an exponential growth, hence after $\log(N)$ iteration the algorithm stops.
+\end{itemize}
+\emph{Upon termination} take the longer verctor of your basis : $V_i=(p,q)$, then $(p,q)$ is a solution to the problem.
+\begin{proof}
+    Suppose that $\frac{r}{s}$ is a better approximation to $\alpha$ than $\frac{p}{q}$ and let $V_1,V_2$ the last basis obtained by the algorithm. Then $(r,s)=x_1\cdot V_1+ x_2\cdot V_2$ with $x_1,x_2\in\Z$. In particular as $\frac{r}{s}$ is a better approximation than $(p,q)$ then $(r,s)$ is contained in the cone generated by $V_1,V_2$ so $x_1,x_2\in \N_+$. Therefore $s\geq V_{1_2}+V_{2_2}$, hence $s>N$ by definition of the algorithm. 
+\end{proof}
+Explain  continued fraction expansion of a number $\alpha\in\R\backslash \Q$:
+
+$\alpha =  \lfloor\alpha\rfloor + \{\alpha\}=\frac{1}{\frac{1}{\{\alpha\}}} $. Setting $\beta = \frac{1}{\{\alpha\}}$:
+ 
+  \begin{displaymath}
+    \alpha = \lfloor\alpha\rfloor + \cfrac{1}{ \lfloor\beta\rfloor + \cfrac{1}{\lfloor\gamma\rfloor+ \dots}} 
+  \end{displaymath}
+
+  Process does not end. If $\alpha \in\Q$, process ends. Mention relation to Euclidean algorithm.
+
+  Explain continued fraction expansion of $\sqrt{2}$.\\
+\emph{Example}: The continued fractio expansion of $\sqrt{2}$:\begin{align*}
+    \sqrt{2}&=1+(\sqrt{2}-1)=1+(\sqrt{2}-1)\dfrac{(\sqrt{2}+1)}{(\sqrt{2}+1)}\\
+    &=1+\dfrac{1}{1+\sqrt{2}}=1+\cfrac{1}{1+(1+\cfrac{1}{1+\sqrt{2}})}\\
+    &=1+\cfrac{1}{2+\cfrac{1}{1+\sqrt{2}}}=1+\cfrac{1}{2+\cfrac{1}{2+\cfrac{1}{2+\cfrac{1}{...}}}}
+\end{align*}
+
+  \begin{definition}
+    For $a_0 \in \R$ and $a_1,\dots,a_n \in\N_+$ write
+    \begin{equation}      
+      [a_0;a_1,\dots,a_n] = a_0 + \cfrac{1}{a_1 + \cfrac{1}{a_2 + \cfrac{1}{\cdots  \cfrac{1}{a_n}}}}
+      \label{eq:1}
+    \end{equation}
+  \end{definition}
+The equation~\eqref{eq:1} is a fraction $p_n / q_n$ that depends on the sequence $a_0,\dots,a_n$.
+
+
+\begin{theorem}
+  \label{thr:2}
+  Set $p_{-1} = 1, q_{-1} = 0, p_{-2} = 0, q_{-2} =1$. Then for $k\geq1$ one has $[a_0;a_1,\dots,a_k]=\frac{p_k}{q_k}$ with
+  \begin{equation}
+    \label{eq:2}
+    \begin{array}{rcl}
+    p_ k & = & p_{k-1} a_k + p_{k-2}\\
+      q_ k & = & q_{k-1} a_k + q_{k-2}.
+    \end{array}
+  \end{equation}
+  
+\end{theorem}
+  \begin{proof}
+      For $k=0$ we have $a_0=\frac{a_0}{1}=\frac{p_0}{q_0}$.\\
+      Let $k>0$ and suppose the theorem is true for $k-1$. By definition of $[a_0;a_1,\dots,a_k]$ we have that $[a_0;a_1,\dots,a_k]=[a_0;a_1,\dots,a_{k-1}+\frac{1}{a_k}]$. By induction hypothesis we then obtain that \begin{align*}
+          \frac{p_k}{q_k}=\frac{\Tilde{p}_{k-1}}{\Tilde{q}_{k-1}}&=\frac{p_{k-2}(a_{k-1}+\frac{1}{a_k}) + p_{k-3}}{q_{k-2} (a_{k-1}+\frac{1}{a_k}) + q_{k-3}}\\
+          &=\frac{p_{k-2} a_{k-1} + p_{k-3}+\frac{p_{k-2}}{a_k}}{q_{k-2} a_{k-1} + q_{k-3}+\frac{q_{k-2}}{a_k}}\\
+          &=\frac{p_{k-1}+\frac{p_{k-2}}{a_k}}{q_{k-1}+\frac{q_{k-2}}{a_k}}=\frac{p_{k-1} a_k + p_{k-2}}{q_{k-1} a_k + q_{k-2}}
+      \end{align*}
+  \end{proof}
+This theorem gives a recursive formula to compute the value of~\eqref{eq:1}. In matrix notation one has
+\begin{equation}
+  \label{eq:3}
+  \begin{pmatrix}
+    p_k & p_{k-1} \\
+    q_k & q_{k-1}
+  \end{pmatrix} =
+  \begin{pmatrix}
+    a_0 & 1\\
+    1 & 0
+  \end{pmatrix} \cdots
+  \begin{pmatrix}
+    a_k & 1 \\
+    1 & 0
+  \end{pmatrix}
+\end{equation}
+
+
+
+\begin{theorem}
+  \label{thr:3}
+  For $k\geq -1$ one has
+  \begin{displaymath}
+    p_k q_{k-1} - q_k p_{k-1} = (-1)^{k+1} 
+  \end{displaymath}
+\end{theorem}
+\begin{proof}
+    By $\eqref{eq:3}$ we obtain that $\det(\begin{pmatrix}
+    p_k & p_{k-1} \\
+    q_k & q_{k-1}
+  \end{pmatrix})=(-1)^{k+1}$
+\end{proof}
+Observation: If $a_i \in\N_+$ for $i\geq1$ and $a_0 \in\Z$, then $\gcd(p_k,q_k) = 1$.
+\begin{corollary}
+  \label{co:1}
+  \begin{equation}
+    \label{eq:4}
+      \frac{p_{k-1}}{q_{k-1}} - \frac{p_k}{q_k} = \frac{(-1)^k }{q_k q_{k-1}}.    
+  \end{equation}
+
+\end{corollary}
+
+\begin{theorem}
+  For all $k\geq 1$:
+  \begin{displaymath}
+    q_k p_{k-2} - p_k q_{k-2} = (-1)^ {k+1} a_k. 
+  \end{displaymath}
+\end{theorem}
+\begin{proof}
+    From $\eqref{eq:2}$ we obtain \begin{equation}
+        \label{eq:5}\begin{array}{rcl}
+         p_ kq_{k-2} &=&  p_{k-1} a_kq_{k-2} + p_{k-2}q_{k-2}\\
+        q_ kp_{k-2}  &=& q_{k-1} a_kp_{k-2} + q_{k-2}p_{k-2}
+        \end{array}
+    \end{equation}
+    Substracting those two equations we obtain that 
+    $$ p_ kq_{k-2}-q_ kp_{k-2}=(p_{k-1}q_{k-2}-q_{k-1}p_{k-2})a_k$$
+    It follows from theorem \eqref{thr:3} the equality become $q_k p_{k-2} - p_k q_{k-2} = (-1)^ {k+1} a_k$
+\end{proof}
+
+\begin{corollary}
+  \label{co:2}
+  For all $k\geq 2$:
+
+  \begin{displaymath}
+    \frac{p_{k-2}}{q_{k-2}} -    \frac{p_k}{q_k} = \frac{(-1)^{k-1} a_k}{q_k q_{k-2}}. 
+  \end{displaymath}
+\end{corollary}
+
+We always assume $a_0\in\Z$ and $a_i \in \N_+$ for $i\geq1$.
+
+
+
+
+
+\subsubsection*{Convergence of convergents}
+
+Then Corollary~\ref{co:2} implies that even convergents are increasing sequence and off convergents are decreasing. Together with Corollary~\ref{co:1} and the exponential growth of the sequence $p_k$ we have fast convergence of the convergents.
+
+
+
+\subsection*{6. October 2023}
+\begin{lemma}\label{lem:7}
+Let $\alpha\in\R\backslash\Q$ and $f(x)=[a_0;a_1,\dots,a_{k-1},x]$.\\
+For $k$ even: $f(x)$ is increasing and $a_k\in \N_+$ is the largest integer such that \begin{equation}
+    [a_0;a_1,\dots,a_k]<\alpha
+\end{equation}
+For $k$ odd: $f(x)$ is decreasing and $a_k\in \N_+$ is the largest integer such that \begin{equation}
+    [a_0;a_1,\dots,a_k]>\alpha
+\end{equation}
+\end{lemma}
+\begin{proof}
+    Developp a recursive argument with $\alpha=a_0+\cfrac{1}{a_1+\cfrac{1}{[a_2,a_3,\dots]}}$
+\end{proof}
+\emph{Definition}: We call $[a_0;a_1,\dots,a_k]$ the \emph{k-th convergent} of $\alpha$.
+\begin{theorem}\label{th:8}
+    Let $a_0\in\Z$ and $\forall i\in\N_+,\; a_i\in\N_+$ then for $k\geq 2$ we have $q_K\geq 2^{\frac{k-1}{2}}$
+\end{theorem}
+\begin{proof}
+    We know from theorem $\eqref{thr:2}$ that $ q_ k =  q_{k-1} a_k + q_{k-2}$ and therefore $ q_ {k-1}  =  q_{k-2} a_{k-1} + q_{k-3}$. It follows that $q_k\geq 2\cdot q_{k-2}$.\\
+    So for $k\geq 1$ we obtain that :\begin{itemize}
+        \item $q_{2k}\geq 2^k\cdot q_o=2^k$
+        \item $q_{2k+1}\geq 2^k\cdot q_1\geq 2^k$
+    \end{itemize}
+\end{proof}
+\begin{theorem}
+    Let $\alpha\in\R\backslash\Q$. For $k\geq 1$... 
+\end{theorem}
+\begin{proof}
+    \begin{align}
+        \vert\alpha-\frac{p_k}{q_k}\vert&\leq\vert \frac{p_{k-1}}{q_{k-1}}-\frac{p_k}{q_k}\vert \label{eq:8}\\
+        &\leq \frac{1}{q_k\cdot q_{k-1}}\label{eq:9}\\
+        &\leq \frac{1}{q^{\frac{k-1}{2}\cdot\frac{k-2}{2}}}=\frac{1}{2^k\cdot2^\frac{-3}{2}}=\frac{2^\frac{3}{2}}{2^k}\label{eq:10}
+    \end{align}
+    Where in $\eqref{eq:8}$ we used lemma $\eqref{lem:7}$, in \eqref{eq:9} we used corollary $\eqref{co:1}$ and in $\eqref{eq:10}$ we used theorem $\eqref{th:8}$.
+\end{proof}
+\begin{corollary}
+    Continued fraction expansions converges exponentially to $\alpha$
+\end{corollary}
+\begin{theorem}
+    Let $\alpha\in\R\backslash\Q$, every best approximation to $\alpha$ is a convergent or intermediate convergente of $\alpha$. In other words it exists $k\geq 0$ such that the best approximation of $\alpha$ is $[a_0,a_1;\dots,a_{k-1},j]$ for $1\leq j\leq a_k$.
+\end{theorem}
+\begin{proof}
+    Suppose it exists a best approximation $\frac{a}{b},\; b\in\N_+$  of $\alpha$ that is not a convergent or an intermediate convergent.\\
+    Let $r_1$ be the last convergent with $q_k<b$ i.e $r_1=[a_0,a_1;\dots,a_k]$. Let $r_2$ be the last intermediate convergent of $\alpha$ i.e $r_2=\frac{j\cdot p_k+p_{k-1}}{j\cdot q_k+q_{k-1}}$ with $j$ the biggest integer such that $j\cdot q_k+q_{k-1}\leq b$.\\
+    Suppose $k$ is even: therefore we know that $r_1<\alpha<r_2$.\\
+    As $\frac{a}{b}$ is a best approximation we have that $\frac{a}{b}\in [r_1,r_2]$ so it follows that 
+    \begin{equation}
+        \frac{a}{b}-r_1=\frac{a}{b}-\frac{p_k}{q_k}>0\implies \frac{a}{b}-\frac{p_k}{q_k}=\frac{\vert a q_k-b p_k\vert}{b q_k}\geq \frac{1}{bq_k}
+    \end{equation}
+    \begin{equation}r_2-\frac{a}{b}>0\implies \frac{j\cdot p_k+p_{k-1}}{j\cdot q_k+q_{k-1}}-\frac{a}{b}\geq \frac{1}{b(j\cdot q_k+q_{k-1})}
+    \end{equation}
+    hence $\dfrac{a}{b}\geq \dfrac{1}{bq_k}$ and $r_2-\dfrac{a}{b}\geq \dfrac{1}{b(j\cdot q_k+q_{k-1})}$. Therefore we obtain that :\begin{align*}
+        r_2-r_1&\geq \frac{1}{b}(\frac{1}{(j\cdot q_k+q_{k-1})}\cdot \frac{1}{q_k})\\
+        &=\frac{1}{b}(\frac{(j+1)\cdot q_k+q_{k-1}}{q_k(j\cdot q_k+q_{k-1})})\\
+    \end{align*}
+    By definition of $j$ it follows that $r_2-r_1>\frac{1}{q_k(j\cdot q_k+q_{k-1})}$.
+    But at the same time\begin{align*}
+        r_2-r_1&= \frac{j\cdot p_k+p_{k-1}}{j\cdot q_k+q_{k-1}}-\frac{p_k}{q_k}=\frac{j\cdot p_kq_k+p_{k-1}q_k-j\cdot q_kp_k-p_kq_{k-1}}{q_k(j\cdot q_k+q_{k-1})}\\
+        &=\frac{p_{k-1}q_k-p_kq_{k-1}}{q_k(j\cdot q_k+q_{k-1})}=\frac{-(-1)^{k+1}}{q_k(j\cdot q_k+q_{k-1})}=\frac{1}{q_k(j\cdot q_k+q_{k-1})}
+    \end{align*}
+    So we obtained a contradiction. The case with $k$ odd is roughly similar.
+\end{proof}
+\emph{Example} Let $\alpha=\epsilon+\frac{17}{4}$. For $\epsilon$ sufficiently small, the best approximation with denominator bound equal to 3 is $\frac{13}{3}=[4;3]$ and one can compute that $a_1=4$.
+%Solution to the best approximation problem.
+
+\subsection*{13. October 2023}
+
+We consider the Diophantine equation
+\begin{equation}
+  \label{eq:6}
+  x^2 - dy^2  = 1, \, x,y \in \Z,
+\end{equation}
+where $d \in\N $. A trivial solution is $(x,y) = (\pm 1, 0)$.
+\begin{exercise}
+  \label{exe:1}
+  Convince yourself of the fact that, if a non-trivial solution exists, then $d$ is not a perfect square. 
+\end{exercise}
+
+We also consider the field $\Q(\sqrt{d}) = \{x+y\sqrt{d}:x,y\in\Q \}$ and  the ring $\Z[ \sqrt{d}] = \{ x+ y \sqrt{d}:x,y \in\Z\}$.
+\begin{exercise}
+  \label{exe:2}
+  Convince yourself that the above are indeed a field and a ring. 
+\end{exercise}
+
+
+
+
+The \emph{norm} of an element $x + y \sqrt{d} \in \Q(\sqrt{d})$ is the rational number $(x + y \sqrt{d}) (x - y \sqrt{d} ) = x^2 -d y^2$. It is denoted by $N(x+y\sqrt{d})$. 
+\begin{exercise}
+  \label{exe:3}
+  Show that the norm is multiplicative, i.e. that for $\alpha,\beta \in\Q(\sqrt{d})$ one has $N(\alpha\cdot\beta) = N(\alpha)\cdot N(\beta)$. 
+\end{exercise}
+
+
+If $(x,y) \in\Z^2$ is a solution to~\eqref{eq:6}, then $x + y \sqrt{d}$ is a \emph{unit} in $\Z[ \sqrt{d}]$, since $(x + y \sqrt{d})(x - y \sqrt{d}) =1$. However, not each unit corresponds to a solution of \eqref{eq:6}. For example, $1 - \sqrt{2} \in\Z[\sqrt{2}]$ is  unit, but $1^2 - 2 \cdot 1^2 = -1$. This is a \emph{unit of norm $-1$}.
+
+There is a correspondence between units of norm $1$ and solutions of the Pell equation~\eqref{eq:6}. 
+
+
+
+\begin{theorem}
+  \label{thr:4}
+  If $d \in\N_+$ is not a perfect square, then \eqref{eq:6} has a nontrivial solution. 
+\end{theorem}
+
+
+\begin{proof}
+  We recall Dirichlet's Theorem~\ref{thr:1}. This implies that there exist infinitely many pairs $(p,q) \in\N\times\N_+$ with $\gcd(p,q) = 1$ such that 
+   \begin{displaymath}
+    \vert p - q \sqrt{d}  \vert < 1/q. 
+  \end{displaymath}
+
+  For such $(p,q)$ one has, by the triangle inequality also  $ \vert p +  q \sqrt{d}  \vert \leq 1/q + 2 q \sqrt{d} $. By multiplying both inequalities, one obtains
+  \begin{displaymath}
+    \vert p^2 - d q^2 \vert <  1/q^2 + 2 \sqrt{d} \leq 1 + 2 \sqrt{d},
+  \end{displaymath}
+  which is a constant. Consequently, there exits a constant $r \in\Z$
+  and infinitely many pairs $(p,q) \in(\N\times\N_+)$ with
+  \begin{equation}
+    \label{eq:7}    
+    p^2 - d q^2  = r.
+  \end{equation}
+
+  There are only $r^2$ many elements in $\Z_r \times\Z_r$. This implies that
+  there exists one such vector $(u,v) \in \Z_r \times\Z_r$ and infinitely many
+  pairs $(p,q) \in\N\times\N_+$ with $(p,q) \equiv (u,v) \pmod{r}$ that satisfy
+  \eqref{eq:7}.
+
+
+  Now let   $(p_1,q_1) \neq  (p_2,q_2) \in(\N \times \N_+)$ be two such pairs. We show that
+  \begin{equation}
+    \label{eq:11}   
+  \alpha =  (p_1 + \sqrt{d} q_1 ) (p_2 + \sqrt{d} q_2)^{-1} \in \Z[\sqrt{d}]. 
+  \end{equation}
+  Since $N(\alpha) = 1$, $\alpha$ is a unit of norm one and if it is non-trivial, we are done, once we have established~\eqref{eq:11}.
+
+  We have
+  \begin{displaymath}
+    \alpha = \frac{p_1 p_2 - d q_1 q_2}{r} + \frac{-p_1q_2 + q_1p_2}{r} \sqrt{d}.  
+  \end{displaymath} 
+  Since $p_1 p_2 - d q_1 q_2 \equiv p_1^2 - d q_1^2 \equiv 0\pmod{r}$ and since $-p_1q_2 + q_1p_2 \equiv 0 \pmod{r}$, it follows that $\alpha \in\Z[\sqrt{d}]$.  On the other hand, since $\gcd(p_1,q_1) =\gcd(p_2,q_2)=1$,   $p_1q_2 = q_1p_2$ implies $p_1 = p_2$ and $q_1 = q_2$ which is excluded. Thus $\alpha$ is not rational and this yields a nontrivial solution of~\eqref{eq:6}, namely $x = (p_1 p_2 - d q_1 q_2)/r$ and $y = (-p_1q_2 + q_1p_2)/{r}$. 
+\end{proof}
+
+  \subsubsection*{Solving the Pell equation with continued fractions}
+
+
+  If $d \in \N_+$ is not a perfect square, then $\sqrt{d}$ is irrational. One can compute the continued fraction expansion of $\sqrt{d}$. Recall that one has  \eqref{eq:4} from which we conclude
+  \begin{displaymath}
+    \vert  \sqrt{d} - p_k / q_k \vert  \leq 1 (q_k q_{k+1}) \leq 1/ q_k^2 
+  \end{displaymath}
+  and that the fraction $p_k/q_k$ are reduced for $k\geq0$. This means that we can attractively compute solutions $(p_k^2 - d q_k^2) = r$ with $\vert r\vert  \leq 1 + 2 \sqrt{d}$. Once we have computed  $k \geq\lceil  2( 1  + 2\sqrt{d} ) +1 \rceil   \cdot \lceil 1 + 2 \sqrt{d}\rceil ^2 $ convergents,  we can identify two of them that yield $(p_1,q_1)$ and $(p_2,q_2)$ as in the proof of Theorem~\ref{thr:4} and construct a nontrivial solution of $x^2 - d y^2 = 1$. The running time of this naive algorithm is $O(d^{3/2})$  which is polynomial in the \emph{value } of  $d$ but \emph{exponential} in the \emph{binary encoding length} of $d$. It is also known that there exist $d$ such that each nontrivial solution of the Pell equation requires an exponential number of bits in $\ln (d)$, see~\cite{lenstra2002solving}. 
+
+
+  \begin{example}
+    \label{exe:4}
+
+    We want to find a nontrivial solution of
+    \begin{displaymath}
+      x^2 - 3 y^2 = 1, \, x,y \in\Z. 
+    \end{displaymath}
+    The continued fraction expansion of $\sqrt{3} = [1; \overline{1,2}]$.    Starting with
+    \begin{displaymath}
+      \begin{pmatrix}
+        p_{-1} & p_{-2}  \\
+        q_{-1} & q_{-2}  
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        1 & 0 \\
+        0 & 1
+      \end{pmatrix} 
+    \end{displaymath}
+    we compute
+    \begin{displaymath}
+      \begin{pmatrix}
+        p_{0} & p_{-1}  \\
+        q_{0} & q_{-1}  
+      \end{pmatrix} =
+      \begin{pmatrix}
+        1 & 1  \\
+        1 & 0  
+      \end{pmatrix},
+    \end{displaymath}
+ \begin{displaymath}
+      \begin{pmatrix}
+        p_{1} & p_{0}  \\
+        q_{1} & q_{0}  
+      \end{pmatrix} =
+      \begin{pmatrix}
+        1 & 1  \\
+        1 & 0  
+      \end{pmatrix}
+       \begin{pmatrix}
+        1 & 1  \\
+        1 & 0  
+      \end{pmatrix}  =
+      \begin{pmatrix}
+        2 & 1  \\
+        1 & 1  
+      \end{pmatrix} 
+    \end{displaymath}
+
+
+    \begin{displaymath}
+      \begin{pmatrix}
+        p_{2} & p_{1}  \\
+        q_{2} & q_{1}  
+      \end{pmatrix} =
+      \begin{pmatrix}
+        2 & 1  \\
+        1 & 1  
+      \end{pmatrix}
+       \begin{pmatrix}
+        2 & 1  \\
+        1 & 0  
+      \end{pmatrix}  =
+      \begin{pmatrix}
+        5 & 2  \\
+        3 & 1  
+      \end{pmatrix} 
+    \end{displaymath}
+    and
+    
+    \begin{displaymath}
+      \begin{pmatrix}
+        p_{3} & p_{2}  \\
+        q_{3} & q_{2}  
+      \end{pmatrix} =
+      \begin{pmatrix}
+        5 & 2  \\
+        3 & 1  
+      \end{pmatrix}
+       \begin{pmatrix}
+        1 & 1  \\
+        1 & 0  
+      \end{pmatrix}  =
+      \begin{pmatrix}
+        7 & 5  \\
+        4 & 3  
+      \end{pmatrix}. 
+    \end{displaymath}
+    We find a non-trivial solution
+    \begin{displaymath}
+      (x,y) = (7,4)  \in\Z^2
+    \end{displaymath}
+    $7^2 - 3\cdot 4^2 = 1$. In this example, we did not search for convergents of same value and remainder pattern as in the proof. Instead, we just computed some convergents until we found a solution. We have not argued that  this always works. 
+  \end{example}
+
+
+\subsubsection*{Liouville's Theorem}
+
+
+A number $\alpha \in\C$ is \emph{algebraic}, if there exist a nonzero polynomial $p(x) \in \Q[x]$ with $p(\alpha) = 0$. The \emph{minimal polynomial} of $\alpha$ is the unique monic nonzero polynomial $p(x) \in\Q[x]$ with $p(\alpha) = 0$. The degree of $\alpha$ is the degree of this polynomial.  By multiplying with the least common multiple of the denominators of the coefficients of $p(x)$, we obtain a polynomial $q(x) \in\Z[x]$ of \emph{content} one, meaning that the greatest common divisor of the coefficients of $q$ is one. One can easily see that there is a unique nonzero polynomial $q(x) \in\Z[x]$ with content one and positive leading coefficient of minimal degree that has $\alpha$ as a root.
+
+\begin{theorem}[Liouville's Theorem]
+  \label{thr:5}
+  Let $\alpha\in\R$ be algebraic of degree $d\geq2$. There exists a positive constant $c_\alpha \in \R_+$ such that for each $(p,q) \in \Z \times \N_+$ one has
+  \begin{displaymath}
+    \vert  \alpha - p/q \vert  > c_\alpha 1/q^d. 
+  \end{displaymath}
+\end{theorem}
+
+\begin{proof}
+  Let $(p,q) \in \Z \times\N_+$ such that  $\vert  \alpha - p/q \vert  \leq1$. We only have to consider those. 
+
+  Let $f(x) \in \Z[x]$ be a nonzero polynomial of degree $d$ with $f(\alpha) = 0$.  One has $f(p/q) \neq 0$. Otherwise, $x- p/q$ divides $f$ and we find a polynomial of smaller degree with root $\alpha$. \emph{(Recall $\alpha \neq p/q$!)}.  But $q^d \cdot f(p/q) \in\Z$ from which we infer $q^d \cdot \vert f(p/q)\vert  \geq1$ and therefore 
+  \begin{displaymath}
+     \vert f(p/q)\vert  \geq1 / q^d. 
+   \end{displaymath}
+   Both $\alpha$ and $p/q$ are contained in the interval $[\alpha -1, \alpha+1]$. 
+  By the mean-value theorem, there exits $x^* \in [\alpha -1, \alpha+1]$ with
+  \begin{displaymath}
+    \vert f'(x^*)\vert  = \vert f(\alpha) - f(p/q)\vert  / \vert \alpha - p/q\vert  = \vert f(p/q)\vert  / \vert \alpha - p/q\vert  . 
+  \end{displaymath}
+  Set $\beta = (\sup\{ \vert f'(x)\vert:x \in [\alpha-1 ,\alpha+1]\}$. This is a number bigger than $0$.   Then, by the above, we have 
+  \begin{displaymath}
+    \beta \geq 1/ ( \vert \alpha - p/q\vert  q^d). 
+  \end{displaymath}
+  Setting $c_\alpha = 1/ \beta$ we conclude 
+  \begin{displaymath}
+    \vert \alpha - p/q\vert  \geq c_\alpha / \vert f(p/q)\vert . 
+  \end{displaymath}
+\end{proof}
+\subsection*{20. October 2023}
+\begin{theorem}[Mikowski first theorem]\label{Th:mink1}
+    Let $A\subseteq\R^2$ with area bigger than 1 then it exists $x,y\in A$ such that $x-y\in \Z$.
+\end{theorem}
+\begin{proof}
+    Divide the plan $\R^2$ in squares of area 1 as in. Now translate every area of A into the square $\{(0;0), (0;1), (1;0),(1;1)\}$. As the Area of A is bigger than 1, by the Pigeon Hole Principle at least 1 point of the square $\{(0;0), (0;1), (1;0),(1;1)\}$ is touched twice. Hence it exists $x,y\in A$ such that there relative positions on there square is the same. In other words $x,y$ are such that $x-y\in \Z$.
+\end{proof}
+\emph{Remark:} this is also true for $\R^n$ for $n\in \N$.\\
+\emph{Recall} A set $A$ is convex if $\forall a,b\in A$ and $\lambda\in \R$ such that $0\leq \lambda\leq1$ we have $\lambda a+(1-\lambda)b\in A$.
+\begin{theorem}[Mikowski second theorem]\label{th:mink2}
+    Let $A\subseteq \R^2$ be convex, centrally symmetric around $(0;0)$ and of area strictly bigger than $4$, then it exists $x\in A\bigcap \Z^2$ and $x\neq 0$.
+\end{theorem}
+\begin{proof}
+    Consider $\frac{1}{2}A=\{\frac{x}{2}\vert x\in A\}$, now the area is divided by 4 (easily seen on squares and then apply the approximation of an aera by the sum of multiples squares). Now as the Area is bigger than 1 hence by the theorem $\eqref{Th:mink1}$ it exists $a'\neq b'\in \frac{1}{2}A$ such that $a'.b'\in\Z^2$. It follows that for $a=2a'\in A$ and $b=2b'\in A$ we have $$\frac{a}{2}-\frac{b}{2}\in \Z^2\iff \frac{a}{2}+\frac{-b}{2}\in \Z^2 $$ 
+    As A is centrally symmetric $-b\in A$ hence by convexity of $A$ it follows that $\frac{a}{2}+\frac{-b}{2}\in A$, so we found our point in $\Z^2\bigcap A$.
+\end{proof}
+\begin{corollary}
+    Let $\bigtriangleup abc$ be a triangle in $\R^2$ with vertices $a,b,c\in \Z^2$ such that $\bigtriangleup abc\bigcap\Z^2=\{a,b,c\}$ then the area of $\bigtriangleup abc$ is equal to $\frac{1}{2}$.
+\end{corollary}
+\begin{proof}
+    First notice that the area of $\bigtriangleup abc$ is bigger or equal than $\frac{1}{2}$. Now without lost of generalities let one the vertices of $\bigtriangleup abc$ be $(0;0)$. Now we make the construction as illustrated in ... . We now have a parallelogram $P$ which area is $8x$ where $x$ is area of $\bigtriangleup abc$ and by construction the only points in $\Z^2$ are the red ones. Now let's shrink the parallelogram by $\epsilon$ in order to have only $(0;0)$ in $\Z^2\bigcap P$. As $P$ is convex and centrally centered, we have by $\eqref{th:mink2}$ that $$8x-\epsilon< 4\implies x<\frac{1}{2} +\frac{\epsilon}{8}$$
+    Knowing by construction that this if true for any $\epsilon>0$ we have that $x=\frac{1}{2}$
+\end{proof}
+\begin{theorem}[Pick's theorem]
+    Let $A\subseteq \R^2$ be a polygon with vertices in $\Z^2$, let $x=\vert int(A)\bigcap \Z^2\vert$ and $y=\vert \partial A\bigcap \Z^2\vert$ then the area of $A$ is equal to $x+\frac{y}{2}-1$
+\end{theorem}
+
+\begin{theorem}
+    Let $p$ be a prime such that $p\equiv 1\mod 4$ then it exists $a,b\in\Z$ such that $p=a^2+b^2$.
+\end{theorem}
+\begin{proof}
+    First we will prove that if $p\equiv 1\mod 4$ then it exists $a$ such that $a^2\equiv -1 \mod p$.\\
+    To do this we first notice that $(p-1)!\equiv (-1)\mod P$. Now 
+    we know that in $(p-1)!$ we have $x$ and $-x$ forall $x\in (\Z/p\Z)^{\times}$, hence $$(-1)\mod P\equiv(p-1)!\equiv (-x_1^2)\cdot(-x_2^2)\cdots(-x^2_{\frac{p-1}{2}})\equiv (-1)^{\frac{p-1}{2}}\cdot(\emph{square})=1\cdot a^2$$
+    Now consider the set $A=\{(x,y)\in\R^2\vert(px+ay)^2+y^2<2p\}$, this is the formula of a circle after a linear transformation $T$ hence it is an elips. By definition $T=\begin{pmatrix}
+        p & a  \\
+        0 & 1  
+      \end{pmatrix} $ hence $\det(T)=p$.\\
+      Let $T(A)=B=\{(x,y)\in\R^2\vert x^2+y^2<2p\}$ then as $B$ represent a circle of radius $\sqrt{2p}$ the area of $B$ is equal t0 $2\pi p$ hence the area of $A$ is equal to $\frac{Area(B)}{\det(T)}=2\pi$.\\
+      As $A$ is symmetrically centered, convex with an area bigger than 4, by theorem $\eqref{th:mink2}$ it exists $(x,y)\in A\bigcap\Z^2$, it satisfies $0<(px+ay)^2+y^2<2p$.
+      We have $$(px+ay)^2+y^2<2p=p^2x^2+2paxy+(a^2+1)y^2\equiv0\mod p$$ it then means that it is divisible by $p$ and as $0<(px+ay)^2+y^2<2p$ it follows that $(px+ay)^2+y^2=p$.
+\end{proof}
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
