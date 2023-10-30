@@ -1,0 +1,124 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption} 
+\usepackage{enumerate}
+\usepackage{polynom}
+\usepackage[utf8]{inputenc} 
+\usepackage{utf8math}
+\usepackage{xfrac}
+
+\date{}
+
+\usepackage[boldsans]{concmath}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Th\'eor\`eme}
+\newtheorem{Sol}{Solution}
+\newtheorem*{Sol*}{Solution}
+\theoremstyle{definition}
+\newtheorem{Ex}{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+
+
+\def \N {\mathbb N}
+\def \Q {\mathbb Q}
+\def \R {\mathbb R}
+\def \Z {\mathbb Z}
+\def \K {\mathbb K}
+\def \C {\mathbb C}
+\def \id {{\rm id}\,}
+\def \Ker {{\rm Ker}\,}
+\def \Im {{\rm Im}\,}
+\def \Vect {{\rm Vect}\,}
+
+\newcommand{\df}{\mathrel{\mathop:}=}
+\newcommand{\dx}{ \ \text{d} \, x}
+
+\newcommand{\pscal}[1]{\langle {#1} \rangle}
+\DeclareMathOperator{\spa}{span}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%       ENABLE or DISABLE dislpay of solutions
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\newif\ifsolutions
+		
+		% ENABLE or DISABLE display of solutions
+		%\solutionstrue
+		\solutionsfalse
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Dont touch much, just change the correct number and date :). Based on the setup above, the solutions will be automaticelly displayed or hidden.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\newcommand{\exercise}[2]{
+			\begin{Ex} #1 \end{Ex}
+			\ifsolutions  \begin{Sol*} #2 \end{Sol*} \bigskip \else \bigskip  \fi
+		}
+
+		
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Beginning of the document. Make sure to add the correct dates and numbers everywhere.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+{Prof. Friedrich Eisenbrand \hfill November 10th 2023}
+\end{center}
+	
+\hrule\vspace{\baselineskip}
+
+\begin{center}
+\textbf{Diophantine approximation}
+
+Fall 2023
+
+\bigskip
+
+\textbf{Set 7}
+\ifsolutions{\textbf{- Solutions}} \else{} \fi
+\end{center}
+
+\hrule\vspace{\baselineskip}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Beginning of the exercises
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Each exercise should look like 
+% 		\exercise{ Exercise }{ Solution }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\exercise{
+	Prove the linear form version of Minkowski's theorem.
+	
+	Consider a real matrix $A = (a_{ij})_{i,j=1}^n$ and real numbers $c_1, \dots, c_n \geq 0$. The system of inequalities
+	\begin{gather*}
+		\left| \sum_{j=1}^n a_{1j} x_j \right| \leq c_1, \\
+		\left| \sum_{j=1}^n a_{ij} x_j \right| < c_i, \ \forall i=2, \dots, n.
+	\end{gather*}
+	admits a non-zero integer solution if $c_1 \cdots c_n \geq | \det(A) |.$
+}
+{}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
