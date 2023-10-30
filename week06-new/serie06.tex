@@ -128,7 +128,7 @@ Fall 2023
 	  \item Let $S = \{ α ∈ ℝ^n ： α \text{ covered by } (q,p_1,\dots,p_n)\}$. Show that ${\rm vol}(S) = \left( 2 / ( q ⋅ Q)\right)^n$.
 	  \item Let  $α ∈ ℝ^n$ satisfy  $\|α\|_∞ ≤1$. If $α$ is covered by a tuple of cost $q$, then  $α$ is covered by a tuple  $(q,p_1,\dots,p_n) ∈ ℤ^{n+1}$  satisfying  $|p_i| ≤ q$ for each $i$. 
 	  \item Use a covering argument to show that there exists $α ∈ [-1,1]^n$ that is not covered by any tuple $(q,p_1,\dots,p_n) ∈ ℤ^{n+1}$  of cost  $q< (Q/2)^n$.
-	\item Derive a lower bound ${\rm vol} (K)$ where 
+	\item Derive a lower bound on ${\rm vol} (K)$ where 
 	  \begin{displaymath}
 	    K = \{α ∈ [-1,1]^n ： α \text{ not covered with cost } ≤ (Q/4)^n\}. 
 	  \end{displaymath} 
@@ -142,9 +142,9 @@ The following lemma is taken from Drmota, Tichy.  \emph{Sequences, discrepancies
 	Let $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ such that $1, \alpha_1, \dots, \alpha_n$ are linearly independent over $\Q$.
 	The following properties are equivalent.
 	\begin{enumerate}[i)]
-		\item For every $c > 0$, there are infinitely many integers $q \geq 1, p \in \Z^n$ with
+		\item For every $c_1 > 0$, there are infinitely many integers $q \geq 1, p \in \Z^n$ with
 			\[ \| q \alpha - p \|_\infty \leq \frac{c_1}{q^{1/n}}. \]
-		\item For every $c > 0$, there are infinitely many integers $x \in \Z^n, y \in \Z$ with
+		\item For every $c_2 > 0$, there are infinitely many integers $x \in \Z^n, y \in \Z$ with
 			\[ | x^T \alpha - y | \leq \frac{c_2}{ \| x \|_\infty^n}. \]
 	\end{enumerate}
 \end{lemma}
@@ -168,7 +168,7 @@ The following lemma is taken from Drmota, Tichy.  \emph{Sequences, discrepancies
 	Next, assume that ii) is true, and let $x \in \Z^n, y \in \Z$ with
 		\[ | x^T \alpha - y | \leq \frac{c_2}{ \| x \|_\infty^n}, \]
 	and define the lattice 
-		\[ \Lambda := \begin{pmatrix} y & x^T \\ (Qc)\cdot\alpha & (Qc) \cdot I_{n-1}  \\ \frac{1}{Q^n c^{n-1}} &  0^T \end{pmatrix} \cdot \Z^{n+1},\]
+		\[ \Lambda := \begin{pmatrix} y & & x^T \\ (Qc)\cdot\alpha_1 & & \\ \vdots & & (Qc) \cdot I_{n-1} \\ (Qc)\cdot\alpha_{n-1} & & \\ \frac{1}{Q^n c^{n-1}} & & 0^T \end{pmatrix} \cdot \Z^{n+1},\]
 	where $Q := \| x \|_\infty = x_n$ without loss of generality, and $c > 1$ is a constant that will be chosen later.
 
 	\begin{enumerate}
@@ -182,7 +182,7 @@ The following lemma is taken from Drmota, Tichy.  \emph{Sequences, discrepancies
 {}
 
 \exercise{
-	Let $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$. We say $\alpha$ is \emph{badly approximable} if there exists a constant $c > 0$ such that
+	Let $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$. We say that $\alpha$ is \emph{badly approximable} if there exists a constant $c > 0$ such that
 		\[ \| q \alpha - p \|_\infty > \frac{c}{q^{1/n}}, \]
 	for all integers $q \in \Z, p \in \Z^n$.
 
