@@ -128,11 +128,12 @@ Fall 2023
 	  \item Let $S = \{ α ∈ ℝ^n ： α \text{ covered by } (q,p_1,\dots,p_n)\}$. Show that ${\rm vol}(S) = \left( 2 / ( q ⋅ Q)\right)^n$.
 	  \item Let  $α ∈ ℝ^n$ satisfy  $\|α\|_∞ ≤1$. If $α$ is covered by a tuple of cost $q$, then  $α$ is covered by a tuple  $(q,p_1,\dots,p_n) ∈ ℤ^{n+1}$  satisfying  $|p_i| ≤ q$ for each $i$. 
 	  \item Use a covering argument to show that there exists $α ∈ [-1,1]^n$ that is not covered by any tuple $(q,p_1,\dots,p_n) ∈ ℤ^{n+1}$  of cost  $q< (Q/2)^n$.
-	  \end{enumerate}
 	\item Derive a lower bound ${\rm vol} (K)$ where 
 	  \begin{displaymath}
 	    K = \{α ∈ [-1,1]^n ： α \text{ not covered with cost } ≤ (Q/4)^n\}. 
 	  \end{displaymath} 
+
+	  \end{enumerate}
 }
 {}
 
@@ -142,15 +143,41 @@ The following lemma is taken from Drmota, Tichy.  \emph{Sequences, discrepancies
 	The following properties are equivalent.
 	\begin{enumerate}[i)]
 		\item For every $c > 0$, there are infinitely many integers $q \geq 1, p \in \Z^n$ with
-			\[ \| q \alpha - p \|_\infty \leq \frac{c}{q^{1/n}}. \]
+			\[ \| q \alpha - p \|_\infty \leq \frac{c_1}{q^{1/n}}. \]
 		\item For every $c > 0$, there are infinitely many integers $x \in \Z^n, y \in \Z$ with
-			\[ | x^T \alpha - y | \leq \frac{c}{ \| x \|_\infty^n}. \]
+			\[ | x^T \alpha - y | \leq \frac{c_2}{ \| x \|_\infty^n}. \]
 	\end{enumerate}
 \end{lemma}
 
 \exercise{
 	The goal of this exercise is to show Khintchine's transference principle (lemma \ref{lem:1}) between the two versions of Dirichlet's theorem.
-	TODO STEPS :)
+
+	First assume that i) is true, and consider integers $q \geq 1, p \in \Z^n$ with
+		\[ \| q \alpha - p \|_\infty \leq \frac{c}{q^{1/n}}, \]
+	and define the lattice 
+		\[ \Lambda := \begin{pmatrix} q^{\frac{n+1}n} & q^{1/n} p^T \\ 0 & I_n \end{pmatrix} \cdot \Z^{n+1}.\]
+
+	\begin{enumerate}
+		\item Show that there exist integers $x \in \Z^n, y \in \Z$ with
+			\[ \| x \|_\infty \leq q^{1/n}, \qquad \text{ and } \qquad qy = x^Tp.\]
+		\item Deduce that, for these integers,
+			\[  \| x \|_\infty \cdot | x^T \alpha - y | \leq n \cdot c_1. \]
+		\item Conclude that ii) must hold using the linear independence of $\alpha$ over $\Q$.
+	\end{enumerate}
+
+	Next, assume that ii) is true, and let $x \in \Z^n, y \in \Z$ with
+		\[ | x^T \alpha - y | \leq \frac{c_2}{ \| x \|_\infty^n}, \]
+	and define the lattice 
+		\[ \Lambda := \begin{pmatrix} y & x^T \\ (Qc)\cdot\alpha & (Qc) \cdot I_{n-1}  \\ \frac{1}{Q^n c^{n-1}} &  0^T \end{pmatrix} \cdot \Z^{n+1},\]
+	where $Q := \| x \|_\infty = x_n$ without loss of generality, and $c > 1$ is a constant that will be chosen later.
+
+	\begin{enumerate}
+		\item Show that there exist integers $q \geq 1, p \in \Z^n$ verifying
+			\[ | q \alpha_i - p_i | \leq \frac{1}{cQ}, \ \forall i=1, \dots, n-1, \qquad \text{ and } \qquad qy = x^T\alpha, \qquad \text{ and } \qquad q \leq Q^n c^{n-1}. \]
+		\item Deduce that 
+			\[ |q|^{1/n} \cdot | q \alpha_i - p_i | \leq \frac{1}{c^{1/n}}, \ \forall i=1, \dots, n-1 \qquad \text{ and } \qquad Q | q \alpha_n - p_n| \leq c_2 c^{n-1} + (n-1)\frac1c.\]
+		\item Pick $c = c_2^{-1/n^2}$ and conclude that i) must hold with $c_1 = n \cdot c_2^{1/n^2}.$
+	\end{enumerate}
 }
 {}
 
@@ -164,9 +191,9 @@ The following lemma is taken from Drmota, Tichy.  \emph{Sequences, discrepancies
 		\item Suppose that $\alpha \in \R$ is an algebraic integer of degree $n+1$. That is, there exist integers $a_0, \dots, a_{n} \in \Z$ such that
 			\[ \alpha^{n+1} + a_{n} \alpha^{n} + \dots +  a_{0} = 0. \]
 		Define $\alpha_1, \dots, \alpha_{n+1}$ the $n+1$ conjugate roots of the above polynomial.
-		Show that the vector $(\alpha_1, \dots, \alpha_n) \in \R^n$ is badly approximable using lemma \ref{lem:1}.
+		Show that the vector $(\alpha_1, \dots, \alpha_n) \in \R^n$ is badly approximable using lemma \ref{lem:1}ii).
 
-		\emph{Hint: algebraic integers form a ring. Hence the minimal polynomial of $x^T \alpha$ is also integer for $x \in Z^n$.}
+		\emph{Hint: algebraic integers form a ring. Hence the minimal polynomial of $x^T \alpha$ is also an algebraic integer for $x \in Z^n$.}
 	\end{enumerate}
 }
 {}
