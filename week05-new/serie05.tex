@@ -130,7 +130,38 @@ Fall 2023
 	\end{enumerate}
 
 }
-{}
+{
+	\begin{enumerate}[i)]
+		\item 
+		First, since $N(\epsilon)=1$, the inverse of $\epsilon$ is given by
+			\[ \epsilon^{-1} = \overline{\epsilon} = u - v \sqrt{d}. \]
+		Up to inverting $\epsilon$, one may thus suppose that $v \cdot y < 0$.
+
+		Next, computing $(x+y\sqrt{d}) \cdot (u+v \sqrt{d})$ gives the required $\left(u+ \frac{vyd}{x} \right) + \sqrt{d} \cdot \Q$.
+
+		Finally, one may use the relations
+			\[ u^2 - dv^2 = 1, \qquad \text{ and } \qquad x^2 - dy^2 = k,\]
+		in order to get
+			\[ \sqrt{d} v = \pm \sqrt{u^2 - 1}, \qquad \text{ and } \qquad \sqrt{d} y = \pm \sqrt{x^2 - k}, \]
+		which yields
+			\[ \frac{vyd}{x} = - \frac1x \sqrt{u^2 - 1} \sqrt{x^2 - k} \leq \sqrt{1 - \frac{k}{x^2}}, \]
+		and concludes.
+		
+		\item
+		This is clear by plugging in the relation deduced in i).
+
+		\item 
+		First, we multiply $x$ by $\pm$ so that the assumption $x > 0$ is correct.
+		Whenever $x \geq \sqrt{\frac{k \cdot u}{2}}$, the above results say that we may multiply by powers of $\epsilon^\pm$, decreasing the rational part.
+		Notice further, that since $N(\alpha)=k$, we must have $x \geq \sqrt{k}$.
+
+		\item
+		A seen in set 4, we may take $\epsilon = 9 + 4\sqrt{5}$.
+		We only have to check for solutions of the diophantine equations with $x$ values between $\sqrt{11} < 4$, and $\sqrt{\frac{11 \cdot 9}2} < 8$.
+		The only solution is given by $\alpha = 4 + 1\sqrt{5}$.
+	\end{enumerate}
+
+}
 
 \exercise{
  What is the distance of the line
