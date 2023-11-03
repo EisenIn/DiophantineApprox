@@ -161,19 +161,25 @@ The following lemma is taken from Drmota, Tichy.  \emph{Sequences, discrepancies
 		\item Show that there exist integers $x \in \Z^n, y \in \Z$ with
 			\[ \| x \|_\infty \leq q^{1/n}, \qquad \text{ and } \qquad qy = x^Tp.\]
 		\item Deduce that, for these integers,
-			\[  \| x \|_\infty \cdot | x^T \alpha - y | \leq n \cdot c_1. \]
+			\[  \| x \|_\infty^n \cdot | x^T \alpha - y | \leq n \cdot c_1. \]
 		\item Conclude that ii) must hold using the linear independence of $\alpha$ over $\Q$.
 	\end{enumerate}
 
 	Next, assume that ii) is true, and let $x \in \Z^n, y \in \Z$ with
 		\[ | x^T \alpha - y | \leq \frac{c_2}{ \| x \|_\infty^n}, \]
 	and define the lattice 
-		\[ \Lambda := \begin{pmatrix} y & & x^T \\ (Qc)\cdot\alpha_1 & & \\ \vdots & & (Qc) \cdot I_{n-1} \\ (Qc)\cdot\alpha_{n-1} & & \\ \frac{1}{Q^n c^{n-1}} & & 0^T \end{pmatrix} \cdot \Z^{n+1},\]
+		\[ \Lambda := \begin{pmatrix}
+					y & x_1 & \dots & x_{n_1} & x_n \\
+					(Qc)\cdot\alpha_1 & & & & \\
+					\vdots & & (Qc) \cdot I_{n-1} & & 0 \\
+					(Qc)\cdot\alpha_{n-1} & & & & \\
+					 \frac{1}{Q^n c^{n-1}} & & 0^T & & 0 
+					\end{pmatrix} \cdot \Z^{n+1},\]
 	where $Q := \| x \|_\infty = x_n$ without loss of generality, and $c > 1$ is a constant that will be chosen later.
 
 	\begin{enumerate}
 		\item Show that there exist integers $q \geq 1, p \in \Z^n$ verifying
-			\[ | q \alpha_i - p_i | \leq \frac{1}{cQ}, \ \forall i=1, \dots, n-1, \qquad \text{ and } \qquad qy = x^T\alpha, \qquad \text{ and } \qquad q \leq Q^n c^{n-1}. \]
+			\[ | q \alpha_i - p_i | \leq \frac{1}{cQ}, \ \forall i=1, \dots, n-1, \qquad \text{ and } \qquad qy = x^Tp, \qquad \text{ and } \qquad q \leq Q^n c^{n-1}. \]
 		\item Deduce that 
 			\[ |q|^{1/n} \cdot | q \alpha_i - p_i | \leq \frac{1}{c^{1/n}}, \ \forall i=1, \dots, n-1 \qquad \text{ and } \qquad Q | q \alpha_n - p_n| \leq c_2 c^{n-1} + (n-1)\frac1c.\]
 		\item Pick $c = c_2^{-1/n}$ and conclude that i) must hold with $c_1 = n \cdot c_2^{1/n^2}.$
@@ -184,7 +190,7 @@ The following lemma is taken from Drmota, Tichy.  \emph{Sequences, discrepancies
 \exercise{
 	Let $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$. We say that $\alpha$ is \emph{badly approximable} if there exists a constant $c > 0$ such that
 		\[ \| q \alpha - p \|_\infty > \frac{c}{q^{1/n}}, \]
-	for all integers $q \in \Z, p \in \Z^n$.
+	for all integers $q \geq 1, p \in \Z^n$.
 
 	\begin{enumerate}[i)]
 		\item Show that if $\alpha \in \R^n$ is badly approximable, then $1, \alpha_1, \dots, \alpha_n$ are linearly independent over $\Q$.
@@ -193,7 +199,7 @@ The following lemma is taken from Drmota, Tichy.  \emph{Sequences, discrepancies
 		Define $\alpha_1, \dots, \alpha_{n+1}$ the $n+1$ conjugate roots of the above polynomial.
 		Show that the vector $(\alpha_1, \dots, \alpha_n) \in \R^n$ is badly approximable using lemma \ref{lem:1}ii).
 
-		\emph{Hint: algebraic integers form a ring. Hence the minimal polynomial of $x^T \alpha$ is also an algebraic integer for $x \in Z^n$.}
+		\emph{Hint: algebraic integers form a ring. Hence $x^T \alpha$ is also an algebraic integer for $x \in \Z^n$.}
 	\end{enumerate}
 }
 {}
