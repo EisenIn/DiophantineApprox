@@ -56,8 +56,8 @@
 		\newif\ifsolutions
 		
 		% ENABLE or DISABLE display of solutions
-		%\solutionstrue
-		\solutionsfalse
+		\solutionstrue
+		%\solutionsfalse
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -109,7 +109,15 @@ Fall 2023
 		\[ {\rm vol}(\mathcal{C}) \geq 2^n.\]
 	Show that $\mathcal{C}$ must containt a non-zero integer point.
 }
-{}
+{
+	Consider the sequence of nested sets $S_k \df (1+\frac1k) \mathcal{C} \subseteq  2 \mathcal{C}$ for $k \geq 1$.
+	
+	Since ${\rm vol}(S_k) > 2^n$, Minkowski's theorem holds: there exists at least one non-zero integer point in each $S_k$, $k\geq1$.
+
+	As $2 \mathcal{C}$ is bounded, the sequence is uniformly bounded. 
+	Therefore, there must exist a non-zero integer point $p$ belonging in infinitely many sets $S_k$.
+	As such, $p$ must belong, in the limit, in the closure $\overline{\mathcal{C}} = \mathcal{C}$.
+}
 
 \exercise{
 	Let $\mathcal{C} \subset \R^n$ be a convex set symmetric about the origin, and $A \in \R^{n \times n}$.
@@ -153,7 +161,7 @@ The following lemma is taken from Drmota, Tichy.  \emph{Sequences, discrepancies
 	The goal of this exercise is to show Khintchine's transference principle (lemma \ref{lem:1}) between the two versions of Dirichlet's theorem.
 
 	First assume that i) is true, and consider integers $q \geq 1, p \in \Z^n$ with
-		\[ \| q \alpha - p \|_\infty \leq \frac{c}{q^{1/n}}, \]
+		\[ \| q \alpha - p \|_\infty \leq \frac{c_1}{q^{1/n}}, \]
 	and define the lattice 
 		\[ \Lambda := \begin{pmatrix} q^{\frac{n+1}n} & q^{1/n} p^T \\ 0 & I_n \end{pmatrix} \cdot \Z^{n+1}.\]
 
@@ -202,7 +210,28 @@ The following lemma is taken from Drmota, Tichy.  \emph{Sequences, discrepancies
 		\emph{Hint: algebraic integers form a ring. Hence $x^T \alpha$ is also an algebraic integer for $x \in \Z^n$.}
 	\end{enumerate}
 }
-{}
+{
+	\begin{enumerate}[i)]
+		\item Notice that the direction ii) $\implies$ i) of exercise 4 does not use the linear independence of $1, \alpha_1, \dots, \alpha_n$ over $\Q$.
+			In fact, given $x \in \Z^n \setminus \{0\}$, $y\in\Z$ such that $x^T \alpha -y = 0$, one may find integers $q \geq 1, p\in\Z^n$ such that
+				\[ \| q \alpha - p \|_\infty \leq \frac{c_1}{q^{1/n}}, \]
+			where $c_1$ is as small as required. 
+			This contradicts the assumption that $\alpha$ is badly approximable.
+
+		\item By the hint, $x^T\alpha - y$ is an algebraic integer of degree $n+1$ for each $x \in \Z^n \setminus \{0\}, y\in\Z$.
+			Fix $M = \max\{ | \alpha_1|, \dots, | \alpha_{n+1} |\}$, and consider the norm of $x^T\alpha - y$.
+
+			By Galois theory, the norm is integer, and given by the product over all images by the Galois group automorphisms of the field extension.
+			Since the automorphism only permute the roots, sending one conjugate of $\alpha$ to another, we get
+				\[ | \sigma(x^T\alpha - y) | = | \sum_{i=1}^n x_i \sigma(\alpha_i) - y | \leq n \| x \|_\infty M + |y| \leq \| x \|_\infty \left( 1 + 2 n M \right), \]
+			where we've used that $|y| \leq (1 + nM)\|x \|_\infty$ whenever $| x^T\alpha - y| \leq 1$. 
+		
+				\[ | N(x^T \alpha - y) | = | x^T \alpha - y | \cdot \prod_{\sigma \neq id} | \sigma(x^T\alpha - y) | \leq | x^T \alpha - y |  \cdot \| x \|_\infty^n ( 1 + 2 n M)^n. \]
+			To conclude, we use that the norm is a non-zero integer, by linear independence and the fact that it is an algebraic integer.
+			This implies $| N(x^T \alpha - y) | \geq 1$, and shows that Lemma~\ref{lem:1}ii) cannot hold for $c$ small enough.
+
+	\end{enumerate}
+}
 
 \end{document}
 
