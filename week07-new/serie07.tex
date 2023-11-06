@@ -34,6 +34,7 @@
 \def \Z {\mathbb Z}
 \def \K {\mathbb K}
 \def \C {\mathbb C}
+\def \F {\mathbb F}
 \def \id {{\rm id}\,}
 \def \Ker {{\rm Ker}\,}
 \def \Im {{\rm Im}\,}
@@ -115,6 +116,31 @@ Fall 2023
 	admits a non-zero integer solution if $c_1 \cdots c_n \geq | \det(A) |.$
 }
 {}
+
+\exercise{
+	The following exercise shows Lagrange's four square theorem. 
+	That is, all integers $n \in \N$ may be written as the sum of four squares.
+		
+	\begin{enumerate}[i)]
+		\item Show that it suffices to show the theorem for odd primes $p$.
+
+		\item Show that there are exactly $\frac{p-1}{2}$ perfect squares in $\F_p^\times$.
+
+		\item Deduce, by considering the tuples $(0, p-1), \dots, (\frac{p-1}2, \frac{p-1}2)$, that there exist non-negative integers $a, b \in \N_0$ such that 
+			\[ a^2 + b^2 \equiv  1 \mod {p}. \]
+
+		\item Define the hypersphere
+			\[ \mathcal{C} \df \{ (x,y,z,w) \in \R^4 \ | \ x^2 + y^2 + z^2 + w^2 < 2p \}, \]
+		and the lattice
+			\[ \Lambda \df \begin{pmatrix} p & 0 & a & b \\
+										0 & p & -b & a \\
+										0 & 0& 1 & 0 \\
+										0 & 0 & 0 & 1 \end{pmatrix}. \]
+		Conclude by showing that the shortest nonzero vector $v \in \Lambda \setminus \{ 0 \}$  verifies
+			\[ \| v \|_2^2 < 2p, \qquad \text { and } \qquad  \| v \|_2^2  \equiv 0 \mod{p}. \]
+	\end{enumerate}
+
+}
 
 \end{document}
 
