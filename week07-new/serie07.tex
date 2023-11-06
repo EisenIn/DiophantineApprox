@@ -118,7 +118,7 @@ Fall 2023
 {}
 
 \exercise{
-	The following exercise shows Lagrange's four square theorem. 
+	The following exercise shows Lagrange's \emph{four-square theorem}. 
 	That is, all integers $n \in \N$ may be written as the sum of four squares.
 		
 	\begin{enumerate}[i)]
@@ -127,10 +127,10 @@ Fall 2023
 		\item Show that there are exactly $\frac{p-1}{2}$ perfect squares in $\F_p^\times$.
 
 		\item Deduce, by considering the tuples $(0, p-1), \dots, (\frac{p-1}2, \frac{p-1}2)$, that there exist non-negative integers $a, b \in \N_0$ such that 
-			\[ a^2 + b^2 \equiv  1 \mod {p}. \]
+			\[ a^2 + b^2 \equiv  -1 \mod {p}. \]
 
 		\item Define the hypersphere
-			\[ \mathcal{C} \df \{ (x,y,z,w) \in \R^4 \ | \ x^2 + y^2 + z^2 + w^2 < 2p \}, \]
+			\[ \mathcal{C} \df \left\{ (x,y,z,w) \in \R^4 \ | \ x^2 + y^2 + z^2 + w^2 < 2p \right\}, \]
 		and the lattice
 			\[ \Lambda \df \begin{pmatrix} p & 0 & a & b \\
 										0 & p & -b & a \\
@@ -160,10 +160,10 @@ Fall 2023
 \exercise{
   Let $b_1,\dots,b_n$ be an orthonormal basis of $ℝ^n$, $λ_1,\dots,λ_n ∈ ℝ_{>0}$  and consider
   \begin{displaymath}
-    \mathcal{E} = \left\{ ∑_{i=1}^n x_i b_i ： \left\| ∑_{i=1}^n x_i \frac{b_i}{λ_i} \right\| \leq 1 \right\}. 
+    \mathcal{E} = \left\{ ∑_{i=1}^n x_i b_i ： \left\| ∑_{i=1}^n x_i \frac{b_i}{λ_i} \right\|_2 \leq 1 \right\}. 
   \end{displaymath}
   Show that $\mathrm{vol}(\mathcal{E}) = \left( ∏_{i=1}^n λ_i \right) {\rm vol}(B(1,0))$, where
-  $B(1,0) = \{ x∈ ℝ^n ：\|x\|≤1\}$. 
+  $B(1,0) = \{ x∈ ℝ^n ：\|x\|_2 ≤1\}$. 
 }
 {}
 

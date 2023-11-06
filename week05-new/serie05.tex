@@ -55,8 +55,8 @@
 		\newif\ifsolutions
 		
 		% ENABLE or DISABLE display of solutions
-		%\solutionstrue
-		\solutionsfalse
+		\solutionstrue
+		%\solutionsfalse
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -175,21 +175,39 @@ point in $\mathbb{Z}^2$ not on this line?
 	 Show that there is no analogue to Pick's theorem in $\mathbb{R}^3$. In particular show that there are polyhedra with integer vertices and not other integer points that have arbitrarily large volume.
 
 }
-{}
+{
+	These are given by the \emph{Reeve tetrahedra}.
+	Its vertices are given by $0, (1,0,0), (0,1,0)$, and $(1,1,N)$, where $N \in \N$ is a large positive integer.
+}
 
 \exercise{ 
 	Show that if $a$ and $b$ are two integers that can be written as a sum of two squares, then so can their product $ab$.	
 
 	Furthermore, show that if an even integer $2n$ can be written as sum of two squares, then so can $n$.
 }
-{}
+{
+	Firstly, a number is a sum of two squares if and only if it is the norm of a Gaussian integer (element of $\Z[i]$).
+	Since $N(z \cdot w) = N(z) \cdot N(w)$, we conclude.
+
+	Secondly, if $2n = a^2 + b^2$, then $a, b$ must have same parity.
+	As such,
+		\[ n = \left(\frac{a+b}2 \right)^2 + \left(\frac{a-b}2 \right)^2, \]
+	and $n$ is the sum of two squares.
+}
 
 \exercise{
 	We have see in class that every prime $p$ that is equal to $1$ modulo $4$ can be written as a sum of two squares, and that no integer that is equal to $3$ modulo $4$ can be written as a sum of two squares.
 
 	Give a sufficient characterization of which natural numbers can be written as a sum of two squares given their prime factorization.
 }
-{}
+{
+	Any positive integer $n$ with prime decomposition
+		\[ n = 2^{n_2} \cdot \prod_{p \equiv 1 \mod{4}} p^{n_p} \cdot  \prod_{p \equiv 3 \mod{4}} p^{2n_p}, \]
+	where $n_p \in \N_0$ for each prime $p$, may be written as the sum of two squares.
+
+	To show that the characterization is necessary, one needs that whenever $ab$ is sum of two squares and $\gcd(a,b) = 1$, then both $a$ and $b$ are sum of two squares.
+	The proof of this statement can be seen in an Algebraic Number Theory course.
+}
 
 \exercise{
 	Let $P$ be a polygon with integer vertices in the plane. Show that if $P$ is not a triangle of area $1/2$, then we can find two integer points on the boundary of $P$ and a polygonal path (possibly just one segment) between them with integer vertices passing through the interior of $P$.
