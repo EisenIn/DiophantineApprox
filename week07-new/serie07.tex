@@ -142,20 +142,19 @@ Fall 2023
 
 }
 
-% COMMENTED: would have fit in an earlier sheet (set 3, 4).
-%\exercise{
-%	Consider the expansion $\alpha = [a_0; a_1, \dots]$ of some $\alpha \in \R\setminus\Q$, with convergents $\{p_{k}/q_{k}\}_k$ given by the truncated expansion.
-%
-%	Define $x_k := [a_k; a_{k+1} \dots]$, and
-%	recall that one showed in set 3 that, for all $k\geq0$, 
-%		\[ \alpha = \frac{x_{k+1}p_k + p_{k-1}}{x_{k+1}q_k + q_{k-1}}. \]
-%	 We say that $\alpha$ is \emph{badly approximable} if there exists a constant $c > 0$ such that
-%		\[ | q \alpha - p | ~ > \frac{c}{q}, \]
-%	for all integers $q \geq 1, p \in \Z$.
-%
-%	Show that $\alpha$ is \emph{badly approximable} if and only if the coefficients $\{ a_n \}_n$ are bounded.
-%}
-%{}
+\exercise{
+	Consider the expansion $\alpha = [a_0; a_1, \dots]$ of some $\alpha \in \R\setminus\Q$, with convergents $\{p_{k}/q_{k}\}_k$ given by the truncated expansion.
+
+	Define $x_k := [a_k; a_{k+1} \dots]$, and
+	recall that one showed in set 3 that, for all $k\geq0$, 
+		\[ \alpha = \frac{x_{k+1}p_k + p_{k-1}}{x_{k+1}q_k + q_{k-1}}. \]
+	 We say that $\alpha$ is \emph{badly approximable} if there exists a constant $c > 0$ such that
+		\[ | q \alpha - p | ~ > \frac{c}{q}, \]
+	for all integers $q \geq 1, p \in \Z$.
+
+	Show that $\alpha$ is \emph{badly approximable} if and only if the coefficients $\{ a_n \}_n$ are bounded.
+}
+{}
 
 \exercise{
   Let $b_1,\dots,b_n$ be an orthonormal basis of $ℝ^n$, $λ_1,\dots,λ_n ∈ ℝ_{>0}$  and consider
@@ -167,35 +166,36 @@ Fall 2023
 }
 {}
 
-\exercise{
-	Let $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ be \emph{badly approximable}, that is there exists a constant $c > 0$ such that
-		\[ \| q \alpha - p \|_\infty > \frac{c}{q^{1/n}}, \]
-	for all integers $q \geq 1, p \in \Z^n$.
-
-	The goal of this exercise is to evaluate the signed sum $| y^T \alpha |$ from below, where $y \in \{ \pm 1 \}^n$.
-
-	Consider the lattice $\Lambda$, dependent on a real quantity $Q > 0$,
-		\[ \Lambda \df \begin{pmatrix} Q^{n+1} & 0^T \\
-								\alpha & I_n \end{pmatrix} \cdot \Z^{n+1}, \]
-	with successive minima $\lambda_1, \dots, \lambda_{n+1}$.
-	
-	\begin{enumerate}[i)]
-		\item 
-		Show that, for all $\epsilon > 0$, one has
-			\[ \frac{1}{Q^{1 + \epsilon}} \leq \lambda_1 \leq \frac{1}{Q}, \]
-		for all $Q \geq c^{-1/\epsilon}$ large enough. Crude bounds are enough here.
-		
-		\item 
-		Let $\epsilon = \frac1{2n}$. Deduce from Minkowski's second theorem that $\lambda_{n+1}$ is vanishing in $Q$, and that one may find $q \geq 1$, $p \in \Z^n$ such that
-			\[ \| q \alpha - p \| \leq \frac{1}{2n}, \qquad \text{ and } \qquad y^T p \neq 0, \qquad \text{ and } \qquad q \leq \frac{(n+1)^{n^2 + 3n}}{c^{2n^2}}. \]
-		
-		\item
-		Conclude that 
-			\[ | y^T \alpha | \geq \frac{1}{2q} \geq \frac{c^{2n^2}}{2n^{n^2 + 3n}} . \]
-	\end{enumerate}
-
-}
-{}
+% COMMENTED FOR NOW 
+%\exercise{
+%	Let $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ be \emph{badly approximable}, that is there exists a constant $c > 0$ such that
+%		\[ \| q \alpha - p \|_\infty > \frac{c}{q^{1/n}}, \]
+%	for all integers $q \geq 1, p \in \Z^n$.
+%
+%	The goal of this exercise is to evaluate the signed sum $| y^T \alpha |$ from below, where $y \in \{ \pm 1 \}^n$.
+%
+%	Consider the lattice $\Lambda$, dependent on a real quantity $Q > 0$,
+%		\[ \Lambda \df \begin{pmatrix} Q^{n+1} & 0^T \\
+%								\alpha & I_n \end{pmatrix} \cdot \Z^{n+1}, \]
+%	with successive minima $\lambda_1, \dots, \lambda_{n+1}$.
+%	
+%	\begin{enumerate}[i)]
+%		\item 
+%		Show that, for all $\epsilon > 0$, one has
+%			\[ \frac{1}{Q^{1 + \epsilon}} \leq \lambda_1 \leq \frac{1}{Q}, \]
+%		for all $Q \geq c^{-1/\epsilon}$ large enough. Crude bounds are enough here.
+%		
+%		\item 
+%		Let $\epsilon = \frac1{2n}$. Deduce from Minkowski's second theorem that $\lambda_{n+1}$ is vanishing in $Q$, and that one may find $q \geq 1$, $p \in \Z^n$ such that
+%			\[ \| q \alpha - p \|_\infty^ \leq \frac{1}{2n}, \qquad \text{ and } \qquad y^T p \neq 0, \qquad \text{ and } \qquad q \leq \frac{(n+1)^{n^2 + 3n}}{c^{2n^2}}. \]
+%		
+%		\item
+%		Conclude that 
+%			\[ | y^T \alpha | \geq \frac{1}{2q} \geq \frac{c^{2n^2}}{2n^{n^2 + 3n}} . \]
+%	\end{enumerate}
+%
+%}
+%{}
 
 
 
