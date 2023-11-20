@@ -45,6 +45,7 @@
 
 \newcommand{\pscal}[1]{\langle {#1} \rangle}
 \DeclareMathOperator{\spa}{span}
+\newcommand{\nint}[1]{\ensuremath{\lfloor#1\rceil}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -106,8 +107,25 @@ Fall 2023
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \exercise{
-	Consider the basis $B = \left\{ \begin{pmatrix} . \\ . \\ . \end{pmatrix}, \begin{pmatrix} . \\ . \\ . \end{pmatrix}, \begin{pmatrix} . \\ . \\ . \end{pmatrix} \right\}$ and its LLL-reduced counter part $B^{{\rm LLL}}$.
-	Compute $B^{{\rm LLL}}$, and the orthogonality defects $\gamma(B)$ and $\gamma(B^{{\rm LLL}})$.}
+	Let $Q \in \N$ and $\alpha_1, \alpha_2 \in \R$ be two real numbers. We denote $\nint{ \cdot }$ the nearest integer map.
+
+	Consider the basis $B = \left\{ \begin{pmatrix} Q^2 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} \nint{Q^2 \alpha_1} \\ 1/Q \\ 0 \end{pmatrix}, \begin{pmatrix} \nint{Q^2 \alpha_2} \\ 0 \\ 1/Q \end{pmatrix} \right\}$ generating the lattice $\Lambda$.
+	
+	Let  $v \in \Lambda$ be a nonzero shortest vector of $\Lambda$ with respect to the $l^2$ norm. 
+	Let its integer coordinates in $B$ be $(y, x_1, x_2)$, and set $\lambda = \| v \|_2$.
+
+	Show that $\lambda \leq \sqrt{3}$, and that
+	\begin{align*}
+	\begin{cases}
+		x_1 \leq \lambda \cdot Q, \\
+		x_2 \leq \lambda \cdot Q,  \text{ and }\\
+		| y + x_1 \alpha_1 + x_2 \alpha_2 | \leq \frac{\lambda + Q}{Q^2}.
+	\end{cases}
+	\end{align*}
+	
+	Fix $Q=10, \alpha_1 = \sqrt{2}, \alpha_2 = \sqrt{3}$, and compute $B^{{\rm LLL}}$, the LLL-reduced basis.
+	Deduce that $\lambda \leq 0.633$.
+}
 {}
 
 
@@ -135,7 +153,7 @@ Fall 2023
 \exercise{
   Let $Β∈ ℝ^{n ×n}$ be a non-singular matrix and $B = B^* ⋅ R$ be the Gram-Schmidt orthogonalization  of $B$. The \emph{orthogonality defect} of $B$ is the number
   \begin{displaymath}
-    γ = \frac{∏_i \| b_i \|}{|\det(B)|}.  
+    γ = \frac{∏_i \| b_i \|_2}{|\det(B)|}.  
   \end{displaymath}
 
   \begin{enumerate}
