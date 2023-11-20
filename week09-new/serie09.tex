@@ -106,8 +106,8 @@ Fall 2023
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \exercise{
-  One practical exercise of LLL-reducing a $3 ×3$ integer lattice basis. 
-}
+	Consider the basis $B = \left\{ \begin{pmatrix} . \\ . \\ . \end{pmatrix}, \begin{pmatrix} . \\ . \\ . \end{pmatrix}, \begin{pmatrix} . \\ . \\ . \end{pmatrix} \right\}$ and its LLL-reduced counter part $B^{{\rm LLL}}$.
+	Compute $B^{{\rm LLL}}$, and the orthogonality defects $\gamma(B)$ and $\gamma(B^{{\rm LLL}})$.}
 {}
 
 
@@ -122,7 +122,7 @@ Fall 2023
   \item Show that $\|b_i^* \| ≤ \|b_i\|$ for all $i ∈ \{1,\dots,n\}$, where $b_i$ denotes the $i$-th column of $B$. 
   \item Let $M$ be the largest absolute value of an entry in $B$. Show that
     \begin{displaymath}
-       Φ(B) = ∏_{i=1}^n (\sqrt{n} M)^{2 (n-i+1)}. 
+       Φ(B) \leq ∏_{i=1}^n (\sqrt{n} M)^{2 (n-i+1)}. 
      \end{displaymath}
    \item Conclude that the number of iterations of the LLL-algorithm on input $B$ is bounded by
      \begin{displaymath}
@@ -140,11 +140,8 @@ Fall 2023
 
   \begin{enumerate}
   \item Show that $γ$ is invariant under permutations of the columns. 
-  \item Let $v = B \,x$ $x ∈ ℤ^n ⧹\{0\}$ be a shortest vector of $Λ(B)$. Show that $\|x\|_∞ ≤ γ$.
-
-    {\scriptsize \emph{Hint: Show that $|x_n|$ is bounded by $γ$ by applying a similar argument as the one that proves that $SV(Λ(B))≥ \min_i \|b_i^*\|$.}}
-  \item $γ = 2^{O(n^2)}$ if $B$ is LLL-reduced.
-  \item Argue that a shortest vector of $Λ(B)$ can be computed in time $2^{O(n^3)}$ plus  a polynomial in the input encoding of $B$. 
+  \item Show that $γ = 2^{O(n^2)}$ if $B$ is LLL-reduced.
+  \item  Argue, using set 8, that a shortest vector of $Λ(B)$ can be computed in time $2^{O(n^2)}$ plus  a polynomial in the input encoding of $B$. 
   \end{enumerate}
 }{}
 
