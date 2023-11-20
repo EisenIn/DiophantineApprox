@@ -1,0 +1,156 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption} 
+\usepackage{enumerate}
+\usepackage{polynom}
+\usepackage[utf8]{inputenc} 
+\usepackage{utf8math}
+\usepackage{xfrac}
+
+\date{}
+
+\usepackage[boldsans]{concmath}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Th\'eor\`eme}
+\newtheorem{Sol}{Solution}
+\newtheorem*{Sol*}{Solution}
+\theoremstyle{definition}
+\newtheorem{Ex}{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+
+
+\def \N {\mathbb N}
+\def \Q {\mathbb Q}
+\def \R {\mathbb R}
+\def \Z {\mathbb Z}
+\def \K {\mathbb K}
+\def \C {\mathbb C}
+\def \F {\mathbb F}
+\def \id {{\rm id}\,}
+\def \Ker {{\rm Ker}\,}
+\def \Im {{\rm Im}\,}
+\def \Vect {{\rm Vect}\,}
+
+\newcommand{\df}{\mathrel{\mathop:}=}
+\newcommand{\dx}{ \ \text{d} \, x}
+
+\newcommand{\pscal}[1]{\langle {#1} \rangle}
+\DeclareMathOperator{\spa}{span}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%       ENABLE or DISABLE dislpay of solutions
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\newif\ifsolutions
+		
+		% ENABLE or DISABLE display of solutions
+		%\solutionstrue
+		\solutionsfalse
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Dont touch much, just change the correct number and date :). Based on the setup above, the solutions will be automaticelly displayed or hidden.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\newcommand{\exercise}[2]{
+			\begin{Ex} #1 \end{Ex}
+			\ifsolutions  \begin{Sol*} #2 \end{Sol*} \bigskip \else \bigskip  \fi
+		}
+
+		
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Beginning of the document. Make sure to add the correct dates and numbers everywhere.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+{Prof. Friedrich Eisenbrand \hfill November 24th 2023}
+\end{center}
+	
+\hrule\vspace{\baselineskip}
+
+\begin{center}
+\textbf{Diophantine approximation}
+
+Fall 2023
+
+\bigskip
+
+\textbf{Set 9}
+\ifsolutions{\textbf{- Solutions}} \else{} \fi
+\end{center}
+
+\hrule\vspace{\baselineskip}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Beginning of the exercises
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Each exercise should look like 
+% 		\exercise{ Exercise }{ Solution }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\exercise{
+  One practical exercise of LLL-reducing a $3 ×3$ integer lattice basis. 
+}
+{}
+
+
+\exercise{
+  Let $B ∈ ℤ^{ n ×n}$ be a lattice basis and $Β= B^* ⋅ R$ be its Gram-Schmidt orthogonalization, where $R ∈ ℚ^{n ×n}$ is upper triangular with diagonal-elements being $1$. Recall the definition of potential
+  \begin{displaymath}
+    Φ(B) = ∏_{i=1}^n \|b_i^*\|^{2 (n-i+1)} ∈ℕ_+, 
+  \end{displaymath}
+  where $b_i^*$ is the $i$-th column of $B^*$. 
+
+  \begin{enumerate}[i)]   
+  \item Show that $\|b_i^* \| ≤ \|b_i\|$ for all $i ∈ \{1,\dots,n\}$, where $b_i$ denotes the $i$-th column of $B$. 
+  \item Let $M$ be the largest absolute value of an entry in $B$. Show that
+    \begin{displaymath}
+       Φ(B) = ∏_{i=1}^n (\sqrt{n} M)^{2 (n-i+1)}. 
+     \end{displaymath}
+   \item Conclude that the number of iterations of the LLL-algorithm on input $B$ is bounded by
+     \begin{displaymath}
+       O(n^2 (\log n + \log M)).       
+     \end{displaymath}
+   \item Argue that this number of iterations is polynomial in the storage-space that is required to store the matrix $B$ in a computer. 
+  \end{enumerate}
+}{}
+
+\exercise{
+  Let $Β∈ ℝ^{n ×n}$ be a non-singular matrix and $B = B^* ⋅ R$ be the Gram-Schmidt orthogonalization  of $B$. The \emph{orthogonality defect} of $B$ is the number
+  \begin{displaymath}
+    γ = \frac{∏_i \| b_i \|}{|\det(B)|}.  
+  \end{displaymath}
+
+  \begin{enumerate}
+  \item Show that $γ$ is invariant under permutations of the columns. 
+  \item Let $v = B \,x$ $x ∈ ℤ^n ⧹\{0\}$ be a shortest vector of $Λ(B)$. Show that $\|x\|_∞ ≤ γ$.
+
+    {\scriptsize \emph{Hint: Show that $|x_n|$ is bounded by $γ$ by applying a similar argument as the one that proves that $SV(Λ(B))≥ \min_i \|b_i^*\|$.}}
+  \item $γ = 2^{O(n^2)}$ if $B$ is LLL-reduced.
+  \item Argue that a shortest vector of $Λ(B)$ can be computed in time $2^{O(n^3)}$ plus  a polynomial in the input encoding of $B$. 
+  \end{enumerate}
+}{}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
