@@ -159,8 +159,8 @@ Fall 2023
 	\begin{enumerate}[i)]
 		\item Show that if $\gamma(B)=1$, then $B$ is an orthogonal basis.
 		\item In the case that  $B$ is an orthogonal basis, show that $b_k$ is a shortest vector, where $k \in \arg\min_i \{ \| b_i \| \}$.
-		\item Show that
-			\[ \| v \|_\infty \leq \gamma(B) \]
+		\item Let $x$ be the coordinates of $v$ in the basis $B$. Show that
+			\[ \| x \|_\infty \leq \gamma(B) \]
 		using Cramer's rule and Hadamard's inequality.
 		\item Deduce that the \emph{Shortest Vector Problem} can be solved in time $\mathcal{O}\left(3^n\gamma(B)^n\right)$ and polynomial space.
 		
@@ -178,7 +178,7 @@ Fall 2023
 		Show that
 			\[ | y_i | \leq c_i \]
 		for each $i=1, \dots, n$.
-		\item Show that $ x = U y$ for some $U \in \R^{n \times n}$ upper triangular with all diagonal elements equal to $1$.
+		\item Show that $ Rx = y$ for some $R \in \R^{n \times n}$ upper triangular with all diagonal elements equal to $1$.
 		\item Deduce that 
 			\[ | x_n | \leq c_n, \]
 		and hence that there are at most $2c_n + 1$ possibilities for $x_n$.
