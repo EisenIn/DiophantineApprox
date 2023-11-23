@@ -123,8 +123,17 @@ Fall 2023
 	\end{cases}
 	\end{align*}
 	
-	Fix $Q=10, \alpha_1 = \sqrt{2}, \alpha_2 = \sqrt{3}$, and compute $B^{{\rm LLL}}$, the LLL-reduced basis.
-	Deduce that $\lambda \leq 0.633$.
+	Fix $Q=10, \alpha_1 = \sqrt{2}, \alpha_2 = \sqrt{3}$.
+	\begin{enumerate}[i)]
+		\item Compute the first four steps of LLL on applied to the basis $B$. 
+		Record the operations done in a unimodular matrix $P$ such that $B \cdot P$ is the matrix found.
+		\item Let $P = \begin{pmatrix} 5 & -8 & 33 \\
+								-6 & 2 & -5 \\
+								2 & 3 & -15 \end{pmatrix}.$
+		Show that $P$ is unimodular and hence that $B$ and $B \cdot P$ span the same lattice.
+		\item Show that $B^{LLL} := B \cdot P$ is \emph{LLL-reduced}, with first vector $\frac{1}{10}\begin{pmatrix} 0 \\ -6 \\ 2 \end{pmatrix}$.
+		\item Deduce that $0.315 \leq \lambda \leq 0.633$.
+	\end{enumerate}
 }
 {}
 
