@@ -107,6 +107,13 @@ Fall 2023
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \exercise{
+	Let $\alpha \in \R^n$, and fix $N=2^n$, the number of sign vectors $\{\pm1\}^n$.
+
+	Show, using the pigeonhole principle, that there exists a vector $y \in \{ 0, \pm 1\}^n \setminus \{ 0\}$ such that
+		\[ | y^T \alpha | \leq \frac{\| \alpha \|_1 }{N - 1}. \]
+}{}
+
+\exercise{
 	Let $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ be \emph{badly approximable}, that is there exists a constant $c > 0$ such that
 		\[ \| q \alpha - p \|_\infty > \frac{c}{q^{1/n}}, \]
 	for all integers $q \geq 1, p \in \Z^n$.
@@ -133,6 +140,26 @@ Fall 2023
 			\[ | y^T \alpha | \geq \frac{1}{2q} \geq \frac{c^{2n^2}}{2n^{n^2 + 3n}} . \]
 	\end{enumerate}
 
+}
+{}
+
+\exercise{
+	Let $\alpha \in \R^n$ be a subspace-defining normal which splits the hypercube.
+	That is, $\alpha^T x > 0$ or $\alpha^T x < 0$ for each $x \in \{0,1\}^n$.
+
+	\begin{enumerate}[i)]
+		\item Find the right lattice on which the LLL algorithm outputs integers $q \geq 1, p \in \Z^n$ such that
+		\begin{gather*}
+			q \leq 2^{n^2 + n \log(n) + 2n}, \\
+			\| q \alpha - p \|_\infty \leq \frac{1}{2n}.
+		\end{gather*}
+		Deduce that, whenever $p^T x \neq 0$, one has ${\rm sign}(\alpha^T x) = {\rm sign}(p^Tx)$.
+		
+		\item
+		In the case that $p^T x \neq 0$, find the constant $M$ such that the vector
+			\[ v = M\cdot p + \begin{pmatrix}0 \\ v' \end{pmatrix} \]
+		still verifies ${\rm sign}(\alpha^T x) = {\rm sign}(v^Tx)$ for any $\| v' \|_\infty \leq 2^{n^2}$.
+	\end{enumerate}
 }
 {}
 
