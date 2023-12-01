@@ -1,0 +1,192 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption} 
+\usepackage{enumerate}
+\usepackage{polynom}
+\usepackage[utf8]{inputenc} 
+\usepackage{utf8math}
+\usepackage{xfrac}
+
+\date{}
+
+\usepackage[boldsans]{concmath}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Th\'eor\`eme}
+\newtheorem{Sol}{Solution}
+\newtheorem*{Sol*}{Solution}
+\theoremstyle{definition}
+\newtheorem{Ex}{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+
+
+\def \N {\mathbb N}
+\def \Q {\mathbb Q}
+\def \R {\mathbb R}
+\def \Z {\mathbb Z}
+\def \K {\mathbb K}
+\def \C {\mathbb C}
+\def \F {\mathbb F}
+\def \id {{\rm id}\,}
+\def \Ker {{\rm Ker}\,}
+\def \Im {{\rm Im}\,}
+\def \Vect {{\rm Vect}\,}
+
+\newcommand{\df}{\mathrel{\mathop:}=}
+\newcommand{\dx}{ \ \text{d} \, x}
+
+\newcommand{\pscal}[1]{\langle {#1} \rangle}
+\DeclareMathOperator{\spa}{span}
+\newcommand{\nint}[1]{\ensuremath{\lfloor#1\rceil}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%       ENABLE or DISABLE dislpay of solutions
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\newif\ifsolutions
+		
+		% ENABLE or DISABLE display of solutions
+		%\solutionstrue
+		\solutionsfalse
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Dont touch much, just change the correct number and date :). Based on the setup above, the solutions will be automaticelly displayed or hidden.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\newcommand{\exercise}[2]{
+			\begin{Ex} #1 \end{Ex}
+			\ifsolutions  \begin{Sol*} #2 \end{Sol*} \bigskip \else \bigskip  \fi
+		}
+
+		
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Beginning of the document. Make sure to add the correct dates and numbers everywhere.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+{Prof. Friedrich Eisenbrand \hfill December 8th 2023}
+\end{center}
+	
+\hrule\vspace{\baselineskip}
+
+\begin{center}
+\textbf{Diophantine approximation}
+
+Fall 2023
+
+\bigskip
+
+\textbf{Set 11}
+\ifsolutions{\textbf{- Solutions}} \else{} \fi
+\end{center}
+
+\hrule\vspace{\baselineskip}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Beginning of the exercises
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Each exercise should look like 
+% 		\exercise{ Exercise }{ Solution }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\exercise{
+	We call two real numbers $\alpha, \beta \in \R$ \emph{equivalent} if there exist some matrix
+		\[ \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in {\rm GL}_2(\Z) \]
+	such that $\beta$ is the Möbius transformation of $\alpha$, that is
+		\[ \beta = \frac{a \alpha + b}{c \alpha + d}. \]
+	
+	\begin{enumerate}[i)]
+		\item Show that this relation is indeed an \emph{equivalence relation}.
+		\item Let $\alpha = [a_0;a_1, a_2 \dots]$ and fix $\alpha_n := [a_n; a_{n+1}, a_{n+2}, \dots]$ for each $n \geq 0$.
+		Show that $\alpha$ is equivalent to $\alpha_n$ for each $n \geq 0$.
+
+		\item Deduce that if $\alpha$ and $\beta$ take the shapes
+			\begin{gather*}
+				\alpha = [a_1, \dots, a_i, c_1, c_2, \dots], \\
+				\beta = [b_1, \dots, b_j, c_1, c_2, \dots],
+			\end{gather*}
+		for some integers $a_1, \dots, a_i$ ($i \geq 0$), $b_1, \dots, b_j$ ($j\geq0$), and $c_1, c_2, \dots$,
+		then $\alpha$ and $\beta$ are equivalent.
+	\end{enumerate}
+}
+{}
+
+The steps of the following exercise were taken from Cassels \emph{An introduction to Diophantine approximation} (1957).
+\exercise{
+	Let $\alpha \in \R\setminus\Q$. 
+	Recall that Dirichlet's approximation theorem gives infinitely $q\geq1, p\in\Z$ such that $ | q \alpha - p |  \leq \frac1q. $
+	We aim to show the following tighter statement due to Adolf Hurwitz (1891).
+
+	There exists inifinitely many $q\geq1, p\in\Z$ such that
+		\[ | q \alpha - p| \leq \frac{1}{\sqrt{5}q}. \]
+	This inequality is tight for the golden number $\alpha = \frac{1+\sqrt{5}}2$.
+
+	Furthermore, if $\alpha$ is not equivalent to $\frac{1+\sqrt{5}}2$, there are infinitely many $q\geq1, p\in\Z$ such that
+		\[ | q \alpha - p| \leq \frac{1}{\sqrt{8}q}. \]
+
+	To this end, define $\{ q_n / p_n\}_{n\geq0}$ the best approximations of $\alpha = [a_0; a_1, \dots]$, and
+		\[ A_n := q_n \cdot | q_n \alpha - p_n | \]
+	for all $n \geq 0$.
+
+	\begin{enumerate}[i)]
+		\item Show that $q_{n-1} \cdot | q_n \alpha - p_n | + q_n \cdot | q_{n-1} \alpha - p_{n-1} | = 1$.
+
+		\item Deduce that, for $\lambda = q_{n-1}/q_n$ and $\mu = q_{n+1}/q_n$,
+			\begin{gather}
+				\lambda^2 A_n - \lambda + A_{n-1} = 0, \label{1} \\
+				\mu^2 A_n - \mu + A_{n+1} = 0, \label{2} \\
+				\mu - \lambda = a_n \label{3}
+			\end{gather}
+		for all $n \geq 1$.
+
+		\item Deduce from \eqref{2} - \eqref{1} that
+			\begin{gather}
+				a_n A_n (\lambda + \mu) = a_n + A_{n-1} - A_{n+1}. \label{4}
+			\end{gather}
+
+		\item Square equations \eqref{3} and \eqref{4} to find
+			\begin{gather}
+				2a_n^2 A_n^2 (\lambda^2 + \mu^2) = a_n^4 A_n^2 + \left(a_n - A_{n-1}-A_{n+1} \right)^2. \label{5}
+			\end{gather}
+
+		\item Deduce from \eqref{1} + \eqref{2} that
+			\[ a_n^2 A_n^2 + 2A_n(A_{n-1} + A_{n+1}) = 1 - a_n^{-2} (A_{n-1} - A_{n+1})^2 \leq 1. \]
+		
+		\item Conclude that 
+			\[ \min \{ A_{n-1}, A_n, A_{n+1} \} \leq \frac{1}{a_n^2 + 4} \leq \frac{1}{\sqrt{5}}, \]
+		and that
+			\begin{gather}
+				\min \{ A_{n-1}, A_n, A_{n+1} \} \leq \frac{1}{\sqrt{8}} \label{6}
+			\end{gather}
+		for infinitely many $n$ unless $a_n =1$ for all $n \geq N$ for some $N \geq 0$.
+
+		\item Use the previous exercise to show that \eqref{6} holds for infinitely many $n$ if $\alpha$ is not equivalent to $ \frac{1+\sqrt{5}}2$.
+			
+	\end{enumerate}
+}
+{}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
