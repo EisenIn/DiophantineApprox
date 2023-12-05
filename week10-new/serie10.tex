@@ -58,8 +58,8 @@
 		\newif\ifsolutions
 		
 		% ENABLE or DISABLE display of solutions
-		%\solutionstrue
-		\solutionsfalse
+		\solutionstrue
+		%\solutionsfalse
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -111,7 +111,19 @@ Fall 2023
 
 	Show, using the pigeonhole principle, that there exists a vector $y \in \{ 0, \pm 1\}^n \setminus \{ 0\}$ such that
 		\[ | y^T \alpha | \leq \frac{\| \alpha \|_1 }{N - 1}. \]
-}{}
+}{
+	Consider the set of all signed sums $|s^T\alpha|$ for $s \in \{ \pm 1\}^n$.
+	They all belong in the interval $\left[- \|\alpha\|_1, \| \alpha \|_1 \right]$, which we may split uniformly into $N-1$ pieces of size
+		\[ \frac{2 \| \alpha \|_1}{N-1} \]
+	in order to guarantee that two signed sums belong to the same interval.
+
+	By pigeonhole, there exist $s_1 \neq s_2$ such that
+		\[ | s_1^T \alpha - s_2^T \alpha| \leq \frac{2 \| \alpha \|_1}{N-1}. \]
+	Denote $y = (s_1 - s_2)/2 \in \{ 0, \pm1\}^n \setminus \{ 0\}$ which concludes.
+
+
+
+}
 
 \exercise{
 	Let $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ be \emph{badly approximable}, that is there exists a constant $c > 0$ such that
@@ -141,7 +153,44 @@ Fall 2023
 	\end{enumerate}
 
 }
-{}
+{
+	\begin{enumerate}[i)]
+		\item Suppose towards contradiction that 
+			\[ \lambda_1 < \frac{1}{Q^{1+\epsilon}}. \]
+		In that case, a shortest vector of $\Lambda$ with coordinates $(q, p) \in \N \times Z^n$ verifies
+			\begin{gather*}
+				q \leq Q^n, \\
+				\| q \alpha - p \|_\infty \leq \frac{1}{Q^{1+\epsilon}}.
+			\end{gather*}
+		Using the assumptions that $\alpha$ is badly approximable with constant $c$, we get
+			\[ \frac{c}{Q} \leq \frac{c}{q^{1/n}} \leq \| q \alpha - p \|_\infty \leq \frac{1}{Q^{1+\epsilon}}, \]
+		which implies that $Q \leq c^{-1/\epsilon}$.
+
+		\item Minkowski's second theorem gives
+			\[ \lambda_1^n \lambda_{n+1} \leq \prod_{i=1}^{n+1} \lambda_i \leq \frac{(n+1)^{n+1}}{Q^{n+1}}, \]
+		which implies that, using i),
+			\[ \lambda_{n+1} \leq \frac{(n+1)^{(n+1)/2}}{Q^{1-n\epsilon}} = \frac{(n+1)^{n+1}}{Q^{1/2}}. \] 
+
+		For $Q = \max\{ c^{-2n}, (2n)^2 (n+1)^{n+1}\} \leq c^{-2n} \cdot (2n)^2 (n+1)^{n+1}$, we get that 
+			\[ \lambda_{n+1} \leq \frac1{2n}. \]
+		Since $n+1$ linearly independent vectors are this small, the coordinates of at least one must verify $p^T y \neq 0$.
+		
+		We hence get integers $q \geq 1, p \in \Z^n$ such that
+			\begin{gather*}
+				q \leq Q^n \leq \frac{(n+1)^{n^2 +3n}}{c^{2n^2}}, \\
+				\| q \alpha - p \|_\infty \leq \frac1{2n}.
+			\end{gather*}
+
+		\item We conclude that
+			\[ | q y^T \alpha - y^T p | \leq \frac12, \]
+		by the triangle inequality. And since $y^Tp \in \Z^*$, we must have
+			\[ q | y^T \alpha | \geq \frac12. \]
+		Finally,
+			\[ | y^T \alpha | \geq \frac1{2q} \geq \frac{c^{2n^2}}{2n^{n^2+3n}}. \]
+	\end{enumerate}
+
+
+}
 
 \exercise{
 	Let $\alpha \in \R^n$ be a subspace-defining normal which splits the hypercube.
