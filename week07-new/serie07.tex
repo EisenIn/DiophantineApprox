@@ -57,8 +57,8 @@
 		\newif\ifsolutions
 		
 		% ENABLE or DISABLE display of solutions
-		%\solutionstrue
-		\solutionsfalse
+		\solutionstrue
+		%\solutionsfalse
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -108,14 +108,42 @@ Fall 2023
 \exercise{
 	Prove the linear form version of Minkowski's theorem.
 	
-	Consider a real matrix $A = (a_{ij})_{i,j=1}^n$ and real numbers $c_1, \dots, c_n \geq 0$. The system of inequalities
+	Consider a real non-singular matrix $A = (a_{ij})_{i,j=1}^n$ and real numbers $c_1, \dots, c_n \geq 0$. The system of inequalities
 	\begin{gather*}
 		\left| \sum_{j=1}^n a_{1j} x_j \right| \leq c_1, \\
 		\left| \sum_{j=1}^n a_{ij} x_j \right| < c_i, \ \forall i=2, \dots, n.
 	\end{gather*}
 	admits a non-zero integer solution if $c_1 \cdots c_n \geq | \det(A) |.$
 }
-{}
+{
+	We modify each expression to get an inequality of the type
+		\[ | B x | < 1 \qquad \iff \qquad \| Bx \|_\infty < 1, \]
+	for which we find a nonzero integer $x$ under the condition that $\det(B) < 1$.
+
+	For the condition to hold, we cannot have any zero $c_i$, since $A$ is non-singular. 
+	Dividing each line by $c_i$, we define
+		\[ B := \begin{pmatrix} & \frac{1}{c_1} a_1^T & \\ & \vdots & \\ & \frac{1}{c_n} a_n^T &  \end{pmatrix}. \]
+	$B$ has determinant $\det B = \frac{\det A}{c_1 \cdots c_n} \leq 1$. 
+	Notice that the inequality must be strict in order to apply Minkowski's theorem.
+	To this end, we modify the first large inequality slightly, replacing $c_1$ by $\tilde{c}_1 = c_1 + \epsilon$,
+	and $c_i$ ($i \geq 2$) by $\tilde{c}_i = c_i - \delta$, such at $\tilde{c}_1 \cdots \tilde{c}_n > | \det A |$.
+
+	Minkowski's first theorem gives, for each $\epsilon > 0$ and some $\delta >0$, an integer vector $x = x(\epsilon)$ such that
+	\begin{gather*}
+		\left| \sum_{j=1}^n a_{1j} x_j \right| \leq c_1 + \epsilon, \\
+		\left| \sum_{j=1}^n a_{ij} x_j \right| \leq c_i - \delta, \ \forall i=2, \dots, n.
+	\end{gather*}
+	Note now that all solutions of the above system are bounded by some constant which does not depend on $\epsilon$.
+	Indeed, as
+		\[ | Ax | \leq C, \]
+	for $C = (c_1+1, c_2, \dots, c_n)^T$ for example, then
+		\[ | x_i | = | (A^{-1} Ax)^T e_i | = | (Ax)^T (A^{-T} e_i) | \leq n \|C\|_\infty M, \]
+	for $M$ bounding the coefficients of $A^{-1}$.
+
+	As such, the number of \emph{integer} vectors $x$ verifying the modified system is finite, a number independent of $\epsilon$.
+	There must therefore exist some nonzero $x$ integer which verifies the system for all $\epsilon>0$. In the limit, this vector concludes.
+
+}
 
 \exercise{
 	The following exercise shows Lagrange's \emph{four-square theorem}. 
@@ -141,6 +169,46 @@ Fall 2023
 	\end{enumerate}
 
 }
+{
+	\begin{enumerate}[i)]
+		\item Letting $\{1, i, j, k\}$ denote the basis of the quaternions, we have the following norm.
+			\[ N(a + bi + cj + dk) = \prod_{\pm^4} (\pm a \pm bi \pm cj \pm dk) = a^2 + b^2 + c^2 + d^2. \]
+		By associativity of the quaternions, and if $n, m$ may be written as sums of four squares, then
+			\[ n = N(\alpha), \qquad m = N(\beta), \text{ and } \qquad n\cdot m = N(\alpha) N(\beta) = N(\alpha \cdot \beta), \]
+		and $n \cdot m$ may also be written as sum of four squares.
+		The multiplication of $\alpha$ by $\beta$ gives the integers in question.
+		This concludes, since $2 = 1 + 1 + 0 + 0$ may trivially be written as the sum of four squares. 
+
+		One may compute the integers for $n \cdot m$ and verify the result by hand using the relations $ij = k, jk = i, ki = j$ and $i^2 = j^2 = k^2 = -1$.
+
+
+		\item The morphism of groups
+			\begin{align*}
+				\phi : \F_p &\rightarrow \F_p \\
+					x &\mapsto x^2
+			\end{align*}
+		verifies $|\Im(\phi)| = \frac{p-1}{| \ker(\phi)|}$.
+		The kernel of $\phi$ contains exactly two elements, since the polynomial $x^2 - 1$ splits as $(x+1)(x-1)$ in the field: the only square roots of $1$ are $\pm1$.
+
+		\item The tuples are listed as $(a, b)$ such that
+			\[ a + b = -1 \mod{p}. \]
+		We must only verify that at least one of these tuples contains two squares.
+		Note that $0$ is trivially a square, and that the last tuple contains twice the same number.
+		Hence, if neither the first nor the last tuple contain two squares, the other $\frac{p-1}2 - 1$ ones are made of $\frac{p-1}2$ distinct squares. 
+		 By pigeonhole, one tuple must therefore contain two squares.
+
+		\item Note that ${\rm vol}(C) = \frac12 \pi^2 (\sqrt{2p})^4 = 2 \pi^2 p^2$, and that $2^4 \det \Lambda = 16p^2 < {\rm vol}(C)$.
+
+		Minkowski's first theorem gives a vector $v \in \left( \Lambda \cap C \right) \setminus \{0\}$.
+		Routine computation then yields
+			\[ \| v \|_2^2 < 2p, \qquad \text { and } \qquad  \| v \|_2^2  \equiv 0 \mod{p}, \]
+		which mean that $\| v \|_2^2  = p$, and which concludes.
+		
+	\end{enumerate}
+
+}
+
+
 
 \exercise{
 	Consider the expansion $\alpha = [a_0; a_1, \dots]$ of some $\alpha \in \R\setminus\Q$, with convergents $\{p_{k}/q_{k}\}_k$ given by the truncated expansion.
@@ -154,7 +222,24 @@ Fall 2023
 
 	Show that $\alpha$ is \emph{badly approximable} if and only if the coefficients $\{ a_n \}_n$ are bounded.
 }
-{}
+{
+	Routine computation gives 
+		\[ \left| \alpha - \frac{p_k}{q_k} \right| = \left| \frac{q_k p_{k-1} - p_k q_{k-1}}{q_k \left( q_k x_{k+1} + q_{k-1} \right)}  \right| = \frac{1}{q_k \left( q_k x_{k+1} + q_{k-1} \right)}. \]
+	As such, the convergents of $\alpha$ approximate it with quality
+		\[ | q_k \alpha - p_k | \leq \frac{1}{q_k x_{k+1} + q_{k-1}}. \]
+	On one hand, if $\alpha$ is badly approximable, then there exists a constant $c>0$ such that, for each $k \geq 0$,
+		\[ \frac{c}{q_k} \leq \frac{1}{q_k x_{k+1} + q_{k-1}} \leq \frac{1}{q_k x_{k+1}}. \]
+	Hence, the expansions $x_k := [a_k; a_{k+1} \dots]$ are bounded by $\frac{1}c$ for each $k$.
+	As $a_k \leq x_k$, the coefficients $\{ a_n \}_n$ are bounded.
+
+	On the other hand, if the coefficients $\{ a_n \}_n$ are bounded by $M$, then
+		\[ q_k \left| q_k \alpha - p_k \right|= \frac{1}{\left( x_{k+1} + q_{k-1}/q_k \right)} \geq \frac{1}{M + 1}. \]
+	To conclude, notice that for any $q_k \leq q < q_{k+1}, p \in \Z$ one thus has
+		\[ | q \alpha - p |  \geq | q_k \alpha - p_k | \geq \frac{c}{q_k} \geq \frac{c}{q}. \]
+
+
+
+}
 
 \exercise{
   Let $b_1,\dots,b_n$ be an orthonormal basis of $ℝ^n$, $λ_1,\dots,λ_n ∈ ℝ_{>0}$  and consider
@@ -164,38 +249,18 @@ Fall 2023
   Show that $\mathrm{vol}(\mathcal{E}) = \left( ∏_{i=1}^n λ_i \right) {\rm vol}(B(1,0))$, where
   $B(1,0) = \{ x∈ ℝ^n ：\|x\|_2 ≤1\}$. 
 }
-{}
+{
+	Write $\mathcal{E}$ as 
+		\[  \mathcal{E} = \left\{ Bx： \left\| (B \Lambda^{-1})x \right\|_2 \leq 1 \right\}, \]
+	where $B = (b_1, \dots, b_n)$ and $\Lambda = {\rm diag}(\lambda_1, \dots, \lambda_n)$.
+		
+	This is equivalent to
+		\[  \mathcal{E} = \left\{ B\Lambda B^{-1} y： \left\| y \right\|_2 \leq 1 \right\} = \left( B \Lambda B^{-1} \right) \cdot B(1,0), \]
+	which has volume ${\rm vol}(\mathcal{E}) = \det\left( B \Lambda B^{-1} \right) \cdot {\rm vol}B(1,0) = \left( \prod_{i=1}^n \lambda_i \right) {\rm vol}B(1,0).$
 
-% COMMENTED FOR NOW 
-%\exercise{
-%	Let $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ be \emph{badly approximable}, that is there exists a constant $c > 0$ such that
-%		\[ \| q \alpha - p \|_\infty > \frac{c}{q^{1/n}}, \]
-%	for all integers $q \geq 1, p \in \Z^n$.
-%
-%	The goal of this exercise is to evaluate the signed sum $| y^T \alpha |$ from below, where $y \in \{ \pm 1 \}^n$.
-%
-%	Consider the lattice $\Lambda$, dependent on a real quantity $Q > 0$,
-%		\[ \Lambda \df \begin{pmatrix} Q^{n+1} & 0^T \\
-%								\alpha & I_n \end{pmatrix} \cdot \Z^{n+1}, \]
-%	with successive minima $\lambda_1, \dots, \lambda_{n+1}$.
-%	
-%	\begin{enumerate}[i)]
-%		\item 
-%		Show that, for all $\epsilon > 0$, one has
-%			\[ \frac{1}{Q^{1 + \epsilon}} \leq \lambda_1 \leq \frac{1}{Q}, \]
-%		for all $Q \geq c^{-1/\epsilon}$ large enough. Crude bounds are enough here.
-%		
-%		\item 
-%		Let $\epsilon = \frac1{2n}$. Deduce from Minkowski's second theorem that $\lambda_{n+1}$ is vanishing in $Q$, and that one may find $q \geq 1$, $p \in \Z^n$ such that
-%			\[ \| q \alpha - p \|_\infty^ \leq \frac{1}{2n}, \qquad \text{ and } \qquad y^T p \neq 0, \qquad \text{ and } \qquad q \leq \frac{(n+1)^{n^2 + 3n}}{c^{2n^2}}. \]
-%		
-%		\item
-%		Conclude that 
-%			\[ | y^T \alpha | \geq \frac{1}{2q} \geq \frac{c^{2n^2}}{2n^{n^2 + 3n}} . \]
-%	\end{enumerate}
-%
-%}
-%{}
+
+}
+
 
 
 
