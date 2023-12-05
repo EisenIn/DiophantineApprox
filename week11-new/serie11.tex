@@ -119,7 +119,7 @@ Fall 2023
 
 	Let $n \geq 2$ be an integer.
 	Let $L_1, \dots, L_n$ be linearly independent linear forms in $n$ variables with real algebraic coefficients.
-	Let $\epsilon$ be a real number satisfying $0 < \epsilon < 1$.
+	Let $\epsilon > 0$.
 
 	Then there are proper rational subspaces $S_1, \dots, S_t$ of $\Q^n$
 	such that all nonzero integer solutions $x = (x_1, \dots, x_n)$ satisfying 
@@ -131,14 +131,14 @@ Fall 2023
 \exercise{\label{ex:1}
 	Let $n\geq1$ and $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ such that $1, \alpha_1, \dots, \alpha_n$ are linearly independent over $\Q$.
 
-	We aim to show that for any $0 < \epsilon < \frac{1}{2n}$ the number of integers solutions $q\geq1, p\in\Z^n$ to
+	We aim to show that for any $\epsilon > 0$ the number of integers solutions $q\geq1, p\in\Z^n$ to
 		\begin{gather}
 			 \| q \alpha - p \|_\infty \leq \frac{1}{q^{1/n + \epsilon}} \label{eq:1}
 		\end{gather}
 	is finite.
 
 	\begin{enumerate}[i)]
-		\item Show, using the subspace theorem, that the integer solutions lie on finitely many subspaces of $\Q^{n+1}$.
+		\item Show, using the subspace theorem, that the integer solutions lie on finitely many subspaces of $\Q^{n+1}$ (and possibly a ball around $0$).
 
 		\item Consider a subspace $S \subset \Q^{n+1}$ and one of its \emph{unit} normal vector $v \in \Q^{n+1} \setminus\{0\}$.
 			Show that, if $(q, p)$ belongs in $S$ and is a solution of \eqref{eq:1}, then
@@ -166,14 +166,14 @@ Fall 2023
 \exercise{
 
 	Let $n\geq2$ and $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ such that $1, \alpha_1, \dots, \alpha_n$ are linearly independent over $\Q$. 
-	Let $\epsilon$ satisfy $0 < \epsilon < \frac{1}{2n}$.
+	Let $\epsilon>0$.
 
-	Conclude from exercise \ref{ex:1} that there exists a constant $c > 0$ such that
+	Conclude from exercise \ref{ex:1} that there exists a constant $c=c(\alpha, \epsilon) > 0$ such that
 		\[ \| q \alpha - p \|_\infty > \frac{c}{q^{1/n + \epsilon}}, \]
 	for all integers $q \geq 1, p \in \Z^n$.
 
 	\begin{enumerate}[i)]
-		\item Deduce \emph{Roth's theorem}: for any $\alpha \in \R\setminus\Q$ and any $\epsilon>0$, there exists a constant $C=C(\epsilon)$ such that
+		\item Deduce \emph{Roth's theorem}: for any $\alpha \in \R\setminus\Q$ and any $\epsilon>0$, there exists a constant $C=C(\alpha, \epsilon)$ such that
 			\[ | \alpha - p/q | \geq \frac{C}{q^{2+\epsilon}} \]
 		for all $q\geq1, p\in\Z$.
 		
@@ -184,7 +184,8 @@ Fall 2023
 		\item Pick an adequate $\epsilon = \epsilon(n)$ such that 
 			\[ \lambda_{n+1} \leq \frac{1}{Q^{1/2}}. \]
 		
-		\item Find a lower bound on $|y^T \alpha|$ as a function of $n$ and $C(n)$.
+		\item Find a lower bound on $|y^T \alpha|$ as a function of $n$ and $c(\alpha, n)$.
+			This bound should be singly exponential in $n$.
 
 	\end{enumerate}
 }
