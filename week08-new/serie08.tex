@@ -57,8 +57,8 @@
 		\newif\ifsolutions
 		
 		% ENABLE or DISABLE display of solutions
-		%\solutionstrue
-		\solutionsfalse
+		\solutionstrue
+		%\solutionsfalse
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -126,7 +126,43 @@ Fall 2023
 	We may thus reorder the basis such that $\frac{\| b_i \|}{\| b_i^* \|} \leq \frac{\| b_{i+1} \|}{\| b_{i+1}^* \|}$ for each $i=1, \dots, n$.
   \end{enumerate}
 
-  }{}
+  }{
+	The norms below are the $l^2$ norm unless specifed otherwise.
+	\begin{enumerate}[i)]
+		\item The coefficients of $\mu_{ij}$ of \eqref{eq:1} are that of the projection of $b_j$ onto the space ${\rm span}\{ b_1^*, \dots, b_{j-1}^* \}$. Note that this defines $b_j - b_j^*$ and hence $b_j^*$. 
+
+		\item Clearly $c_k^* = b_k^*$ for $k < i$. For $k>i+1$, one defines $c_k - c_k^*$ by projecting $c_k$ onto ${\rm span}\{ c_1^*, \dots, c_{k-1}^* \}$. 
+		By the definition of the $c_i$ and properties of the Gram-Schmidt orthogonalization, $b_k - c_k^*$ is the projection of $b_k$ onto ${\rm span}\{ b_1^*, \dots, b_{k-1}^* \}$.
+		Therefore $c_k^* = b_k^*$ since they are defined in the same fashion.
+
+		\item Note that the vector
+			\[ v = b_{i+1}^* + μ_{i,i+1} b_i^* \]
+		verifies that $v \perp b_1^*, \dots, v \perp b_{i-1}^*$.
+		Furthermore, one has
+			\[ (b_{i+1} - v)^T b_{k}^* = 0 \]
+		for each $k = i, i+2, i+3, \dots, n$ (note that only $k=i$ requires computation).
+
+		As such, the vector $b_{i+1} - v$ is the orthogonal projection of $b_{i+1}$ onto ${\rm span}\{ b_1^*, \dots, b_{i-1}^* \}$, which means that $v = c_{i}^*$.
+
+		\item The Gram-Schmidt representation $B = B^* \cdot U$ where $U$ is upper triangular with $1$ on the diagonal shows that
+			\[ \prod_{i=1}^n \| b_i^* \|_2 = |\det B^*| = | \det B|. \]
+		The invariance of $|\det|$ under the swapping of columns concludes.
+
+		\item Combining the last two points, we must have $\|b_i^*\| ⋅\|b_{i+1}^*\| = \|c_i^*\| ⋅\|c_{i+1}^*\|$.
+
+		\item By point iii) and Pythagoras' theorem, we have
+			\[ \| c_i^* \|^2_2 = \| b_{i+1}^* \|^2_2 + \mu_{i,i+1}^2 \| b_i^* \|^2_2 \geq  \| b_{i+1}^* \|^2_2. \]
+		The relation v) gives the other inequality.
+
+		\item If $\frac{\| b_i \|}{\| b_i^* \|} > \frac{\| b_{i+1} \|}{\| b_{i+1}^* \|}$, then one has
+			\[ \frac{\| b_{i} \|}{\| c_{i+1}^* \|} > \frac{\| b_{i+1}\|}{\| b_{i+1}^* \|} \frac{\|b_i^* \|}{\| c_{i+1}^* \|} 
+										= \frac{\| b_{i+1}\|}{\| b_{i+1}^* \|} \frac{\|c_{i}^* \|}{\| b_{i+1}^* \|} 
+										> \frac{\| b_{i+1}\|}{\| b_{i+1}^* \|}, \]
+		where we used v) and then vi).
+
+	\end{enumerate}
+
+}
 
   \exercise{
     Let $B ∈ℤ^{n×n}$ non-singular with Gram-Schmidt orthogonalization $B = B^*⋅ R$ and let $B^{(i)} ∈ℤ^{m ×i}$ be the matrix composed of the first $i$ columns of $B$.  Recall the definition of the \emph{potential} of $B$
@@ -138,7 +174,14 @@ Fall 2023
     \item $ Φ(B) = ∏_{i=1}^n \det\left({B^{(i)}}^T B^{(i)}\right)$
     \item $ Φ(B) ∈ ℕ_+$  
     \end{enumerate}
-  }{}
+  }{
+	Note that $B^{(i)} = B_*^{(i)} U$ for some upper triangular matrix $U$ with diagonal $1$, and with $ B_*^{(i)}   = (b_1^*, \dots, b_i^*)$.
+
+	Hence $(B_*^{(i)} )^T B_*^{(i)}  = {\rm diag}(\| b_1^* \|_2^2, \dots, \| b_i^* \|_2^2)$, and the determinant $\det\left({B^{(i)}}^T B^{(i)}\right)$ is found to be equal to $\prod_{i=1}^i \| b_i^* \|_2^2$.
+
+
+
+}
 
 
   \exercise{Let $n≥2$. 
@@ -148,7 +191,9 @@ Fall 2023
       \item $| q α_i - p_i | < 2^n/Q$ for $i=1,\dots,n$. 
       \end{enumerate}
 
-    }{}
+    }{
+	Seen in class.
+}
   
 \exercise{
 	Let $B = \{b_1,\dots,b_n\} \subset \R^n$ be a linearly independent basis of $\R^n$. 
@@ -162,11 +207,40 @@ Fall 2023
 		\item Let $x$ be the coordinates of $v$ in the basis $B$. Show that
 			\[ \| x \|_\infty \leq \gamma(B) \]
 		using Cramer's rule and Hadamard's inequality.
-		\item Deduce that the \emph{Shortest Vector Problem} can be solved in time $\mathcal{O}\left(3^n\gamma(B)^n\right)$ and polynomial space.
+		\item Deduce that the \emph{Shortest Vector Problem} can be solved in time $3^{\mathcal{O}(n)}\gamma(B)^n$ and polynomial space.
 		
 	\end{enumerate}
 }
-{}
+{
+	The norms below are the $l^2$ norm unless specifed otherwise.
+
+	\begin{enumerate}[i)]
+		\item Note that one always has $\| b_i^* \| \leq \| b_i \|$ by equation \eqref{eq:1}.
+		The relation $\gamma(B) = 1$ can only happen when $\| b_i^* \| = \| b_i \|$ for each $i=1, \dots, n$.
+		In fact, equation \eqref{eq:1} also implies that $\| b_i^* \| = \| b_i \|$ if and only if $b_i^* = b_i$.
+
+		\item If $B$ is orthogonal, then for any nonzero integer coordinates $x$, a vector
+			\[ v = Bx = \sum_{i=1}^n b_i x_i \]
+		has $l^2$ norm
+			\[ \| v \|_2^2 = \sum_{i=1}^n x_i^2 \| b_i\|_2^2 \geq \| b_k \|_2^2, \]
+		where $k$ belongs to the support of $x$.
+
+		\item Let $v = Bx$ be a shortest vector of $B \cdot \Z^n$.
+		Cramer's rule implies that
+			\[ x_i = \frac{\det B^{(i)}}{\det B}, \]
+		where $B^{(i)}$ has $i$-th column replaced by $v$.
+		
+		We have already shown that $|\det B| = \prod_{i=1}^n \| b_i^* \|_2$, so it only remains to show that
+			\[ | \det B^{(i)} | \leq \prod_{i=1}^n  \| b_i \|_2. \]
+		This is in fact implied by Hadamard's inequality, using that $\| v \| \leq \| b_i \|$ since $v$ is a shortest vector of $\Lambda$.
+
+		\item We may enumerate all integer vectors in the $l^\infty$ ball of radius $\gamma(B)$. 
+		There are at most $(2 \gamma(B) + 1)^n \leq 3^n \gamma(B)^n$ such candidates for $x$.
+		Computing the image of the coordinates and comparing vectors takes quadratic time, swallowed by the $3^{\mathcal{O}(n)}$.
+	\end{enumerate}
+
+
+}
 
 \exercise{
 	Let $B = \{b_1,\dots,b_n\} \subset \R^n$ be a linearly independent basis of $\R^n$. 
@@ -183,10 +257,36 @@ Fall 2023
 			\[ | x_n | \leq c_n, \]
 		and hence that there are at most $2c_n + 1$ possibilities for $x_n$.
 		\item Show that, for all $i=1, \dots, n-1$, there are at most $2 c_i + 1$ possibilities for $x_i$ once the integers $x_{i+1}, \dots, x_n$ are fixed.
-		\item Conclude that the \emph{Shortest Vector Problem} can be solved in time $\mathcal{O}\left(3^n \gamma(B)\right)$ and polynomial space.
+		\item Conclude that the \emph{Shortest Vector Problem} can be solved in time $n^{\mathcal{O}(n)} \gamma(B)$ and polynomial space.
 	\end{enumerate}
 }
-{}
+{
+
+	\begin{enumerate}[i)]
+		\item The coordinates $y$ of $v$ in the orthogonal basis $B^*$ are given by
+			\[ y_i = \frac{\langle v, b_i^* \rangle}{\langle b_i^*, b_i^* \rangle} \quad \text{ for each $i$}. \]
+		The Cauchy-Schwarz inequality gives
+			\[ | y_i | \leq \frac{\| v \|}{\| b_i^* \|} \leq c_i, \]
+		as $v$ is a shortest vector.
+		
+		\item The matrix $R$ given by the Gram-Schmidt orthogonalization verifies $B = B^* R$, and hence gives $Rx = y.$
+
+		\item The relation $Rx = y$ gives $x_n = y_n$, since $R$ is upper triangular with diagonal $1$.
+		
+		\item Fixing the integers $x_{i+1}, \dots, x_n$, the relation $Rx = y$ implies that 
+			\[ x_i = y_i + F, \]
+		where $F$ is some fixed quantity.
+		The bound $| y_i | \leq c_i$ implies that $F - c_i \leq x_i \leq c_i + F$, which gives $2c_i + 1$ candidates for $x_i$.
+
+		\item We enumerate the coordinates $x$ of a shortest vector from $x_n$ to $x_1$.
+		 Note however that computing the lowerbound for the interval $x_i$ belongs to depending on $x_{i+1}, \dots, x_n$ takes linear time once the inverse $R^{-1}$ is computed (replacing $y$ by $-c$).
+
+		Computing the image of each coordinate also takes linear time at each step, since we only modify one coordinate at a time. Accounting also for linear comparison, we get a runtime of order $\prod_{i=1}^n n (2c_i +1) \leq n^{\mathcal{O}(n)} \gamma(B)$.
+		
+	\end{enumerate}
+
+
+}
 
 \end{document}
 
