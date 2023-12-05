@@ -106,7 +106,7 @@ Fall 2023
 % 		\exercise{ Exercise }{ Solution }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\exercise{
+\exercise{\label{ex:1}
 	We call two real numbers $\alpha, \beta \in \R$ \emph{equivalent} if there exist some matrix
 		\[ \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in {\rm GL}_2(\Z) \]
 	such that $\beta$ is the Möbius transformation of $\alpha$, that is
@@ -170,14 +170,14 @@ The steps of the following exercise were taken from Cassels \emph{An introductio
 			\[ a_n^2 A_n^2 + 2A_n(A_{n-1} + A_{n+1}) = 1 - a_n^{-2} (A_{n-1} - A_{n+1})^2 \leq 1. \]
 		
 		\item Conclude that 
-			\[ \min \{ A_{n-1}, A_n, A_{n+1} \} \leq \frac{1}{a_n^2 + 4} \leq \frac{1}{\sqrt{5}}, \]
+			\[ \min \{ A_{n-1}, A_n, A_{n+1} \}^2 \leq \frac{1}{a_n^2 + 4} \leq \frac15, \]
 		and that
 			\begin{gather}
 				\min \{ A_{n-1}, A_n, A_{n+1} \} \leq \frac{1}{\sqrt{8}} \label{6}
 			\end{gather}
-		for infinitely many $n$ unless $a_n =1$ for all $n \geq N$ for some $N \geq 0$.
+		for infinitely many $n$ unless $a_n =1$ for all $n$ large enough.
 
-		\item Use the previous exercise to show that \eqref{6} holds for infinitely many $n$ if $\alpha$ is not equivalent to $ \frac{1+\sqrt{5}}2$.
+		\item Use exercise \ref{ex:1} to show that \eqref{6} holds for infinitely many $n$ if $\alpha$ is not equivalent to $ \frac{1+\sqrt{5}}2$.
 			
 	\end{enumerate}
 }
