@@ -20,11 +20,12 @@
 \usepackage[boldsans]{concmath}
 
 \theoremstyle{plain}
-\newtheorem{theorem}{Th\'eor\`eme}
+\newtheorem{theorem}{Theorem}
 \newtheorem{Sol}{Solution}
 \newtheorem*{Sol*}{Solution}
 \theoremstyle{definition}
 \newtheorem{Ex}{Exercise}
+\newtheorem{definition}{Definition}
 \newtheorem{lemma}[theorem]{Lemma}
 
 
@@ -106,11 +107,29 @@ Fall 2023
 % 		\exercise{ Exercise }{ Solution }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{definition}
+	We call $L_1, \dots, L_n$ \emph{independent} linear forms in $n$ variables with real algebraic coefficients if, for some $\alpha_{11}, \dots, \alpha_{nn} \in \R$ algebraic,
+		\[ L_i(x_1, \dots, x_n) = \alpha_{i1} x_1 + \dots \alpha_{in} x_n \qquad \text{ for each $i$},\]
+	and such that
+		\[ \det(L_1, \dots, L_n) := \det \left( \alpha_{ij} \right)_{i,j=1}^n \neq 0. \]
+	
+\end{definition}
 
+\begin{theorem}[Schmidt, 1989]
 
+	Let $n \geq 2$ be an integer.
+	Let $L_1, \dots, L_n$ be linearly independent linear forms in $n$ variables with real algebraic coefficients.
+	Let $\epsilon$ be a real number satisfying $0 < \epsilon < 1$.
 
-\exercise{
-	Let $n\geq2$ and $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ such that $1, \alpha_1, \dots, \alpha_n$ are linearly independent over $\Q$.
+	Then there are proper rational subspaces $S_1, \dots, S_t$ of $\Q^n$
+	such that all nonzero integer solutions $x = (x_1, \dots, x_n)$ satisfying 
+		\[ \left| L_1(x) \cdots L_n(x) \right| < \frac{ \left| \det(L_1, \dots, L_n) \right|  }{\| x\|_\infty^{\epsilon}} \]
+	lie in the union of $S_1, \dots, S_t$.
+
+\end{theorem}
+
+\exercise{\label{ex:1}
+	Let $n\geq1$ and $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ such that $1, \alpha_1, \dots, \alpha_n$ are linearly independent over $\Q$.
 
 	We aim to show that for any $0 < \epsilon < \frac{1}{2n}$ the number of integers solutions $q\geq1, p\in\Z^n$ to
 		\begin{gather}
@@ -127,12 +146,14 @@ Fall 2023
 			for $q$ large enough.
 		
 		\item Conclude that, in each subspace $S \subset \Q^{n+1}$, there are only finitely many solutions of \eqref{eq:1}.
+
 	\end{enumerate}
 }
 {}
 
+
 \exercise{
-	Let $n\geq2$ and $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ such that $1, \alpha_1, \dots, \alpha_n$ are linearly \emph{dependent} over $\Q$.
+	Let $n\geq1$ and $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ such that $1, \alpha_1, \dots, \alpha_n$ are linearly \emph{dependent} over $\Q$.
 
 	Fix an $0 < \epsilon < \frac{1}{n(n-1)}$.
 	Show that there exist infinitely many integers $q\geq1, p\in\Z^n$ verfiying
@@ -142,6 +163,32 @@ Fall 2023
 }
 {}
 
+\exercise{
+
+	Let $n\geq2$ and $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ such that $1, \alpha_1, \dots, \alpha_n$ are linearly independent over $\Q$. 
+	Let $\epsilon$ satisfy $0 < \epsilon < \frac{1}{2n}$.
+
+	Conclude from exercise \ref{ex:1} that there exists a constant $c > 0$ such that
+		\[ \| q \alpha - p \|_\infty > \frac{c}{q^{1/n + \epsilon}}, \]
+	for all integers $q \geq 1, p \in \Z^n$.
+
+	\begin{enumerate}[i)]
+		\item Deduce \emph{Roth's theorem}: for any $\alpha \in \R\setminus\Q$ and any $\epsilon>0$, there exists a constant $C=C(\epsilon)$ such that
+			\[ | \alpha - p/q | \geq \frac{C}{q^{2^\epsilon}} \]
+		for all $q\geq1, p\in\Z$.
+		
+		\item In the notation of exercise 2 of set 10, derive a similar bound on $\lambda_1$ of the type
+			\[ \lambda_1 \geq \frac{1}{Q^{1+\delta}} \]
+		for some $\delta$ which depends on $\epsilon$.
+
+		\item Pick an adequate $\epsilon = \epsilon(n)$ such that 
+			\[ \lambda_{n+1} \leq \frac{1}{Q^{1/2}}. \]
+		
+		\item Find a lower bound on $|y^T \alpha|$ as a function of $n$ and $C(n)$.
+
+	\end{enumerate}
+}
+{}
 
 \end{document}
 
