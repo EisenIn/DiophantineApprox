@@ -49,6 +49,9 @@
 \newcommand{\nint}[1]{\ensuremath{\lfloor#1\rceil}}
 
 
+\newcommand{\qp}{\begin{pmatrix} q \\ p \end{pmatrix}}
+\newcommand{\onealpha}{\begin{pmatrix}1 \\ \alpha \end{pmatrix}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -59,8 +62,8 @@
 		\newif\ifsolutions
 		
 		% ENABLE or DISABLE display of solutions
-		%\solutionstrue
-		\solutionsfalse
+		\solutionstrue
+		%\solutionsfalse
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -129,7 +132,7 @@ Fall 2023
 \end{theorem}
 
 \exercise{\label{ex:1}
-	Let $n\geq1$ and $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ such that $1, \alpha_1, \dots, \alpha_n$ are linearly independent over $\Q$.
+	Let $n\geq1$ and $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ algebraic such that $1, \alpha_1, \dots, \alpha_n$ are linearly independent over $\Q$.
 
 	We aim to show that for any $\epsilon > 0$ the number of integers solutions $q\geq1, p\in\Z^n$ to
 		\begin{gather}
@@ -142,14 +145,50 @@ Fall 2023
 
 		\item Consider a subspace $S \subset \Q^{n+1}$ and one of its \emph{unit} normal vector $v \in \Q^{n+1} \setminus\{0\}$.
 			Show that, if $(q, p)$ belongs in $S$ and is a solution of \eqref{eq:1}, then
-				\[ q \left| v^T \begin{pmatrix}1 \\ \alpha \end{pmatrix} \right| \leq 1, \]
+				\[ q \left| v^T \onealpha \right| \leq 1, \]
 			for $q$ large enough.
 		
 		\item Conclude that, in each subspace $S \subset \Q^{n+1}$, there are only finitely many solutions of \eqref{eq:1}.
 
 	\end{enumerate}
 }
-{}
+{
+	\begin{enumerate}[i)]
+		\item
+		Define the linear forms $L_1, \dots, L_{n+1}$ depending on variables $x = (q, p_1, \dots, p_n)$ by
+			\begin{align*}
+			        & L_i(x) = q \beta_i - p_i \quad \text{ for } i = 1, \hdots n \\
+			        & L_{n+1}(x) = q.
+			\end{align*}
+		Then for any vector $q \geq 1, p \in \Z^n$ satisfying $| q \beta_i - p_i | \leq \frac{1}{q^{1/n + \epsilon}}  \ \ \forall i=1, \dots, n$, 
+			    \begin{gather*}
+			    | L_1(x) \cdots L_{n+1}(x) | \leq \frac{1}{q^{2 \delta}}, \\
+				\| p \|_\infty \leq C q,
+			    \end{gather*}
+		where $C = \max_i \{ | \beta_i |\}+1$, and  $\delta = \frac{n \epsilon}2 \in (0, 1)$.
+	
+		For such integer vectors with $\| x \|_\infty > C^{2}$, one thus has
+			\[ | L_1(x) \cdots L_{n+1}(x) | \leq \frac{1}{\| x  \|_\infty^\delta}. \] 
+	    
+		Thus, by the subspace theorem, the integers $q \geq 1, p \in \Z^n$ satisfying the relation \eqref{eq:1} lie on the union of finitely many subspaces of $\Q^{n+1}$ and of the $l^\infty$ ball of radius $C^2$.
+
+		\item 
+		We know that $v^T \qp = 0$, as $v$ is normal to $S$.
+		Hence,
+			\begin{align*}
+				| q v^T \onealpha | &= | q v^T \onealpha - v^T \qp |, \\
+								& = | v^T \begin{pmatrix} 0 \\ q\alpha - p \end{pmatrix} |, \\
+								&\leq\frac{n}{q^{1/n + \epsilon}} \leq 1, 
+			\end{align*}
+		where we used that $v$ is unit, and provided that $q$ is large enough.
+		Do note that $v^T \onealpha \neq 0$ since $1, \alpha_1, \dots, \alpha_n$ were supposed linearly independent over $\Q$.
+
+		\item 
+		Point ii) implies that 
+			\[ q \leq \left| v^T \onealpha \right|^{-1}, \]
+		ie. that there are only finitely many $q$ in the subspace $S$.
+	\end{enumerate}
+}
 
 
 \exercise{
@@ -161,11 +200,35 @@ Fall 2023
 			 \| q \alpha - p \|_\infty \leq \frac{1}{q^{1/n + \epsilon}}.
 		\end{gather*}
 }
-{}
+{
+	Denote $\beta = (\alpha_2, \dots, \alpha_n) \in \R^{n-1}$.
+	Without loss of generality, we may find an integer vector $v \in \Z^{n-1}$ such that
+		\[ \alpha_1 = v^T \beta. \]
+
+	We show that, by approximating $\beta$, we may approximate $\alpha_1$ as well.
+	Dirichlet's theorem gives infinitely many $q \geq 1, \tilde{p} \in\Z^{n-1}$ such that
+		\[ \| q \beta - p \|_\infty \leq \frac{1}{q^{1/(n-1)}}. \]
+	We now note that $\epsilon$ was chosen such that
+		\[ \frac{1}{q^{1/(n-1)}} < \frac{1}{q^{1/n + \epsilon}}, \]
+	since $1/n + \epsilon < 1/(n-1)$.
+
+	Let $p = v^T \tilde{p}$. Then
+		\[ |q \alpha_1 - p| = |q v^T \beta - v^T \tilde{p}| \leq \frac{\| v \|_1}{q^{1/(n-1)}}. \]
+	Finally, notice  that
+		\[ \frac{\| v \|_1}{q^{1/(n-1)}} < \frac{1}{q^{1/n + \epsilon}} \]
+	as soon as 
+		\[ q \geq \| v \|_1^{\left( \frac{1}{n(n-1)} - \epsilon \right)^{-1}}, \]
+	which must be true for infinitely many $q$.
+
+	In conclusion, defining $p = (p_1, \tilde{p})$, we have found infinitely many $q \geq 1, p\in\Z^n$ such that
+		\[ \| q \alpha - p \|_\infty \leq \frac{1}{q^{1/n + \epsilon}}. \]
+
+
+}
 
 \exercise{
 
-	Let $n\geq2$ and $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ such that $1, \alpha_1, \dots, \alpha_n$ are linearly independent over $\Q$. 
+	Let $n\geq2$ and $\alpha = (\alpha_1, \dots, \alpha_n) \in \R^n$ algebraic such that $1, \alpha_1, \dots, \alpha_n$ are linearly independent over $\Q$. 
 	Let $\epsilon>0$.
 
 	Conclude from exercise \ref{ex:1} that there exists a constant $c=c(\alpha, \epsilon) > 0$ such that
@@ -173,7 +236,7 @@ Fall 2023
 	for all integers $q \geq 1, p \in \Z^n$.
 
 	\begin{enumerate}[i)]
-		\item Deduce \emph{Roth's theorem}: for any $\alpha \in \R\setminus\Q$ and any $\epsilon>0$, there exists a constant $C=C(\alpha, \epsilon)$ such that
+		\item Deduce \emph{Roth's theorem}: for any algebraic $\alpha \in \R\setminus\Q$ and any $\epsilon>0$, there exists a constant $C=C(\alpha, \epsilon)$ such that
 			\[ | \alpha - p/q | \geq \frac{C}{q^{2+\epsilon}} \]
 		for all $q\geq1, p\in\Z$.
 		
@@ -189,7 +252,40 @@ Fall 2023
 
 	\end{enumerate}
 }
-{}
+{
+	Exercise \ref{ex:1} says that there exist only finitely many integers $q \geq1, p\in\Z^n$ such that
+		\[ \|q \alpha - p \|_\infty \leq \frac{1}{q^{1/n + \epsilon}}. \]
+	In particular, the infimum
+		\[ c(\alpha, \epsilon) = \inf_{q, p} \{  q^{1/n + \epsilon} \|q \alpha - p \|_\infty \} \]
+	is positive.
+	We may divide it by $2$ if we wish to get a strict inequality.
+
+	\begin{enumerate}[i)]
+		\item 
+		Any $\alpha \in \R \setminus\Q$ is independent to $1$ over $\Q$.
+		Applying exercise \ref{ex:1} with $n=1$ gives \emph{Roth's theorem} directly.
+
+		\item
+		Suppose that
+			$ \lambda_1 < \frac{1}{Q^{1+\delta}} .$
+		We will show that $Q < Q_0$ for $Q_0$ to be defined later.
+	
+		The assumption implies the existence of integers $(q, p) \in \N \times \Z^n$ such that
+		\begin{align*}
+			\frac{q}{Q^{n+1}} &\leq \frac{1}{Q^{1+\delta}}, \text{ and} \\
+			\| q \alpha - p \|_\infty &\leq \frac{1}{Q^{1+\delta}}
+		\end{align*}
+		In turn, this gives a simultaneous approximation of the algebraic numbers $\alpha_1, \dots, \alpha_n$:
+		\begin{align*}
+			\| q \alpha - p \|_\infty \leq \frac{1}{Q^{1+\delta}},
+		\end{align*}
+
+		The definition of $c=c(\alpha, \epsilon)$ implies that, choosing $\delta = n \epsilon$,
+			\[  \frac{c}{Q^{1 + \delta}} \leq \frac{c}{q^{1/n + \epsilon}} \leq  \| q \alpha - p \|_\infty \leq \frac{1}{Q^{1+\delta}}. \]
+
+TODO
+	\end{enumerate}
+}
 
 \end{document}
 
