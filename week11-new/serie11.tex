@@ -242,10 +242,10 @@ Fall 2023
 		
 		\item In the notation of exercise 2 of set 10, derive a similar bound on $\lambda_1$ of the type
 			\[ \lambda_1 \geq \frac{1}{Q^{1+\delta}} \]
-		for some $\delta$ which depends on $\epsilon$.
+		for some $\delta$ which depends on $\epsilon$ ($\delta$ should tend to $0$ as $\epsilon$ does).
 
 		\item Pick an adequate $\epsilon = \epsilon(n)$ such that 
-			\[ \lambda_{n+1} \leq \frac{1}{Q^{1/2}}. \]
+			\[ \lambda_{n+1} \leq \frac{ (n+1)^{(n+1)/2} }{Q^{1/2}}. \]
 		
 		\item Find a lower bound on $|y^T \alpha|$ as a function of $n$ and $c(\alpha, n)$.
 			This bound should be singly exponential in $n$.
@@ -280,10 +280,35 @@ Fall 2023
 			\| q \alpha - p \|_\infty \leq \frac{1}{Q^{1+\delta}},
 		\end{align*}
 
-		The definition of $c=c(\alpha, \epsilon)$ implies that, choosing $\delta = n \epsilon$,
-			\[  \frac{c}{Q^{1 + \delta}} \leq \frac{c}{q^{1/n + \epsilon}} \leq  \| q \alpha - p \|_\infty \leq \frac{1}{Q^{1+\delta}}. \]
+		The definition of $c=c(\alpha, \epsilon)$ implies that, choosing $\delta = 2 n \epsilon$,
+			\[  \frac{c}{Q^{1 + \delta/2}} \leq \frac{c}{q^{1/n + \epsilon}} \leq  \| q \alpha - p \|_\infty \leq \frac{1}{Q^{1+\delta}}, \]
+		using that $q \leq Q^n$.
 
-TODO
+		This implies
+			\[ Q \leq c^{-2/\delta} = c^{-1/(n \epsilon)} =: Q_0. \]
+
+		\item 
+		Minkowski's second theorem says that
+			\[ \lambda_1^n \cdot \lambda_{n+1} \leq \prod_{i=1}^{n+1} \lambda_i \leq (n+1)^{(n+1)/2} \cdot \frac{1}{Q^{n+1}}. \]
+		This implies that
+			\[ \lambda_{n+1} \leq (n+1)^{(n+1)/2} \cdot \frac{1}{Q^{1-n\delta}} = (n+1)^{(n+1)/2} \cdot \frac{1}{Q^{1/2}}, \]
+		choosing $n\delta = 1/2$, that is $\epsilon = 1/(4n^2)$.
+
+		\item 
+		Using the same reasoning as set 10, we wish to get a $Q$ such that
+			\[ \lambda_{n+1} \leq \frac{1}{2n}. \]
+		For this, $Q$ must verify $Q > Q_0 = c^{-1/(n\epsilon)} = c^{-4n}$ by question ii), and $Q > (2n)^2 (n+1)^{n+1}$, by question iii).
+
+		We may therefore pick their product, $Q = (2n)^2 (n+1)^{n+1} c^{-4n}$.
+		By linear independence, there exist integers $q \geq 1, p \in \Z^n$ such that
+			\[ q \leq Q^n, \qquad \|q\alpha - p \|_\infty \leq \frac{1}{2n},  \text{ and } \qquad p^T y \neq 0. \]
+		The triangle inequality concludes, since
+			\[ | q y^T \alpha - y^T p | \leq \frac12. \]
+		As $y^Tp$ is a nonzero integer, we must have that
+			\[ q | y^T \alpha | \geq \frac12, \]
+		which gives a lower bound on the signed sum, evaluted at
+			\[ | y^T p | \geq \frac{1}{2q} \geq \frac{1}{2Q^n} = \frac{c^{4n^2}}{2 (2n)^{2n}  (n+1)^{n(n+1)}}. \]
+
 	\end{enumerate}
 }
 
