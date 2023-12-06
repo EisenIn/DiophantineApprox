@@ -58,8 +58,8 @@
 		\newif\ifsolutions
 		
 		% ENABLE or DISABLE display of solutions
-		%\solutionstrue
-		\solutionsfalse
+		\solutionstrue
+		%\solutionsfalse
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -157,7 +157,26 @@ Fall 2023
      \end{displaymath}
    \item Argue that this number of iterations is polynomial in the storage-space that is required to store the matrix $B$ in a computer. 
   \end{enumerate}
-}{}
+}{
+	\begin{enumerate}[i)]
+		\item Since $b_i^* = b_i + \sum_{j=1}^{i-1} \mu_{ji} b_j^*$ for some coefficients $\mu_{ji}$, Pythagoras' theorem gives
+			\[ \| b_i^* \|_2^2 \leq \| b_i \|_2^2. \]
+
+		\item Clearly, one has for each $i$,
+			\[ \| b_i \|_2^2 \leq n M^2, \]
+		which concludes given the definition of $\Phi(B)$ and question i). 
+
+		\item Simplifying the upperbound, we have
+			\[ \Phi(B) \leq (\sqrt{n}M)^{n(n-1)}. \]
+		Since each step of LLL decreases the potential by a multiplicative factor, and since the potential is always integer, the number of steps is of order $\log \Phi(B) = \mathcal{O}\left(n^2 \left( \log n + \log M \right) \right)$.
+
+		\item Each $n^2$ entry of $B$ is an integer bounded by $M$. 
+		Hence, their bit representation has size bounded by $\log M$.
+		Storing $B$ therefore takes space of order $n^2 \log M$.
+	\end{enumerate}
+
+}
+
 
 \exercise{
   Let $Β∈ ℝ^{n ×n}$ be a non-singular matrix and $B = B^* ⋅ R$ be the Gram-Schmidt orthogonalization  of $B$. The \emph{orthogonality defect} of $B$ is the number
@@ -170,7 +189,28 @@ Fall 2023
   \item Show that $γ = 2^{O(n^2)}$ if $B$ is LLL-reduced.
   \item  Argue, using set 8, that a shortest vector of $Λ(B)$ can be computed in time $2^{O(n^2)}$ plus  a polynomial in the input encoding of $B$. 
   \end{enumerate}
-}{}
+}{
+	 \begin{enumerate}[i)]
+		\item This is clear since the denominator of $\gamma$ was written as an absolute determinant.
+
+		\item If $B$ is an LLL-reduce basis, then the order relations
+			\[ \| b_i^* \|_2^2 \leq 2 \| b_{i+1}^* \|^2_2, \quad \text{ for each $i=1, \dots, n-1$} \]
+		and the fact that $\mu_{ij}^2 \leq 1/4$ for each $i,j$ imply that 
+			\begin{align*}
+				\| b_i \|^2 &\leq \| b_i^* \|^2 + \frac14 \sum_{j=1}^{i-1} \| b_j^* \|^2, \\
+						& \leq \| b_i^* \|^2 + \frac14 \sum_{j=1}^{i-1} 2^{i-j} \| b_i^* \|^2, \\
+						& \leq \| b_i^* \|^2 \left( 1 + \frac14 (2^i -2) \right) \leq 2^{i-1} \| b_i^* \|^2 \quad \text{ for each $i=1, \dots n$} .
+			\end{align*}
+		The orthogonality defect may therefore be bounded by
+			\[ \gamma^2 \leq 2^{n(n-1)/2} = 2^{\mathcal{O}(n^2)}, \]
+		which is the required result.
+
+		\item 
+		Last set, we saw a $2^{\mathcal{O}(n \log n)}\cdot \gamma$ algorithm to solve the shortest vector problem.
+		Reducing the basis before applying that algorithm adds a polynomial factor in the input encoding of $B$.
+	\end{enumerate}
+
+}
 
 \end{document}
 
