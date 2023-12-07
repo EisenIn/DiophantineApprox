@@ -202,25 +202,23 @@ Fall 2023
 }
 {
 	Denote $\beta = (\alpha_2, \dots, \alpha_n) \in \R^{n-1}$.
-	Without loss of generality, we may find an integer vector $v \in \Z^{n-1}$ such that
-		\[ \alpha_1 = v^T \beta. \]
+	Without loss of generality, we may find an integer vector $v \in \Z^{n-1}$ and an integer $k \geq 1$ such that
+		\[ k \alpha_1 = v^T \beta. \]
 
 	We show that, by approximating $\beta$, we may approximate $\alpha_1$ as well.
-	Dirichlet's theorem gives infinitely many $q \geq 1, \tilde{p} \in\Z^{n-1}$ such that
-		\[ \| q \beta - p \|_\infty \leq \frac{1}{q^{1/(n-1)}}. \]
+	Dirichlet's theorem gives infinitely many $\tilde{q} \geq 1, \tilde{p} \in\Z^{n-1}$ such that
+		\[ \| \tilde{q} \beta - \tilde{p} \|_\infty \leq \frac{1}{\tilde{q}^{1/(n-1)}}. \]
+
+	Let $q = k \tilde{q}$ and $p = v^T \tilde{p}$. Then
+		\[ |q \alpha_1 - p| = |\tilde{q} v^T \beta - v^T \tilde{p}| \leq \frac{\| v \|_1}{\tilde{q}^{1/(n-1)}}. \]
+	
 	We now note that $\epsilon$ was chosen such that
-		\[ \frac{1}{q^{1/(n-1)}} < \frac{1}{q^{1/n + \epsilon}}, \]
-	since $1/n + \epsilon < 1/(n-1)$.
-
-	Let $p = v^T \tilde{p}$. Then
-		\[ |q \alpha_1 - p| = |q v^T \beta - v^T \tilde{p}| \leq \frac{\| v \|_1}{q^{1/(n-1)}}. \]
-	Finally, notice  that
-		\[ \frac{\| v \|_1}{q^{1/(n-1)}} < \frac{1}{q^{1/n + \epsilon}} \]
+		\[ \frac{\|v \|_1}{\tilde{q}^{1/(n-1)}} < \frac{1}{q^{1/n + \epsilon}} \]
 	as soon as 
-		\[ q \geq \| v \|_1^{\left( \frac{1}{n(n-1)} - \epsilon \right)^{-1}}, \]
-	which must be true for infinitely many $q$.
+		\[ \tilde{q} \geq \left( \| v \|_1 k^{1/n + \epsilon} \right)^{\left( \frac{1}{n(n-1)} - \epsilon \right)^{-1}}, \]
+	which must be true for infinitely many $\tilde{q}$.
 
-	In conclusion, defining $p = (p_1, \tilde{p})$, we have found infinitely many $q \geq 1, p\in\Z^n$ such that
+	In conclusion, defining $p = (p_1, \tilde{p})$ and $q = k \tilde{q}$, we have found infinitely many $q \geq 1, p\in\Z^n$ such that
 		\[ \| q \alpha - p \|_\infty \leq \frac{1}{q^{1/n + \epsilon}}. \]
 
 
