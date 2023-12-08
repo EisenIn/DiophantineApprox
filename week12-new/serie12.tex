@@ -169,7 +169,43 @@ Fall 2023
 }{}
 
 \exercise{
-	TODO. Case $a_1 = 1$ in paper.
+	Let $\alpha_1 = \sqrt{a_1}, \dots, \sqrt{a_n}$ for $a_1, \dots, a_n \in \N$ be square-free distinct integers. 
+
+	We once again aim to study the solutions of the simultaneous diophantine approximations
+		\begin{align}\label{eq:3}
+			\| q \alpha - p \|_\infty \leq  q^{1/n + \epsilon}.
+		\end{align}
+
+	Consider the usual lattice $\Lambda$, dependent on a real quantity $Q > 0$,
+		\[ \Lambda \df \begin{pmatrix} \frac{1}{Q^{n+1}} & 0^T \\
+								\alpha & I_n \end{pmatrix} \cdot \Z^{n+1}, \]
+	with successive minima $\lambda_1, \dots, \lambda_{n+1}$ with respect to the $l^\infty$ norm.
+
+	Recall that in set 11, we showed that 
+		\begin{align}\label{eq:4}
+			\lambda_{n+1} \leq \frac{(n+1)^{(n+1)/2}}{Q^{1/2}} 
+		\end{align}
+	for all $Q > Q_0$, a constant dependent on $\alpha$, and provided that $1, \alpha_1, \dots, \alpha_n$ are linearly independent over $\Q$.
+
+	\begin{enumerate}[i)]
+		\item
+		Show that, if $a_1= 1$, then the conclusion of the Subspace theorem is trivial: the solutions of \eqref{eq:3} with $q \geq 2$ all lie on a proper subspace of $\Q^{n+1}$ (to be specified).
+		\item
+		Show that, if $a_1 = 1$, then the lattice
+			\[ \Gamma \df \begin{pmatrix} \frac{1}{Q^{n+1}} & & 0^T & \\
+								\alpha_2 & & &\\
+								\vdots  & & I_{n-1} & \\
+								\alpha_n & && \end{pmatrix} \cdot \Z^{n}\]
+		admits successive minima $\mu_1, \dots, \mu_n$ w.r.t. the $l^\infty$ which satisfy
+			\[ \mu_i = \lambda_{i} \]
+		for each $i=1, \dots, n$.
+
+		\item Conclude, in similar fashion as in set 11, that for all $x \in \Z^n$,
+			\[ | x^T \alpha | \geq \left( \frac{1}{\| x \|_\infty} \right)^{2n} \cdot \frac{c^{4n^2}}{2(2n)^{2n}(n+1)^{n(n+1)}}, \]
+		where $c=c(\alpha, n)$ is such that 
+			\[ \| q \alpha - p \| \geq \frac{c}{q^{1/n+1/(4n^2)}} \]
+		for all $q \geq1, p \in Z^n$.
+	\end{enumerate}
 
 }
 
