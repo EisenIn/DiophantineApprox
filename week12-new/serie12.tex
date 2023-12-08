@@ -144,8 +144,28 @@ Fall 2023
 }{}
 
 \exercise{
-	TODO: Show that the conjugates of $x_i \sqrt{a_i}$ are all $\pm x_i \sqrt{a_i}$, and that their product is integer (nonzero in the case of distinct squarefree integers).
+	Let $a_1, \dots, a_n \in \N$ be square-free distinct integers. 
+	Consider the number field $K = \Q(\sqrt{a_1}, \dots, \sqrt{a_n})$.
+	The goal of the exercise is to show that, for any integer vector $x \in \Z^n$, we have
+		\[ \left| \sum_{i=1}^n x_i \sqrt{a_i}  \right| \geq \left( \frac{1}{n \| x \|_\infty \sqrt{a_{\rm max}} } \right)^{2^n - 1}. \]
 
+	\begin{enumerate}[i)]
+		\item 
+		Consider the group $G$ of automorphisms of $K$ that fix the field $\Q$:
+			\[ \sigma \in G \iff x\in{\rm Aut}_K(K), \text{ and } \quad \sigma(x) = x \ \forall x \in \Q.\]
+
+		Show that the elements of $G$ are exactly the automorphisms sending $\sqrt{a_i}$ to $\pm \sqrt{a_i}$ for each $i=1, \dots, n$.
+
+		\item Consider the product 
+			\[ P = \prod_{y \in \{ \pm 1\}^n} \left( \sum_{i=1}^n y_i x_i \sqrt{a_i} \right). \]
+		Show that $P$ belongs to $K$ and is fixed by all elements of $G$.
+
+		\item Galois Theory says  that, since the extension of $K$ over $\Q$ is \emph{Galois}, then the minimal polynomial $m_P$ of $P$ splits in $K$ as a simple product of its distinct roots $P_1=P, P_2, \dots, P_d$.
+			\[ m_P(x) = \prod_i \left(x - P_i \right). \]
+		Show that $d=1$ and hence that $P \in \Q$.
+
+		\item Conclude by showing that $P \in \Z[\sqrt{a_1}, \dots, \sqrt{a_n}]$, and hence that $P$ is a non-zero integer.
+	\end{enumerate}
 }{}
 
 \exercise{
