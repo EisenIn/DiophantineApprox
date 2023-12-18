@@ -110,12 +110,12 @@ Fall 2023
 	We call two real numbers $\alpha, \beta \in \R$ \emph{equivalent} if there exist some matrix
 		\[ \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in {\rm GL}_2(\Z) \]
 	such that $\beta$ is the Möbius transformation of $\alpha$, that is
-		\[ \beta = \frac{a \alpha + b}{c \alpha + d}. \]
+		\[ \beta = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \circ α =    \frac{a \alpha + b}{c \alpha + d}. \]
 	
 	\begin{enumerate}[i)]
 		\item Show that this relation is indeed an \emph{equivalence relation}.
-		\item Let $\alpha = [a_0;a_1, a_2 \dots]$ and fix $\alpha_n := [a_n; a_{n+1}, a_{n+2}, \dots]$ for each $n \geq 0$.
-		Show that $\alpha$ is equivalent to $\alpha_n$ for each $n \geq 0$.
+		\item Let $\alpha = [a_0;a_1, a_2 \dots]$ and fix $r_n := [a_n; a_{n+1}, a_{n+2}, \dots]$ for each $n \geq 0$.
+		Show that $\alpha$ is equivalent to $r_n$ for each $n \geq 0$.
 
 		\item Deduce that if $\alpha$ and $\beta$ take the shapes
 			\begin{gather*}
@@ -128,60 +128,90 @@ Fall 2023
 }
 {}
 
-The steps of the following exercise were taken from Cassels \emph{An introduction to Diophantine approximation} (1957).
+
+
 \exercise{
-	Let $\alpha \in \R\setminus\Q$. 
-	Recall that Dirichlet's approximation theorem gives infinitely $q\geq1, p\in\Z$ such that $ | q \alpha - p |  \leq \frac1q. $
-	We aim to show the following tighter statement due to Adolf Hurwitz (1891).
+Let $α ∈ℝ ⧹ℚ$ be a quadratic irrationality of discriminant $Δ$ and let $U ∈ ℤ^{2 × 2}$ have determinant $\pm 1$. Show that $U \circ α$ is a quadratic irrationality of discriminant $Δ$. 
 
-	There exists inifinitely many $q\geq1, p\in\Z$ such that
-		\[ | q \alpha - p| \leq \frac{1}{\sqrt{5}q}. \]
-	This inequality is tight for the golden number $\alpha = \frac{1+\sqrt{5}}2$.
+}{}
 
-	Furthermore, if $\alpha$ is not equivalent to $\frac{1+\sqrt{5}}2$, there are infinitely many $q\geq1, p\in\Z$ such that
-		\[ | q \alpha - p| \leq \frac{1}{\sqrt{8}q}. \]
+\exercise{Throughout this exercise, $α ∈ ℝ ⧹ℚ$ denotes a quadratic irrationality. 
+  Recall that  $α$ is \emph{reduced}, if $α>1$ and $-1 < α'<0$ holds, where $α'$ is the conjugate of $α$.
+  \begin{enumerate}[i)] 
+  \item If  $α$ is reduced, then $1 / (α - ⌊α⌋)$ is reduced.
+  \item Conclude the following for a quadratic irrationality $α ∈ ℝ$, where $α = [a_0 ; a_1, \dots, a_{n-1}, r_n]$ where $r_n$ is the $n$-th remainder of the continued fraction expansion of $α$ with $n≥1$. If $r_n$ is reduced, then so is $r_{n+1}$.
+  \item Consider our standard notation $p_{n}/ q_n = [a_0;a_1,\dots,a_n]$. 
+    Show that
+    \begin{displaymath}
+      α =
+      \begin{pmatrix}
+        p_{n-1} & p_{n-2} \\
+        q_{n-1} & q_{n-2} 
+      \end{pmatrix} \circ r_n
+    \end{displaymath}
+    and therefore
+    \begin{displaymath}
+      r_n ' = - \frac{q_{n-2} α' - p_{n-2}}{ q_{n-1} α' - p_{n-1}} = - \frac{q_{n-2}}{q_{n-1}} \left( \frac{α' - \frac{p_{n-2}}{ q_{n-2}}}{α' - \frac{p_{n-1} }{ q_{n-1}} }\right)
+    \end{displaymath}
+  \item Show that one has $-1 < r_n' <0$  for $n ∈ ℕ$  sufficiently large implying that $r_n$ is reduced for $n ∈ ℕ$  sufficiently large.
+    \item Conclude that the continued fraction  expansion of $α $  is periodic. 
+  \end{enumerate}
+}{}
 
-	To this end, define $\{ q_n / p_n\}_{n\geq0}$ the best approximations of $\alpha = [a_0; a_1, \dots]$, and
-		\[ A_n := q_n \cdot | q_n \alpha - p_n | \]
-	for all $n \geq 0$.
+% The steps of the following exercise were taken from Cassels \emph{An introduction to Diophantine approximation} (1957).
+% \exercise{
+% 	Let $\alpha \in \R\setminus\Q$. 
+% 	Recall that Dirichlet's approximation theorem gives infinitely $q\geq1, p\in\Z$ such that $ | q \alpha - p |  \leq \frac1q. $
+% 	We aim to show the following tighter statement due to Adolf Hurwitz (1891).
 
-	\begin{enumerate}[i)]
-		\item Show that $q_{n-1} \cdot | q_n \alpha - p_n | + q_n \cdot | q_{n-1} \alpha - p_{n-1} | = 1$.
+% 	There exists inifinitely many $q\geq1, p\in\Z$ such that
+% 		\[ | q \alpha - p| \leq \frac{1}{\sqrt{5}q}. \]
+% 	This inequality is tight for the golden number $\alpha = \frac{1+\sqrt{5}}2$.
 
-		\item Deduce that, for $\lambda = q_{n-1}/q_n$ and $\mu = q_{n+1}/q_n$,
-			\begin{gather}
-				\lambda^2 A_n - \lambda + A_{n-1} = 0, \label{1} \\
-				\mu^2 A_n - \mu + A_{n+1} = 0, \label{2} \\
-				\mu - \lambda = a_n \label{3}
-			\end{gather}
-		for all $n \geq 1$.
+% 	Furthermore, if $\alpha$ is not equivalent to $\frac{1+\sqrt{5}}2$, there are infinitely many $q\geq1, p\in\Z$ such that
+% 		\[ | q \alpha - p| \leq \frac{1}{\sqrt{8}q}. \]
 
-		\item Deduce from \eqref{2} - \eqref{1} that
-			\begin{gather}
-				a_n A_n (\lambda + \mu) = a_n + A_{n-1} - A_{n+1}. \label{4}
-			\end{gather}
+% 	To this end, define $\{ q_n / p_n\}_{n\geq0}$ the best approximations of $\alpha = [a_0; a_1, \dots]$, and
+% 		\[ A_n := q_n \cdot | q_n \alpha - p_n | \]
+% 	for all $n \geq 0$.
 
-		\item Square equations \eqref{3} and \eqref{4} to find
-			\begin{gather}
-				2a_n^2 A_n^2 (\lambda^2 + \mu^2) = a_n^4 A_n^2 + \left(a_n - A_{n-1}-A_{n+1} \right)^2. \label{5}
-			\end{gather}
+% 	\begin{enumerate}[i)]
+% 		\item Show that $q_{n-1} \cdot | q_n \alpha - p_n | + q_n \cdot | q_{n-1} \alpha - p_{n-1} | = 1$.
 
-		\item Deduce from \eqref{1} + \eqref{2} that
-			\[ a_n^2 A_n^2 + 2A_n(A_{n-1} + A_{n+1}) = 1 - a_n^{-2} (A_{n-1} - A_{n+1})^2 \leq 1. \]
+% 		\item Deduce that, for $\lambda = q_{n-1}/q_n$ and $\mu = q_{n+1}/q_n$,
+% 			\begin{gather}
+% 				\lambda^2 A_n - \lambda + A_{n-1} = 0, \label{1} \\
+% 				\mu^2 A_n - \mu + A_{n+1} = 0, \label{2} \\
+% 				\mu - \lambda = a_n \label{3}
+% 			\end{gather}
+% 		for all $n \geq 1$.
+
+% 		\item Deduce from \eqref{2} - \eqref{1} that
+% 			\begin{gather}
+% 				a_n A_n (\lambda + \mu) = a_n + A_{n-1} - A_{n+1}. \label{4}
+% 			\end{gather}
+
+% 		\item Square equations \eqref{3} and \eqref{4} to find
+% 			\begin{gather}
+% 				2a_n^2 A_n^2 (\lambda^2 + \mu^2) = a_n^4 A_n^2 + \left(a_n - A_{n-1}-A_{n+1} \right)^2. \label{5}
+% 			\end{gather}
+
+% 		\item Deduce from \eqref{1} + \eqref{2} that
+% 			\[ a_n^2 A_n^2 + 2A_n(A_{n-1} + A_{n+1}) = 1 - a_n^{-2} (A_{n-1} - A_{n+1})^2 \leq 1. \]
 		
-		\item Conclude that 
-			\[ \min \{ A_{n-1}, A_n, A_{n+1} \}^2 \leq \frac{1}{a_n^2 + 4} \leq \frac15, \]
-		and that
-			\begin{gather}
-				\min \{ A_{n-1}, A_n, A_{n+1} \} \leq \frac{1}{\sqrt{8}} \label{6}
-			\end{gather}
-		for infinitely many $n$ unless $a_n =1$ for all $n$ large enough.
+% 		\item Conclude that 
+% 			\[ \min \{ A_{n-1}, A_n, A_{n+1} \}^2 \leq \frac{1}{a_n^2 + 4} \leq \frac15, \]
+% 		and that
+% 			\begin{gather}
+% 				\min \{ A_{n-1}, A_n, A_{n+1} \} \leq \frac{1}{\sqrt{8}} \label{6}
+% 			\end{gather}
+% 		for infinitely many $n$ unless $a_n =1$ for all $n$ large enough.
 
-		\item Use exercise \ref{ex:1} to show that \eqref{6} holds for infinitely many $n$ if $\alpha$ is not equivalent to $ \frac{1+\sqrt{5}}2$.
+% 		\item Use exercise \ref{ex:1} to show that \eqref{6} holds for infinitely many $n$ if $\alpha$ is not equivalent to $ \frac{1+\sqrt{5}}2$.
 			
-	\end{enumerate}
-}
-{}
+% 	\end{enumerate}
+% }
+% {}
 
 \end{document}
 
