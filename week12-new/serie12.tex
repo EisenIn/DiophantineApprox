@@ -62,8 +62,8 @@
 		\newif\ifsolutions
 		
 		% ENABLE or DISABLE display of solutions
-		%\solutionstrue
-		\solutionsfalse
+		\solutionstrue
+		%\solutionsfalse
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -137,11 +137,34 @@ Fall 2023
 		\item Show that $\sqrt{a_n \cdot a_{n-1}} = a_{n-1} \beta$ and conclude by contradiction.
 	\end{enumerate}
 
-}{}
+}{
+	\begin{enumerate}
+		\item For any $\Delta \in \N$ nonsquare integer, 1 and $\sqrt{\Delta}$ are independent over the rationals, since $\sqrt{\Delta}$ is an irrational number.
+
+		\item A dependence relation must be of the form
+			\[ \sqrt{a_n} \gamma = \delta, \]	
+		with $\gamma, \delta \in \Q(\sqrt{a_1}, \dots, \sqrt{a_{n-1}}), \gamma \neq 0$.
+		Dividing both sides by $\gamma$ and factoring by $\sqrt{a_{n-1}}$ concludes.
+
+		\item If $\beta=0$ then relation \eqref{eq:1} is a dependence relation over $\Q(\sqrt{a_1}, \dots, \sqrt{a_{n-2}}, \sqrt{a_n})$, which cannot happen by assumption that the result holds for $n-1$.
+
+		If $\alpha \beta \neq 0$, then relation \eqref{eq:2} means that $ \sqrt{a_{n-1}} \in \Q(\sqrt{a_1}, \dots, \sqrt{a_{n-2}})$, which cannot happen by assumption that the result holds for $n-1$.
+
+		\item Last point gives $\alpha = 0$, which means that $\sqrt{a_n \cdot a_{n-1}} = a_{n-1} \beta$ by equation \eqref{eq:1}.
+		
+		This is a dependence relation over $\Q(\sqrt{a_1}, \dots, \sqrt{a_{n-2}}, \sqrt{b})$, where $b = a_n \cdot a_{n-1}$.
+		It cannot happen by assumption that the result holds for $n-1$, as the integers $a_1, \dots, a_{n-2}, b$ still verify the property that no nonempty subset has a rational product.
+	\end{enumerate}
+}
 
 \exercise{
 	Let $a_1, \dots, a_n \in \N$ be square-free distinct integers. Show that $\sqrt{a_1}, \dots, \sqrt{a_n}$ are linearly independent over $\Q$ using exercise \ref{ex:1}.
-}{}
+}{
+	Consider $p_1, \dots, p_N$ the primes dividing the integers $a_1, \dots, a_n$.
+	By assumption, each $a_i$ $(1 \leq i \leq n)$ is a nonempty product of the primes.
+
+	By exercise \ref{ex:1}, they are linearly independent over the rationals.
+}
 
 \exercise{
 	Let $a_1, \dots, a_n \in \N$ be square-free distinct integers. 
@@ -166,7 +189,28 @@ Fall 2023
 
 		\item Conclude by showing that $P \in \Z[\sqrt{a_1}, \dots, \sqrt{a_n}]$, and hence that $P$ is a non-zero integer.
 	\end{enumerate}
-}{}
+}{
+	\begin{enumerate}
+		\item For each $\sigma \in G$ and each $i=1, \dots, n$, 
+			\[ \sigma(\sqrt{a_i})^2 = \sigma(\sqrt{a_i}^2) = \sigma(a_i) = a_i. \]
+		Hence $\sigma(\sqrt{a_i}) = \pm \sqrt{a_i}$.
+
+		\item $P$ clearly belongs to $K$ since $K$ is a field.
+		Furthermore, for each $\sigma \in G$, and since $\sigma$ only permutes the signs of the roots $\sqrt{a_1}, \dots, \sqrt{a_n}$, one has $\sigma(P) = \sigma$.
+
+		\item Since the roots of $m_P$ are distinct, the automorphism $\pi : \Q(P,P_2) \rightarrow \Q(P,P_2)$ defined by $\pi(P) = P_2$ and extended to $K$ defines an automorphism of $G$ which does not send $P$ to itself.
+		This cannot happen, and therefore $d=1$, $m_P(x) = x-P$ belongs to $\Q[x]$ and so does $P$.
+
+		\item Since $\Z[\sqrt{a_1}, \dots, \sqrt{a_n}]$ is a ring, $P$ belongs to it. 
+		By linear independence, $P$ is a nonzero integer, which gives in particular that
+			\[ | P | \geq 1. \]
+		Bounding from above the $2^n -1$ terms corresponding to $y \neq 1$ by
+			\[ \left| \sum_{i=1}^n y_i x_i \sqrt{a_i} \right| \leq n \| x \|_\infty \sqrt{a_{\rm max}}, \]
+		concludes.
+
+
+	\end{enumerate}
+}
 
 \exercise{
 	Let $\alpha_1 = \sqrt{a_1}, \dots, \sqrt{a_n}$ for $a_1, \dots, a_n \in \N$ be square-free distinct integers. 
@@ -204,8 +248,21 @@ Fall 2023
 			\[ | x^T \alpha | \geq \left( \frac{1}{\| x \|_\infty} \right)^{2n} \cdot \frac{c^{4n^2}}{2(2n)^{2n}(n+1)^{n(n+1)}}, \]
 		where $c=c(\alpha, n)$ is such that 
 			\[ \| q \alpha - p \| \geq \frac{c}{q^{1/n+1/(4n^2)}} \]
-		for all $q \geq1, p \in Z^n$.
+		for all $q \geq1, p \in \Z^n$.
 	\end{enumerate}
+
+}{
+	\begin{enumerate}
+		\item If $a_1 = 1$, then any integers $q \geq 2, p \in \Z^n$ with
+			\[ \| q \alpha - p \|_\infty < 1 \]
+		must verify $q = p_1$.
+
+		\item It is easy to see the the first $n$ short vectors of $\Lambda$ must admit coordinates $(q, p)$ verifying $q = p_1$ (until it is not allowed anymore for the $n+1$-st successive minimum).
+		Removing $p_1$ then yields a short vector of $\Gamma$. On the other hand, any short vector of $\Gamma$ with coordinates $(q, p_2, \dots, p_n)$ can be turned into one of $\Lambda$ by adding $p_1 = q$.
+
+
+	\end{enumerate}
+
 
 }
 

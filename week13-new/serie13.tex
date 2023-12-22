@@ -58,8 +58,8 @@
 		\newif\ifsolutions
 		
 		% ENABLE or DISABLE display of solutions
-		%\solutionstrue
-		\solutionsfalse
+		\solutionstrue
+		%\solutionsfalse
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -126,14 +126,45 @@ Fall 2023
 		then $\alpha$ and $\beta$ are equivalent.
 	\end{enumerate}
 }
-{}
+{
+	\begin{enumerate}
+		\item The identity matrix $I_2$ sends $\alpha$ to itself, showing the reflexivity.
+		The inverse integer matrix shows the symmetry.
+		The multiplication of the matrices shows transitivity.
+
+		\item It suffices to show that $\alpha$ is equivalent to $r_1$ to conclude.
+		Since 
+			\[ \alpha = a_0 + \frac{1}{r_1} = \frac{a_0 r_1 + 1}{r_1} = \begin{pmatrix} a_0 & 1 \\ 1 & 0 \end{pmatrix} \circ r_1, \]
+		the two are equivalent.
+
+		\item $\alpha$ and $\beta$ are both equivalent to $[c_1, c_2, \dots]$, and hence to each other by transitivity.
+	\end{enumerate}
+}
 
 
 
 \exercise{
 Let $α ∈ℝ ⧹ℚ$ be a quadratic irrationality of discriminant $Δ$ and let $U ∈ ℤ^{2 × 2}$ have determinant $\pm 1$. Show that $U \circ α$ is a quadratic irrationality of discriminant $Δ$. 
 
-}{}
+}{
+	Let $A \alpha^2 + B\alpha + C = 0$ for some $A, B, C \in \Z, A \neq 0$.
+	Then $\Delta = B^2 - 4 A C$.
+
+	Next, for $U = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$ such that $\alpha = U \circ \beta$, then
+		\begin{gather*}
+			A \left( \frac{a \beta + b}{c \beta + d} \right)^2 + B \left( \frac{a \beta + b}{c \beta + d} \right) + C = 0, \\
+			\iff \\
+			A ( a \beta + b)^2 + B (a \beta + b)(c \beta + d) + C (c \beta + d)^2 = 0, \\
+			\iff \\
+			 \beta^2 \left( A a^2 + B a c + C c^2 \right) + \beta \left( 2 A a b + Ba d + Bb c + 2 C c d \right) + \left(Ab^2 + B bd + Cd^2 \right) = 0.
+			\iff \\
+			\tilde{A} \beta^2 + \tilde{B} \beta + \tilde{C} = 0,
+		\end{gather*}
+	for appropriately defined $\tilde{A}, \tilde{B}, \tilde{C} \in \Z$.
+	It remains only to show that $\tilde{B}^2 - 4 \tilde{A} \tilde{C} = \Delta$, which we leave for the reader.
+
+	Note that $\det U = \pm 1$ is key here. In fact, one has generally $\tilde{B}^2 - 4 \tilde{A} \tilde{C} = (ad - bc)^2 \Delta$.
+}
 
 \exercise{Throughout this exercise, $α ∈ ℝ ⧹ℚ$ denotes a quadratic irrationality. 
   Recall that  $α$ is \emph{reduced}, if $α>1$ and $-1 < α'<0$ holds, where $α'$ is the conjugate of $α$.
@@ -156,7 +187,25 @@ Let $α ∈ℝ ⧹ℚ$ be a quadratic irrationality of discriminant $Δ$ and let
   \item Show that one has $-1 < r_n' <0$  for $n ∈ ℕ$  sufficiently large implying that $r_n$ is reduced for $n ∈ ℕ$  sufficiently large.
     \item Conclude that the continued fraction  expansion of $α $  is periodic. 
   \end{enumerate}
-}{}
+}{
+	\begin{enumerate}
+		\item Let $\beta = 1/(\alpha - \lfloor \alpha \rfloor)$. Clearly $\beta$ is a quadratic irrationality, and $\beta > 1$.
+		Next, $\beta' = 1/(\alpha' - \lfloor \alpha \rfloor)$. One has $-1 < \beta < 0$ since
+			\[ \alpha' < 0 < 1 \leq \lfloor \alpha \rfloor. \]
+	
+		\item This follows directly from i) since $r_n = a_n + \frac{1}{r_{n+1}}$ where $a_n = \lfloor r_n \rfloor$.
+
+		\item This was shown by induction in set 3, with notation $x_n$ instead of $r_n$.
+		Expressing $r_n$ w.r.t. $\alpha$ by inverting the matrix and taking conjugates on both sides yields the required relation for $r_n'$.
+
+		Recall that the denominators verify $q_{n+1} = q_n a_{n+1} + q_{n-1} > q_n + 1$, and that the fractions $p_n / q_n$ approach $\alpha$ as $n$ grows. 
+		Hence $r_n' < 0$ and $| r'_n | < 1$ for some $n$ large enough.
+
+		\item Since, by the lecture, there are only finitely many reduced quadratic irrationalities with common discriminant $\Delta$, there must exist two integer $m \neq n$ sufficiently large such that $r_m = r_n$. 
+		Hence $a_{m+k} = a_{n+k}$ for each $k\geq0$, and the expansion of $\alpha$ is periodic.
+	\end{enumerate}
+
+}
 
 % The steps of the following exercise were taken from Cassels \emph{An introduction to Diophantine approximation} (1957).
 % \exercise{
