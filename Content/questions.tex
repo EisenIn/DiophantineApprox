@@ -1,0 +1,170 @@
+\documentclass[a4paper,11pt,american]{article} 
+ 
+
+
+\usepackage[utf8]{inputenc} 
+\usepackage{utf8math}
+
+%\usepackage[euler-digits,euler-hat-accent]{eulervm}
+\usepackage[boldsans]{concmath}
+
+\usepackage{mathrsfs}
+\usepackage[american]{babel}
+\usepackage{mathtools} % includes amsmath
+\usepackage{amssymb}
+
+\usepackage{amscd}
+\usepackage{todonotes}
+
+\usepackage{amsthm}
+
+%\usepackage{multirow}
+\usepackage{enumerate}
+
+%\usepackage{tikz}
+\usepackage{framed}
+%\usepackage[colorlinks]{hyperref}
+%\usepackage{showlabels}  
+
+
+\newcommand{\smat}[1]{ \big(\begin{smallmatrix} #1 \end{smallmatrix}\big)}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\X}{\mathscr{X}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\pscal}[1]{\langle {#1} \rangle}
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\car}{\mathrm{Char}}
+
+
+
+\providecommand{\one}{\mathbf{1}}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\rank}{rang}
+\DeclareMathOperator{\noy}{noyau}
+\DeclareMathOperator{\cone}{cone}
+\DeclareMathOperator{\tcone}{tcone}
+\DeclareMathOperator{\SV}{SV}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\cof}{cof}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\sign}{sgn}
+\DeclareMathOperator{\poly}{poly}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\relint}{relint}
+\DeclareMathOperator{\spa}{span}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\pspace}{\mathcal{PSPACE}}
+\DeclarePairedDelimiter\mnorm{\lvert\lvert\lvert}{\rvert\rvert\rvert} % matrix norm
+
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem*{notation}{Notation}
+\newtheorem{example}{Exemple}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}{Problem}
+
+\newtheorem{exercise}{Exercise}
+\newtheorem{algorithm}{Algorithm}
+
+\setlength{\parindent}{0pt}  % No indents 
+
+\newcommand{\iunit}{\mathrm{i}}
+\newcommand{\CC}{{\mathbb C}}
+\newcommand{\EE}{{\mathbb E}}
+\newcommand{\FF}{{\mathbb F}}
+\newcommand{\KK}{{\mathbb K}}
+\newcommand{\NN}{{\mathbb N}}
+\newcommand{\QQ}{{\mathbb Q}}
+\newcommand{\RR}{{\mathbb R}}
+\newcommand{\ZZ}{{\mathbb Z}}
+
+\newcommand{\calB}{{\mathcal B}}
+
+
+%opening
+
+\title{Diophantine Approximation \\ Catalog of Questions}
+\author{Friedrich Eisenbrand}
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{enumerate}
+\item Explain the notion of \emph{best approximation} of $α ∈ℝ$ with denominator bound $Q$.
+\item Provide a proof of Dirichlet's theorem in dimension $1$ and explain in which sense the corresponding approximation is better than simple rounding. 
+\item What is the continued fraction expansion of an irrational number $α ∈ ℝ \ ℚ$?
+\item Prove the formula $[a_0,a_1,\dots,a_n] = p_n / q_n$  with 
+  \begin{displaymath}
+    \begin{pmatrix}
+    p_n & p_{n-1} \\
+    q_n & q_{n-1}
+  \end{pmatrix} =
+  \begin{pmatrix}
+    a_0 & 1\\
+    1 & 0
+  \end{pmatrix} \cdots
+  \begin{pmatrix}
+    a_n & 1 \\
+    1 & 0
+  \end{pmatrix}
+  \end{displaymath}
+\item How can one find a best approximation with denominator bound $Q$ via continued fractions? How well can you bound $n$ in the corresponding expansion $[a_0,a_1,\dots,a_n]$? Compute the best approximation to $21/11$ with denominator bound $5$.  
+\item When is a quadratic irrationality $α ∈ ℝ \setminus  ℚ$ \emph{reduced}? Why is the continued fraction expansion of a quadratic irrationality periodic?
+\item What is Liouville's Theorem? Provide a proof.
+\item How can one solve the Pell equation?
+\item What is a lattice and what is Minkowski's first theorem. Provide a proof.
+\item What are the successive minima of a lattice? Provide a proof of Minkowski's second theorem for $ℓ_2$. 
+\item What is   Dirichlet's theorem on simultaneous Diophantine approximation? Provide a direct proof and a proof based on Minkowski's theorem. Why is the bound $q ≤Q^n$ essentially tight? (Set~6, Exercise~3)
+\item Consider a half-space $ a^T x ≤ 0$  that divides the sets of $\pm1$ vectors into two subsets $S_1$ and $S_2⊆ \{\pm 1\}^n$. Explain how to replace $a$ by an integer vector $v$ with $\|v\|_∞  ≤ n^{O(n^2)}$ with the same division into $S_1$ and $S_2$ with Dirichlet's theorem. (Principle of Frank and Tardos).
+\item What is the \emph{sums of square roots} problem? Which lower bounds can you derive on an expression
+  \begin{displaymath}
+    E = ∑_{i=1}^n y_i \sqrt{p_i}, 
+  \end{displaymath}
+  where $y_i ∈ \{\pm 1\}$ for $i=1,\dots,n$ and $p_1,\dots,p_n$ are distinct primes.
+\item When is the basis of a lattice LLL reduced? How well does the first basis vector of an LLL-reduced lattice approximate the shortest vector w.r.t. $ℓ_2$?
+\item What is the LLL algorithm and why does it terminate in time polynomial in the input encoding of the basis? 
+\end{enumerate}
+
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+
