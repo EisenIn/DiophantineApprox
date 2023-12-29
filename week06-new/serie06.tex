@@ -143,7 +143,39 @@ Fall 2023
 
 	  \end{enumerate}
 }
-{}
+{
+	\begin{enumerate}
+		\item The numbers $\alpha$ covered by $(q, p_1, \dots, p_n)$ are those such that $\alpha_i$ belongs in the interval $[p_i/q - 1/(Qq_i)), p_i/q + 1/(Qq))]$.
+		It follows that
+			\[ {\rm vol}(S)  =\prod_{i=1}^n \frac{2}{Qq} = \left( \frac{2}{Qq} \right)^n. \]
+
+		\item For such $\alpha$, and $(q, p_1, \dots, p_n)$ the tuple covering $\alpha$, then
+			\[ | \alpha_i - p_i/q | \leq \frac1{qQ} < \frac1q, \]
+		for each $i=1, \dots, n$. 
+		In the case that $|p_i| > q$ for some $i$, then
+			\[ | \alpha_i | > \frac{q+1}q - \frac1q = 1, \]
+		a contradiction.
+	
+		This means that the tuple in fact verifies $\| p \|_\infty \leq q$, as needed.
+
+		\item Suppose the contrary, that is, that every $\| \alpha \| \leq 1$ is covered by a tuple of cost strictly less than $(Q/2)^n$.
+
+		In that case, enumerating all possible integers $q \geq 1, p_1, \dots, p_n \in \{-q, \dots, q\}$ that may cover these numbers, we may cover the unit hypercube by a union of smaller hypercubes.
+		This implies the following contradiction.
+	
+		\[ 2^n \leq \sum_{q=1}^{(Q/2)^n -1} \sum_{p_1, \dots, p_n = -q}^{q} \left( \frac{2}{Qq} \right)^n =  2^n \sum_{q=1}^{(Q/2)^n -1} \left( \frac{2}{Qq} \right)^n< 2^n. \]
+	
+		Note that we simplified the computations a little bit, since we technically have an additional factor $(1+1/(2q))^n$ in the sum over $q$.
+		To remedy this, one can study the coverings verifying $|p_i| \leq q-1$ instead, noticing that the hypercube covered is contained in $[1- (1/2) (2/Q)^n, 1 + (1/2) (2/Q)^2]^n$ whenever $Q \geq 2$.
+
+		\item Using the same technique, we upper bound ${\rm vol}(K^c)$ where $K^c$ is the complementary set to $K$ w.r.t. the unit hypercube.
+		\[ {\rm vol}(K^c) \leq \sum_{q=1}^{(Q/4)^n} \sum_{p_1, \dots, p_n = -q}^q \left( \frac{2}{qQ} \right)^n \leq \left( \frac{Q}4 \right)^n \left( \frac{2}{Q} \right)^n 3^n \leq \left( \frac32 \right)^n. \]
+		Hence ${\rm vol}(K) \geq 2^n - (3/2)^n$.
+		Again, the expressions can be made tighter to rather approach $2^n -1$.
+
+	\end{enumerate}
+
+}
 
 The following lemma is taken from Drmota, Tichy.  \emph{Sequences, discrepancies and applications}. Springer, 2006. Section 1.4.
 \begin{lemma}[Khintchine's transference principle]\label{lem:1}
