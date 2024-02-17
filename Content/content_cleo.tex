@@ -126,9 +126,9 @@
 
 \subsection*{22. September 2023}
 
-Motivation for the neeed for approximation by rationals with small denominator: Calendar design.
+Motivation for the need for approximation by rationals with small denominator: Calendar design.
 
-Let $\alpha\in\R$. A fraction $(p/q)$ with $p,q\in \Z$ and $q\geq 1$ is a \emph{best approximation} of $\alpha$ if for each fraction $c/d \neq p/q$  with $c,d \in\Z$ and $d\geq1$ one has:
+Let $\alpha\in\R$, a fraction $(p/q)$ with $p,q\in \Z$ and $q\geq 1$ is a \emph{best approximation} of $\alpha$ if for each fraction $c/d \neq p/q$  with $c,d \in\Z$ and $d\geq1$ one has:
 \begin{displaymath}
   0 < d \leq q \text{ implies } \vert \alpha - p/q \vert < \vert\alpha - c/d \vert. 
 \end{displaymath}
@@ -147,9 +147,9 @@ We define the \emph{fractionnal part} of $x$ as follows:
 \begin{displaymath}
     \lfloor x\rceil=\lfloor x\rfloor\;\text{if}\; \{x\}\leq 1/2\; \text{and}\; \lceil x\rceil\; \text{otherwise}
 \end{displaymath}
-\emph{Simple $N$-rounding}: Approximate $\alpha$ with $ \lfloor N \cdot \alpha \rceil / N$. With this type of approximation we get that $\vert \alpha-\frac{\lfloor \alpha\cdot N\rceil}{N}\vert \leq\frac{1}{2N}$.\\\\
+\emph{Simple $N$-rounding}: Approximate $\alpha$ with $\frac{ \lfloor N \cdot \alpha \rceil}{N}$. With this type of approximation we get that $\vert \alpha-\frac{\lfloor \alpha\cdot N\rceil}{N}\vert \leq\frac{1}{2N}$.\\\\
 \emph{Remark} We cannot get a much better bound:\\
-Let $\alpha\in \R\backslash\Q$ we then it exists $z\in \Z$ such that $\alpha=\frac{N\cdot z +\frac{1}{2}-\epsilon}{N}$. Hence simple rounding gives us an error of $\frac{\frac{1}{2}-\epsilon}{N}$
+Let $\alpha\in \R\backslash\Q$, such that it exists $z\in \Z$ and $\epsilon\in\R\backslash\{0\}$ with $\alpha= z +\frac{1}{2}-\epsilon$. Hence simple rounding gives us an error of $\frac{\frac{1}{2}-\epsilon}{N}$.
 \begin{theorem}[Dirichlet]
   \label{thr:1}
   Let  $\alpha\in \R$ and  $N \in \N_+$. There exists a fraction $p/q$ with $p,q\in\Z $ such that
@@ -161,29 +161,29 @@ Let $\alpha\in \R\backslash\Q$ we then it exists $z\in \Z$ such that $\alpha=\fr
   This is much better than $1/(2N)$ as soon as $q$ gets larger. The more you \emph{pay} for the denominator $q$, the better the approximation is.
 
   \begin{proof}[Proof of Dirichlet's Theorem] 
-    For $0 \leq q \leq N$ consider the points $\{q \cdot\alpha\}$. These points lie in $[0,1)$ and there are $N+1$ many of them. This means that two of them are at a distance of strictly less than $1/N$ from each other. Therefore, there exist $q_1,q_2 \in \{0,\dots,N\}$ such that $\vert\{q_1 \cdot\alpha\} -\{q_2 \cdot \alpha\} \vert < 1/N$. Since $\{q_i \cdot\alpha\} = q_i \cdot\alpha - x_i$  for some suitable $x_i \in\Z$ we have:
+    For $0 \leq q \leq N$ consider the points $\{q \cdot\alpha\}$. These points lie in $[0,1)$ and there are $N+1$ many of them. This means that two of them are at a distance which is strictly less than $1/N$ from each other. Therefore, there exist $q_1,q_2 \in \{0,\dots,N\}$ such that $\vert\{q_1 \cdot\alpha\} -\{q_2 \cdot \alpha\} \vert < 1/N$. Since $\{q_i \cdot\alpha\} = q_i \cdot\alpha - x_i$  for some suitable $x_i \in\Z$ we have:
     \begin{displaymath}
           \vert (q_1 -q_2)\cdot\alpha - (x_1-x_2) \vert < 1/N.
     \end{displaymath}
     Now we can just set $q= q_1-q_2 \in \{1,\dots,N\}$ and $p=x_2-x_1$
   \end{proof}
   
-Reading: \cite{eisenbrand2012pope,WikiDirichlet}  
+%Reading: \cite{eisenbrand2012pope,WikiDirichlet}  
 
 
 \subsection*{29. September 2023}
 
-%Reading: The book of Khinchine~\cite[Section~2]{khinchin1997continued}.
+%Reading: The book of Khinchine\cite[Section2]{khinchin1997continued}.
 \emph{Best Approximation Geometric algorithm}\\
 Let $\alpha\in\R_{>0}$ and $N\in \N_+$. We want to find $(p,q)\in(\N\times\N_+)$ such that $\vert \alpha-p/q\vert$ is minimal among all such duples $(r,s)$ with $s\leq N$.\\
-\emph{ ALgorithm}: First take $V_1=(0,1)$, $V_2=(1,0)$ a basis of $\Z^2$.\\
+\emph{ Algorithm}: First take $V_1=(0,1)$, $V_2=(1,0)$ a basis of $\Z^2$.\\
 Secondly we add $\lambda\in \N$ times the vector $V_1$ to $V_2$ where $\lambda$ is the biggest integer such that $V_2+\lambda V_1$ does not cross the line passing through $0$ with slope $\alpha$. We obtain a new basis $V_1,V_3=V_2+\lambda V_1$.\\
 Now for the iteration step :
 \begin{enumerate}
     \item Add the longer vector ($V_i$) to the shorter one ($V_j$) until the last moment such that the sum.
     \begin{enumerate}[i)]
     \item does not cross the line
-    \item \label{ii} does not cross the vertical denominator
+    \item \label{ii} does not cross the vertical denominator bound
 \end{enumerate}
 \item Create your new basis $\{V_i,V_j+\lambda V_i\}$.
 \end{enumerate}
@@ -217,18 +217,20 @@ Here is an example of this algorithm:
 \begin{proof}
     Suppose that $\frac{r}{s}$ is a better approximation to $\alpha$ than $\frac{p}{q}$ and let $V_1,V_2$ the last basis obtained by the algorithm. Then $(r,s)=x_1\cdot V_1+ x_2\cdot V_2$ with $x_1,x_2\in\Z$. In particular as $\frac{r}{s}$ is a better approximation than $(p,q)$ then $(r,s)$ is contained in the cone generated by $V_1,V_2$ so $x_1,x_2\in \N_+$. Therefore $s\geq V_{1_2}+V_{2_2}$, hence $s>N$ by definition of the algorithm. 
 \end{proof}
-Explain  continued fraction expansion of a number $\alpha\in\R\backslash \Q$:
-
-$\alpha =  \lfloor\alpha\rfloor + \{\alpha\}=\frac{1}{\frac{1}{\{\alpha\}}} $. Setting $\beta = \frac{1}{\{\alpha\}}$:
+%Explain  continued fraction expansion of a number $\alpha\in\R\backslash \Q$:
+A \emph{(simple) continued fraction} is an expression of the form
+\begin{equation}
+\label{eqn_simple_continued_fraction}    
+[a_0; a_1,a_2,a_3,\ldots]=a_0+\frac{1}{a_1+\frac{1}{a_2+\frac{1}{a_3+\frac{1}{~~\ddots}}}}
+\end{equation}
+where $a_0\in \Z$ and $a_1,a_2,a_3,\ldots\in\N$.\\
+In order to find this expression we let $\alpha =  \lfloor\alpha\rfloor + \{\alpha\}= + \frac{1}{\frac{1}{\{\alpha\}}} $. Setting $\beta = \frac{1}{\{\alpha\}}$ we obtain:
  
   \begin{displaymath}
     \alpha = \lfloor\alpha\rfloor + \cfrac{1}{ \lfloor\beta\rfloor + \cfrac{1}{\lfloor\gamma\rfloor+ \dots}} 
   \end{displaymath}
-
-  Process does not end. If $\alpha \in\Q$, process ends. Mention relation to Euclidean algorithm.
-
-  Explain continued fraction expansion of $\sqrt{2}$.\\
-\emph{Example}: The continued fractio expansion of $\sqrt{2}$:\begin{align*}
+This process does not end unless $\alpha \in\Q$.
+\emph{Example}: The continued fraction expansion of $\sqrt{2}$:\begin{align*}
     \sqrt{2}&=1+(\sqrt{2}-1)=1+(\sqrt{2}-1)\dfrac{(\sqrt{2}+1)}{(\sqrt{2}+1)}\\
     &=1+\dfrac{1}{1+\sqrt{2}}=1+\cfrac{1}{1+(1+\cfrac{1}{1+\sqrt{2}})}\\
     &=1+\cfrac{1}{2+\cfrac{1}{1+\sqrt{2}}}=1+\cfrac{1}{2+\cfrac{1}{2+\cfrac{1}{2+\cfrac{1}{...}}}}
@@ -240,13 +242,14 @@ $\alpha =  \lfloor\alpha\rfloor + \{\alpha\}=\frac{1}{\frac{1}{\{\alpha\}}} $. S
       [a_0;a_1,\dots,a_n] = a_0 + \cfrac{1}{a_1 + \cfrac{1}{a_2 + \cfrac{1}{\cdots  \cfrac{1}{a_n}}}}
       \label{eq:1}
     \end{equation}
+    $[a_0;a_1,\dots,a_n]$ is called a truncated continued fraction expansion.
   \end{definition}
-The equation~\eqref{eq:1} is a fraction $p_n / q_n$ that depends on the sequence $a_0,\dots,a_n$.
+The equation\eqref{eq:1} is a fraction $p_n / q_n$ that depends on the sequence $a_0,\dots,a_n$.
 
 
 \begin{theorem}
   \label{thr:2}
-  Set $p_{-1} = 1, q_{-1} = 0, p_{-2} = 0, q_{-2} =1$. Then for $k\geq1$ one has $[a_0;a_1,\dots,a_k]=\frac{p_k}{q_k}$ with
+  Set $p_{-1} = 1,\, q_{-1} = 0,\, p_{-2} = 0,\, q_{-2} =1$. Then for $k\geq1$ one has $[a_0;a_1,\dots,a_k]=\frac{p_k}{q_k}$ with
   \begin{equation}
     \label{eq:2}
     \begin{array}{rcl}
@@ -257,14 +260,14 @@ The equation~\eqref{eq:1} is a fraction $p_n / q_n$ that depends on the sequence
   
 \end{theorem}
   \begin{proof}
-      For $k=0$ we have $a_0=\frac{a_0}{1}=\frac{p_0}{q_0}$.\\
+      For $k=0$ we have $a_0=\frac{a_0}{1}=\frac{p_{-1}a_0+p_{-2}}{q_{-1}a_0+q_{-2}}\frac{p_0}{q_0}$.\\
       Let $k>0$ and suppose the theorem is true for $k-1$. By definition of $[a_0;a_1,\dots,a_k]$ we have that $[a_0;a_1,\dots,a_k]=[a_0;a_1,\dots,a_{k-1}+\frac{1}{a_k}]$. By induction hypothesis we then obtain that \begin{align*}
           \frac{p_k}{q_k}=\frac{\Tilde{p}_{k-1}}{\Tilde{q}_{k-1}}&=\frac{p_{k-2}(a_{k-1}+\frac{1}{a_k}) + p_{k-3}}{q_{k-2} (a_{k-1}+\frac{1}{a_k}) + q_{k-3}}\\
           &=\frac{p_{k-2} a_{k-1} + p_{k-3}+\frac{p_{k-2}}{a_k}}{q_{k-2} a_{k-1} + q_{k-3}+\frac{q_{k-2}}{a_k}}\\
           &=\frac{p_{k-1}+\frac{p_{k-2}}{a_k}}{q_{k-1}+\frac{q_{k-2}}{a_k}}=\frac{p_{k-1} a_k + p_{k-2}}{q_{k-1} a_k + q_{k-2}}
       \end{align*}
   \end{proof}
-This theorem gives a recursive formula to compute the value of~\eqref{eq:1}. In matrix notation one has
+This theorem gives a recursive formula to compute the value of \eqref{eq:1}. In matrix notation one has
 \begin{equation}
   \label{eq:3}
   \begin{pmatrix}
@@ -321,7 +324,7 @@ Observation: If $a_i \in\N_+$ for $i\geq1$ and $a_0 \in\Z$, then $\gcd(p_k,q_k) 
     \end{equation}
     Substracting those two equations we obtain that 
     $$ p_ kq_{k-2}-q_ kp_{k-2}=(p_{k-1}q_{k-2}-q_{k-1}p_{k-2})a_k$$
-    It follows from theorem \eqref{thr:3} the equality become $q_k p_{k-2} - p_k q_{k-2} = (-1)^ {k+1} a_k$
+    It follows from theorem \eqref{thr:3} that the equality become $q_k p_{k-2} - p_k q_{k-2} = (-1)^ {k+1} a_k$
 \end{proof}
 
 \begin{corollary}
@@ -341,7 +344,7 @@ We always assume $a_0\in\Z$ and $a_i \in \N_+$ for $i\geq1$.
 
 \subsubsection*{Convergence of convergents}
 
-Then Corollary~\ref{co:2} implies that even convergents are increasing sequence and off convergents are decreasing. Together with Corollary~\ref{co:1} and the exponential growth of the sequence $p_k$ we have fast convergence of the convergents.
+Then Corollary\eqref{co:2} implies that even convergents are increasing sequence and odd convergents are decreasing. Together with Corollary\eqref{co:1} and the exponential growth of the sequence $p_k$ we have fast convergence of the convergents.
 
 
 
@@ -355,22 +358,22 @@ For $k$ odd: $f(x)$ is decreasing and $a_k\in \N_+$ is the largest integer such 
     [a_0;a_1,\dots,a_k]>\alpha
 \end{equation}
 \end{lemma}
-\begin{proof}
+\begin{proof} (Idea)
     Developp a recursive argument with $\alpha=a_0+\cfrac{1}{a_1+\cfrac{1}{[a_2,a_3,\dots]}}$
 \end{proof}
 \emph{Definition}: We call $[a_0;a_1,\dots,a_k]$ the \emph{k-th convergent} of $\alpha$.
 \begin{theorem}\label{th:8}
-    Let $a_0\in\Z$ and $\forall i\in\N_+,\; a_i\in\N_+$ then for $k\geq 2$ we have $q_K\geq 2^{\frac{k-1}{2}}$
+    Let $a_0\in\Z$ and $\forall i\in\N_+,\; a_i\in\N_+$ then for $k\geq 2$ we have $q_k\geq 2^{\frac{k-1}{2}}$
 \end{theorem}
 \begin{proof}
     We know from theorem $\eqref{thr:2}$ that $ q_ k =  q_{k-1} a_k + q_{k-2}$ and therefore $ q_ {k-1}  =  q_{k-2} a_{k-1} + q_{k-3}$. It follows that $q_k\geq 2\cdot q_{k-2}$.\\
     So for $k\geq 1$ we obtain that :\begin{itemize}
-        \item $q_{2k}\geq 2^k\cdot q_o=2^k$
+        \item $q_{2k}\geq 2^k\cdot q_0=2^k$
         \item $q_{2k+1}\geq 2^k\cdot q_1\geq 2^k$
     \end{itemize}
 \end{proof}
 \begin{theorem}
-    Let $\alpha\in\R\backslash\Q$. For $k\geq 1$... 
+    Let $\alpha\in\R\backslash\Q$. For $k\geq 1$, $\vert\alpha-\frac{p_k}{q_k}\vert\geq \frac{2^\frac{3}{2}}{2^k}$
 \end{theorem}
 \begin{proof}
     \begin{align}
@@ -388,7 +391,7 @@ For $k$ odd: $f(x)$ is decreasing and $a_k\in \N_+$ is the largest integer such 
 \end{theorem}
 \begin{proof}
     Suppose it exists a best approximation $\frac{a}{b},\; b\in\N_+$  of $\alpha$ that is not a convergent or an intermediate convergent.\\
-    Let $r_1$ be the last convergent with $q_k<b$ i.e $r_1=[a_0,a_1;\dots,a_k]$. Let $r_2$ be the last intermediate convergent of $\alpha$ i.e $r_2=\frac{j\cdot p_k+p_{k-1}}{j\cdot q_k+q_{k-1}}$ with $j$ the biggest integer such that $j\cdot q_k+q_{k-1}\leq b$.\\
+    Let $r_1$ be the last convergent with $q_k<b$ (i.e $r_1=[a_0,a_1;\dots,a_k]$). Let $r_2$ be the last intermediate convergent of $\alpha$ (i.e $r_2=\frac{j\cdot p_k+p_{k-1}}{j\cdot q_k+q_{k-1}}$) with $j$ the biggest integer such that $j\cdot q_k+q_{k-1}\leq b$.\\
     Suppose $k$ is even: therefore we know that $r_1<\alpha<r_2$.\\
     As $\frac{a}{b}$ is a best approximation we have that $\frac{a}{b}\in [r_1,r_2]$ so it follows that 
     \begin{equation}
@@ -439,9 +442,9 @@ The \emph{norm} of an element $x + y \sqrt{d} \in \Q(\sqrt{d})$ is the rational 
 \end{exercise}
 
 
-If $(x,y) \in\Z^2$ is a solution to~\eqref{eq:6}, then $x + y \sqrt{d}$ is a \emph{unit} in $\Z[ \sqrt{d}]$, since $(x + y \sqrt{d})(x - y \sqrt{d}) =1$. However, not each unit corresponds to a solution of \eqref{eq:6}. For example, $1 - \sqrt{2} \in\Z[\sqrt{2}]$ is  unit, but $1^2 - 2 \cdot 1^2 = -1$. This is a \emph{unit of norm $-1$}.
+If $(x,y) \in\Z^2$ is a solution to \eqref{eq:6}, then $x + y \sqrt{d}$ is a \emph{unit} in $\Z[ \sqrt{d}]$, since $(x + y \sqrt{d})(x - y \sqrt{d}) =1$. However, not each unit corresponds to a solution of \eqref{eq:6}. For example, $1 - \sqrt{2} \in\Z[\sqrt{2}]$ is  unit, but $1^2 - 2 \cdot 1^2 = -1$. This is a \emph{unit of norm $-1$}.
 
-There is a correspondence between units of norm $1$ and solutions of the Pell equation~\eqref{eq:6}. 
+There is a correspondence between units of norm $1$ and solutions of the Pell equation \eqref{eq:6}. 
 
 
 
@@ -452,7 +455,7 @@ There is a correspondence between units of norm $1$ and solutions of the Pell eq
 
 
 \begin{proof}
-  We recall Dirichlet's Theorem~\ref{thr:1}. This implies that there exist infinitely many pairs $(p,q) \in\N\times\N_+$ with $\gcd(p,q) = 1$ such that 
+  We recall Dirichlet's Theorem \eqref{thr:1}. From a corollary of Dirichlet there exist infinitely many pairs $(p,q) \in\N\times\N_+$ with $\gcd(p,q) = 1$ such that 
    \begin{displaymath}
     \vert p - q \sqrt{d}  \vert < 1/q. 
   \end{displaymath}
@@ -479,13 +482,13 @@ There is a correspondence between units of norm $1$ and solutions of the Pell eq
     \label{eq:11}   
   \alpha =  (p_1 + \sqrt{d} q_1 ) (p_2 + \sqrt{d} q_2)^{-1} \in \Z[\sqrt{d}]. 
   \end{equation}
-  Since $N(\alpha) = 1$, $\alpha$ is a unit of norm one and if it is non-trivial, we are done, once we have established~\eqref{eq:11}.
+  Since $N(\alpha) = 1$, $\alpha$ is a unit of norm one and if it is non-trivial, we are done, once we have established\eqref{eq:11}.
 
   We have
   \begin{displaymath}
     \alpha = \frac{p_1 p_2 - d q_1 q_2}{r} + \frac{-p_1q_2 + q_1p_2}{r} \sqrt{d}.  
   \end{displaymath} 
-  Since $p_1 p_2 - d q_1 q_2 \equiv p_1^2 - d q_1^2 \equiv 0\pmod{r}$ and since $-p_1q_2 + q_1p_2 \equiv 0 \pmod{r}$, it follows that $\alpha \in\Z[\sqrt{d}]$.  On the other hand, since $\gcd(p_1,q_1) =\gcd(p_2,q_2)=1$,   $p_1q_2 = q_1p_2$ implies $p_1 = p_2$ and $q_1 = q_2$ which is excluded. Thus $\alpha$ is not rational and this yields a nontrivial solution of~\eqref{eq:6}, namely $x = (p_1 p_2 - d q_1 q_2)/r$ and $y = (-p_1q_2 + q_1p_2)/{r}$. 
+  Since $p_1 p_2 - d q_1 q_2 \equiv p_1^2 - d q_1^2 \equiv 0\pmod{r}$ and since $-p_1q_2 + q_1p_2 \equiv 0 \pmod{r}$, it follows that $\alpha \in\Z[\sqrt{d}]$.  On the other hand, since $\gcd(p_1,q_1) =\gcd(p_2,q_2)=1$,   $p_1q_2 = q_1p_2$ implies $p_1 = p_2$ and $q_1 = q_2$ which is excluded. Thus $\alpha$ is not rational and this yields a nontrivial solution of \eqref{eq:6}, namely $x = (p_1 p_2 - d q_1 q_2)/r$ and $y = (-p_1q_2 + q_1p_2)/{r}$. 
 \end{proof}
 
   \subsubsection*{Solving the Pell equation with continued fractions}
@@ -495,7 +498,7 @@ There is a correspondence between units of norm $1$ and solutions of the Pell eq
   \begin{displaymath}
     \vert  \sqrt{d} - p_k / q_k \vert  \leq 1 (q_k q_{k+1}) \leq 1/ q_k^2 
   \end{displaymath}
-  and that the fraction $p_k/q_k$ are reduced for $k\geq0$. This means that we can attractively compute solutions $(p_k^2 - d q_k^2) = r$ with $\vert r\vert  \leq 1 + 2 \sqrt{d}$. Once we have computed  $k \geq\lceil  2( 1  + 2\sqrt{d} ) +1 \rceil   \cdot \lceil 1 + 2 \sqrt{d}\rceil ^2 $ convergents,  we can identify two of them that yield $(p_1,q_1)$ and $(p_2,q_2)$ as in the proof of Theorem~\ref{thr:4} and construct a nontrivial solution of $x^2 - d y^2 = 1$. The running time of this naive algorithm is $O(d^{3/2})$  which is polynomial in the \emph{value } of  $d$ but \emph{exponential} in the \emph{binary encoding length} of $d$. It is also known that there exist $d$ such that each nontrivial solution of the Pell equation requires an exponential number of bits in $\ln (d)$, see~\cite{lenstra2002solving}. 
+  and that the fraction $p_k/q_k$ are reduced for $k\geq0$. This means that we can attractively compute solutions $(p_k^2 - d q_k^2) = r$ with $\vert r\vert  \leq 1 + 2 \sqrt{d}$. Once we have computed  $k \geq\lceil  2( 1  + 2\sqrt{d} ) +1 \rceil   \cdot \lceil 1 + 2 \sqrt{d}\rceil ^2 $ convergents,  we can identify two of them that yield $(p_1,q_1)$ and $(p_2,q_2)$ as in the proof of Theorem \eqref{thr:4} and construct a nontrivial solution of $x^2 - d y^2 = 1$. The running time of this naive algorithm is $O(d^{3/2})$  which is polynomial in the \emph{value } of  $d$ but \emph{exponential} in the \emph{binary encoding length} of $d$. It is also known that there exist $d$ such that each nontrivial solution of the Pell equation requires an exponential number of bits in $\ln (d)$. %see\cite{lenstra2002solving}. 
 
 
   \begin{example}
@@ -603,14 +606,14 @@ A number $\alpha \in\C$ is \emph{algebraic}, if there exist a nonzero polynomial
   \label{thr:5}
   Let $\alpha\in\R$ be algebraic of degree $d\geq2$. There exists a positive constant $c_\alpha \in \R_+$ such that for each $(p,q) \in \Z \times \N_+$ one has
   \begin{displaymath}
-    \vert  \alpha - p/q \vert  > c_\alpha 1/q^d. 
+    \vert  \alpha - p/q \vert  > c_\alpha\cdot 1/q^d. 
   \end{displaymath}
 \end{theorem}
 
 \begin{proof}
   Let $(p,q) \in \Z \times\N_+$ such that  $\vert  \alpha - p/q \vert  \leq1$. We only have to consider those. 
 
-  Let $f(x) \in \Z[x]$ be a nonzero polynomial of degree $d$ with $f(\alpha) = 0$.  One has $f(p/q) \neq 0$. Otherwise, $x- p/q$ divides $f$ and we find a polynomial of smaller degree with root $\alpha$. \emph{(Recall $\alpha \neq p/q$!)}.  But $q^d \cdot f(p/q) \in\Z$ from which we infer $q^d \cdot \vert f(p/q)\vert  \geq1$ and therefore 
+  Let $f(x) \in \Z[x]$ be a nonzero polynomial of degree $d$ with $f(\alpha) = 0$.  One has $f(p/q) \neq 0$. Otherwise, $x- p/q$ would divide $f$ and we would find a polynomial of smaller degree with root $\alpha$. \emph{(Recall $\alpha \neq p/q$!)}.  But $q^d \cdot f(p/q) \in\Z$ from which we infer $q^d \cdot \vert f(p/q)\vert  \geq1$ and therefore 
   \begin{displaymath}
      \vert f(p/q)\vert  \geq1 / q^d. 
    \end{displaymath}
@@ -621,11 +624,11 @@ A number $\alpha \in\C$ is \emph{algebraic}, if there exist a nonzero polynomial
   \end{displaymath}
   Set $\beta = (\sup\{ \vert f'(x)\vert:x \in [\alpha-1 ,\alpha+1]\}$. This is a number bigger than $0$.   Then, by the above, we have 
   \begin{displaymath}
-    \beta \geq 1/ ( \vert \alpha - p/q\vert  q^d). 
+    \beta \geq 1/q^d\cdot 1/ (\vert \alpha - p/q\vert). 
   \end{displaymath}
   Setting $c_\alpha = 1/ \beta$ we conclude 
   \begin{displaymath}
-    \vert \alpha - p/q\vert  \geq c_\alpha / \vert f(p/q)\vert . 
+    \vert \alpha - p/q\vert  \geq c_\alpha \cdot 1/q^d . 
   \end{displaymath}
 \end{proof}
 \subsection*{20. October 2023}
@@ -633,7 +636,7 @@ A number $\alpha \in\C$ is \emph{algebraic}, if there exist a nonzero polynomial
     Let $A\subseteq\R^2$ with area bigger than 1 then it exists $x,y\in A$ such that $x-y\in \Z$.
 \end{theorem}
 \begin{proof}
-    Divide the plan $\R^2$ in squares of area 1 as in. Now translate every area of A into the square $\{(0;0), (0;1), (1;0),(1;1)\}$. As the Area of A is bigger than 1, by the Pigeon Hole Principle at least 1 point of the square $\{(0;0), (0;1), (1;0),(1;1)\}$ is touched twice. Hence it exists $x,y\in A$ such that there relative positions on there square is the same. In other words $x,y$ are such that $x-y\in \Z$.
+    Divide the plan $\R^2$ in squares of area 1. Now translate every area of A into the square $\{(0;0), (0;1), (1;0),(1;1)\}$. As the Area of A is bigger than 1, by the Pigeon Hole Principle at least 1 point of the square $\{(0;0), (0;1), (1;0),(1;1)\}$ is touched twice. Hence it exists $x,y\in A$ such that there relative positions on there square is the same. In other words $x,y$ are such that $x-y\in \Z$.
 \end{proof}
 \emph{Remark:} this is also true for $\R^n$ for $n\in \N$.\\
 \emph{Recall} A set $A$ is convex if $\forall a,b\in A$ and $\lambda\in \R$ such that $0\leq \lambda\leq1$ we have $\lambda a+(1-\lambda)b\in A$.
@@ -641,7 +644,7 @@ A number $\alpha \in\C$ is \emph{algebraic}, if there exist a nonzero polynomial
     Let $A\subseteq \R^2$ be convex, centrally symmetric around $(0;0)$ and of area strictly bigger than $4$, then it exists $x\in A\bigcap \Z^2$ and $x\neq 0$.
 \end{theorem}
 \begin{proof}
-    Consider $\frac{1}{2}A=\{\frac{x}{2}\vert x\in A\}$, now the area is divided by 4 (easily seen on squares and then apply the approximation of an aera by the sum of multiples squares). Now as the Area is bigger than 1 hence by the theorem $\eqref{Th:mink1}$ it exists $a'\neq b'\in \frac{1}{2}A$ such that $a'.b'\in\Z^2$. It follows that for $a=2a'\in A$ and $b=2b'\in A$ we have $$\frac{a}{2}-\frac{b}{2}\in \Z^2\iff \frac{a}{2}+\frac{-b}{2}\in \Z^2 $$ 
+    Consider $\frac{1}{2}A=\{\frac{x}{2}\vert x\in A\}$, now the area is divided by 4 (easily seen on squares and then apply the approximation of an aera by the sum of multiples squares). Now as the Area is bigger than 1 hence by the theorem $\eqref{Th:mink1}$ it exists $a'\neq b'\in \frac{1}{2}A$ such that $a'-b'\in\Z^2$. It follows that for $a=2a'\in A$ and $b=2b'\in A$ we have $$\frac{a}{2}-\frac{b}{2}\in \Z^2\iff \frac{a}{2}+\frac{-b}{2}\in \Z^2 $$ 
     As A is centrally symmetric $-b\in A$ hence by convexity of $A$ it follows that $\frac{a}{2}+\frac{-b}{2}\in A$, so we found our point in $\Z^2\bigcap A$.
 \end{proof}
 \begin{corollary} \label{cor Mink}
@@ -667,13 +670,13 @@ A number $\alpha \in\C$ is \emph{algebraic}, if there exist a nonzero polynomial
 \end{theorem}
 \begin{proof}
     First we will prove that if $p\equiv 1\mod 4$ then it exists $a$ such that $a^2\equiv -1 \mod p$.\\
-    To do this we first notice that $(p-1)!\equiv (-1)\mod P$. Now 
-    we know that in $(p-1)!$ we have $x$ and $-x$ forall $x\in (\Z/p\Z)^{\times}$, hence $$(-1)\mod P\equiv(p-1)!\equiv (-x_1^2)\cdot(-x_2^2)\cdots(-x^2_{\frac{p-1}{2}})\equiv (-1)^{\frac{p-1}{2}}\cdot(\emph{square})=1\cdot a^2$$
-    Now consider the set $A=\{(x,y)\in\R^2\vert(px+ay)^2+y^2<2p\}$, this is the formula of a circle after a linear transformation $T$ hence it is an elips. By definition $T=\begin{pmatrix}
+    To do this we first notice that $(p-1)!\equiv (-1)\mod p$. Now 
+    we know that in $(p-1)!$ we have $x$ and $-x$ forall $x\in (\Z/p\Z)^{\times}$, hence $$(-1)\mod p\equiv(p-1)!\equiv (-x_1^2)\cdot(-x_2^2)\cdots(-x^2_{\frac{p-1}{2}})\equiv (-1)^{\frac{p-1}{2}}\cdot(\emph{square})=1\cdot a^2$$
+    Now consider the set $A=\{(x,y)\in\R^2\vert(px+ay)^2+y^2<2p\}$, this is the formula of a circle after a linear transformation $T$ hence it is an ellipse. By definition $T=\begin{pmatrix}
         p & a  \\
         0 & 1  
       \end{pmatrix} $ hence $\det(T)=p$.\\
-      Let $T(A)=B=\{(x,y)\in\R^2\vert x^2+y^2<2p\}$ then as $B$ represent a circle of radius $\sqrt{2p}$ the area of $B$ is equal t0 $2\pi p$ hence the area of $A$ is equal to $\frac{Area(B)}{\det(T)}=2\pi$.\\
+      Let $T(A)=B=\{(x,y)\in\R^2\vert x^2+y^2<2p\}$ then as $B$ represent a circle of radius $\sqrt{2p}$ the area of $B$ is equal to $2\pi p$ hence the area of $A$ is equal to $\frac{Area(B)}{\det(T)}=2\pi$.\\
       As $A$ is symmetrically centered, convex with an area bigger than 4, by theorem $\eqref{th:mink2}$ it exists $(x,y)\in A\bigcap\Z^2$, it satisfies $0<(px+ay)^2+y^2<2p$.
       We have $$(px+ay)^2+y^2<2p=p^2x^2+2paxy+(a^2+1)y^2\equiv0\mod p$$ it then means that it is divisible by $p$ and as $0<(px+ay)^2+y^2<2p$ it follows that $(px+ay)^2+y^2=p$.
 \end{proof}
@@ -721,22 +724,22 @@ A number $\alpha \in\C$ is \emph{algebraic}, if there exist a nonzero polynomial
     Let $A,B\in\R^{n\times n}$ non-singular. Then $\Lambda(A)=\Lambda(B)$ \emph{if and only if} it exist $u\in\Z^{n \times n}$ with $\det(u)=\pm 1$ and $A=B\cdot u$ ($u\in\Z^{n \times n}$ with $\det(u)=\pm 1$ is called \emph{unimodular})
 \end{theorem}
 \begin{proof}
-    Suppose $\Lambda(A)=\Lambda(B)$ it follows that it exist $u_1,u_2\in \Z^{n\times }$ such that $A=B\cdot u_1$ and $B=A\cdot u_2$. From those equalities we can deduce that $A=A\cdot u_2\cdot u_1$ hence $u_2\cdot u_1=\Id_{n\times n}$. As $\det (u_2\cdot u_1)=1$ and that $\det(u_1),\det(u_2)\in\Z$ it follows that $\det(u_1),\det(u_2)=\pm 1$.\\
+    Suppose $\Lambda(A)=\Lambda(B)$ it follows that it exist $u_1,u_2\in \Z^{n\times n}$ such that $A=B\cdot u_1$ and $B=A\cdot u_2$. From those equalities we can deduce that $A=A\cdot u_2\cdot u_1$ hence $u_2\cdot u_1=\Id_{n\times n}$. As $\det (u_2\cdot u_1)=1$ and that $\det(u_1),\det(u_2)\in\Z$ it follows that $\det(u_1),\det(u_2)=\pm 1$.\\
     Now we suppose that $A=B\cdot u$ with $u$ unimodular then $\Lambda(A)\subseteq\Lambda (B)$ and $u^{-1}=\frac{Adj(U)}{\det(u)}\in \Z^{n\times n}$ this means that $B=A\cdot \underbrace{u^{-1}}_{\in\Z^{n\times n}}$ hence $\Lambda(B)\subseteq \Lambda(A)$.
 \end{proof}
 \begin{theorem}[Minkowski with lattices]
-Let $C\subseteq \R^n$, convex,bounded,centrally symmetric, $A\in\R^{n \times n}$ non-singular if the $\vol(C)>2^n\cdot\det(A)$ the it exists $v\in\Lambda(A)\backslash\{0\}$ with $v\in C$
+Let $C\subseteq \R^n$, convex,bounded,centrally symmetric, $A\in\R^{n \times n}$ non-singular if the $\vol(C)>2^n\cdot\det(A)$ then it exists $v\in\Lambda(A)\backslash\{0\}$ with $v\in C$
 \end{theorem}
 \begin{proof}
     Let $v$ be a lattice points, in other words it exists $x\in\Z^n$ such that $v=Ax$. Then $$v\in C\iff x\in A^{-1}\cdot C= \{A^{-1}\cdot c\vert c\in C\}$$
-   We know that $\vol(A^{-1}\cdot C)=\vert \det(A^{-1}\vert\cdot\vol(C)=\frac{
-\vol(C)}{\det(A)}$. Therefore, as $(A^{-1}\cdot C)$ remain convex and centrally symmetric (\emph{exercise)}, by the Minkowski theorem we have that if $\vol (A^{-1}\cdot C)> 2^n$ then $(A^{-1}\cdot C)\bigcap(\Z^n\backslash\{0\}$ which is equivalent to $C\bigcap\Lambda(A)\backslash\{0\}$
+   We know that $\vol(A^{-1}\cdot C)=\vert \det(A^{-1})\vert\cdot\vol(C)=\frac{
+\vol(C)}{\det(A)}$. Therefore, as $(A^{-1}\cdot C)$ remain convex and centrally symmetric (\emph{exercise)}, by the Minkowski theorem we have that if $\vol (A^{-1}\cdot C)> 2^n$ then $(A^{-1}\cdot C)\bigcap(\Z^n\backslash\{0\})$ which is equivalent to $C\bigcap\Lambda(A)\backslash\{0\}$
 \end{proof}
-\begin{theorem}
+\begin{theorem}\label{thr:10}
     Let $A\in \R^{n\times n}$ of full rank then it exists $v\in \Lambda(A)\backslash\{0\}$ such that $$\vert\vert v\vert\vert _{\infty}\leq \det(A)^\frac{1}{n}$$
 \end{theorem}
 \begin{proof}
-    Let $B=\{x\in \R^n:\vert\vert x\vert\vert_{\infty}\leq l\}$, then $\vol(B)=(2l)^n=2^nl^n$. If $l= \det(A)^\frac{1}{n}$ then $\vol(B)=2^n\cdot\det(\Lambda)$ hence as $B$ is convex, centrally centered and closed then, by the first theorem of minkowski, we have that it exists $v\in B\cap (\Lambda(A)\backslash \{0\}$. As $v\in B$ then $\vert\vert v\vert\vert _{\infty}\leq \det(A)^\frac{1}{n}$ 
+    Let $B=\{x\in \R^n:\vert\vert x\vert\vert_{\infty}\leq l\}$, then $\vol(B)=(2l)^n=2^nl^n$. If $l= \det(A)^\frac{1}{n}$ then $\vol(B)=2^n\cdot\det(\Lambda)$ hence as $B$ is convex, centrally centered and closed then, by the first theorem of Minkowski, we have that it exists $v\in B\cap (\Lambda(A)\backslash \{0\})$. As $v\in B$ then $\vert\vert v\vert\vert _{\infty}\leq \det(A)^\frac{1}{n}$ 
 \end{proof}
 Now we prove the Dirichlet theorem with Minkowski.
 \begin{proof}
@@ -771,8 +774,8 @@ Let $\begin{pmatrix}
     \cdot\\
     \cdot\\
     q\alpha_n-p_n
-\end{pmatrix}$
-Hence by the thm ... we can find $(q,p_1,\dots,p_n)\neq 0$ such that $\vert\vert v\vert\vert_{\infty}\leq(\frac{1}{Q^{n+1}})^{\frac{1}{n}}=\frac{1}{Q}\iff \frac{q}{Q^{n+1}}\leq \frac{1}{Q} \text{and } \vert q\alpha_i-p_i\vert\leq \frac{1}{Q} \;\forall i\in\{1,\dots,n\}$ and $q\neq 0$ otherwise the $p_i$s would be $0$ too and $(q,p_1,\dots,p_n)\neq 0$
+\end{pmatrix}$.
+Hence by the theorem \eqref{thr:10} we can find $(q,p_1,\dots,p_n)\neq 0$ such that $\vert\vert v\vert\vert_{\infty}\leq(\frac{1}{Q^{n+1}})^{\frac{1}{n}}=\frac{1}{Q}\iff \frac{q}{Q^{n+1}}\leq \frac{1}{Q} \text{and } \vert q\alpha_i-p_i\vert\leq \frac{1}{Q} \;\forall i\in\{1,\dots,n\}$. Moreover $q\neq 0$ otherwise the $p_i$s would be $0$ too and $(q,p_1,\dots,p_n)\neq 0$
 \end{proof}
 
 
@@ -785,21 +788,21 @@ Hence by the thm ... we can find $(q,p_1,\dots,p_n)\neq 0$ such that $\vert\vert
 \end{definition}
 \emph{Remark:} $\lambda_1$ is the length of the shortest vector of $\Lambda$. We note it $\lambda_1=SV(\Lambda)$
 \begin{theorem}
-    Let $\Lambda\subseteq \R^n$ a lattice, $\lambda_1,\dots,\lambda_n\in\R_{>0}$ the successive minima of $\Lambda$. Then $\lambda_1,\dots,\lambda_n\leq 2^\frac{n}{2}\cdot\det(\Lambda)$ which is equivalent to  $(\lambda_1,\cdots,\lambda_n)^{\frac{1}{n}}\leq \sqrt{n}\cdot(\det(\Lambda))^{\frac{1}{n}}$
+    Let $\Lambda\subseteq \R^n$ a lattice, $\lambda_1,\dots,\lambda_n\in\R_{>0}$ the successive minima of $\Lambda$. Then $\lambda_1\cdots\lambda_n\leq 2^\frac{n}{2}\cdot\det(\Lambda)$ which is equivalent to  $(\lambda_1\cdots\lambda_n)^{\frac{1}{n}}\leq \sqrt{n}\cdot(\det(\Lambda))^{\frac{1}{n}}$
 \end{theorem}
 \begin{proof}
     Let $b_1,\dots,b_n\in\Lambda$ be linearly independents where $\lambda_1,\dots,\lambda_n$ are attained, in other words $\vert\vert b_i\vert\vert_2=\lambda_i$.
-    Let $b_1^*,\dots b_n^*$ the Gram-Schmidt orthogonalisation of the vectors $b_1,\dots,b_n$. We now then that all $x\in\R^n$ can be written as $$x=\sum y_i\cdot \frac{b_i^*}{\vert\vert b_i^*\vert\vert_2},\; \text{and } \vert\vert x\vert\vert_2=\vert\vert y\vert\vert_2$$
-    Now we construct $\epsilon=\{\sum_i^n y_i\cdot \frac{b_i^*}{\vert\vert b_i^*\vert\vert}:\vert\vert\sum_i^n y_i\cdot \frac{b_i^*}{\lambda_i\vert\vert b_i^*\vert\vert}\vert\vert_2\leq 1, y\in\R^n\}$
+    Let $b_1^*,\dots b_n^*$ the Gram-Schmidt orthogonalisation of the vectors $b_1,\dots,b_n$. We know then that all $x\in\R^n$ can be written as $$x=\sum y_i\cdot \frac{b_i^*}{\vert\vert b_i^*\vert\vert_2},\; \text{and } \vert\vert x\vert\vert_2=\vert\vert y\vert\vert_2$$
+    Now we construct $\epsilon=\{\sum_i^n y_i\cdot \frac{b_i^*}{\vert\vert b_i^*\vert\vert}:\vert\vert\sum_i^n y_i\cdot \frac{b_i^*}{\lambda_i\vert\vert b_i^*\vert\vert}\vert\vert_2\leq 1, y\in\R^n\}$.\\
     \emph{Exercise} $\vol(\epsilon)=\lambda_1\cdots\lambda_n\cdot\vol(B(0,1))$
     \begin{claim}
         $\partial\epsilon\cap\Lambda=\{0\}$
     \end{claim}
-    If the claim is true then as $\epsilon$ is convex, centrally symmetric and borné then by The first theorem of Minkowski for lattices: $$\vol(\epsilon)\leq 2^n\cdot\det(\lambda)\iff \lambda_1\cdots\lambda_n\cdot\vol(B(0,1))\leq 2^n\cdot\det(\Lambda)$$
+    If the claim is true then as $\epsilon$ is convex, centrally symmetric and bounded then by The first theorem of Minkowski for lattices: $$\vol(\epsilon)\leq 2^n\cdot\det(\lambda)\iff \lambda_1\cdots\lambda_n\cdot\vol(B(0,1))\leq 2^n\cdot\det(\Lambda)$$
 
     So now we show the claim: Let $u\in\Lambda\backslash\{0\}$, we want to show that if it exists $y\in\R^n$ such that $u=\sum_i^n y_i\cdot \frac{b_i^*}{\vert\vert b_i^*\vert\vert}$ then $\vert\vert\sum_i^n y_i\cdot \frac{b_i^*}{\lambda_i\vert\vert b_i^*\vert\vert}\vert\vert_2\geq 1$.
-    Let $i\in\{1,\dots,n\}$ such that $\lambda_i\leq \vert\vert u\vert\vert<\lambda_{i+1}$ then if $u=\sum_i^n y_i\cdot \frac{b_i^*}{\vert\vert b_i^*\vert\vert}$ then $y_{i+1}=\dots=y_n=0$ bcs otherwise $u$ would be linearly independent of the first $b_i$s terms hence $\lambda_{i+1}=\vert\vert u\vert\vert_2$.\\
-    Now we look at $\vert\vert\sum_j^i y_i\cdot \frac{b_j^*}{\lambda_j\vert\vert b_j^*\vert\vert}\vert\vert_2\geq\frac{1}{\lambda_i}\vert\vert\sum_i^n y_i\cdot \frac{b_i^*}{\lambda_i\vert\vert b_i^*\vert\vert}\vert\vert_2=\frac{\vert\vert u\vert\vert}{\lambda_i}\geq 1$
+    Let $i\in\{1,\dots,n\}$ such that $\lambda_i\leq \vert\vert u\vert\vert<\lambda_{i+1}$ then if $u=\sum_i^n y_i\cdot \frac{b_i^*}{\vert\vert b_i^*\vert\vert}$ then $y_{i+1}=\dots=y_n=0$ because otherwise $u$ would be linearly independent of the first $b_i$s terms hence $\lambda_{i+1}=\vert\vert u\vert\vert_2$.\\
+    Now we look at $\vert\vert\sum_j^i y_i\cdot \frac{b_j^*}{\lambda_j\vert\vert b_j^*\vert\vert}\vert\vert_2\geq\frac{1}{\lambda_i}\vert\vert\sum_i^n y_i\cdot \frac{b_i^*}{\vert\vert b_i^*\vert\vert}\vert\vert_2=\frac{\vert\vert u\vert\vert}{\lambda_i}\geq 1$
     \end{proof}
 \subsection*{10 November 2023}
 The Goal of today is to give an algorithm that: Given $A\in \Q^{n\times n}$ and non singular. Finds $v\in \Lambda(A)$ such that $\vert\vert v\vert\vert_2\leq 2^{\frac{n-1}{2}}\cdot SV(\Lambda)$.\\\\
@@ -810,9 +813,9 @@ Given $b_1,\dots,b_n\in \R^n$ then GSO compute $b_1^*,\dots,b_n^*$ such that \be
     \item $ span \{b_1,\dots,b_j\}=span\{b_1^*,\dots,b_j^*\}\; \forall j\in\{1,\dots,n\}$
 \end{enumerate}
 First we let $b_1^*=b_1$.\\
-Secondly we suppose that $b_j^^*$ for $j\in\{1,\dots,i\}$ are already found. Hence we have $b_{i+1}^*=b_{i+1}-\sum_{j=1}^i\mu_{ji}b_j^*$, moreover we have the condition \begin{align*}
-    \langle b_{i+1}^*,b^*_j\rangle=0 \; for\; j=1,\dots,i&\iff \langle b_{i+1}-\sum_{j=1}^i\mu_{ji}b_j,b_j^*\rangle=0\\
-    &\iff \langle b_{i+1},b_j^*\rangle-\mu_{ji}\langle b_j^*,b_j^*\rangle=0\\
+Secondly we suppose that $b_j^^*$ for $j\in\{1,\dots,i-1\}$ are already found. Hence we have $b_{i}^*=b_{i}-\sum_{j=1}^{i-1}\mu_{ji}b_j^*$, moreover we have the condition \begin{align*}
+    \langle b_{i}^*,b^*_j\rangle=0 \; for\; j=1,\dots,i-1&\iff \langle b_{i}-\sum_{k=1}^{i-1}\mu_{ki}b_k^*,b_j^*\rangle=0\\
+    &\iff \langle b_{i},b_j^*\rangle-\mu_{ji}\langle b_j^*,b_j^*\rangle=0\\
     &\iff \mu_{ji}=\frac{\langle b_{i+1},b_j^*\rangle}{\langle b_j^*,b_j^*\rangle}
 \end{align*}
 Now in matrix let $B=[b_1,\dots,b_n]=[b_1^*,\dots,b_n^*]$
@@ -886,7 +889,7 @@ As this is true for any $x\in\Z\backslash\{0\}$ we obtain the wanted result.
     \item $\norm{b_i^*}^2\leq 2\norm{b_{i+1}^*}^2\; i=1,\dots,n-1$
 \end{enumerate}
 \emph{Remark:}\\
-Let $v\in\Lambda(A)\backslash\{0\}$, then, as the $b_i^*$s are orthogonal, we have that $\norm{v}_2\geq\min_i \norm{b_i^*}$. Moreover $\norm{a_1}^2=\norm{b_1^*}^2\leq2\norm{b_2^*}^2\leq2^2\norm{b_3^*}^2\leq\dots\leq2^{n-1}\norm{b_n^*}^2$. It follows that $\norm{a_1}\leq 2^{\frac{n-1}{2}}\min_i\norm{b_i^*}\geq 2^{\frac{n-1}{2}}SV(\Lambda)$\\\\
+Let $v\in\Lambda(A)\backslash\{0\}$, then, as the $b_i^*$s are orthogonal, we have that $\norm{v}_2\geq\min_i \norm{b_i^*}$. Moreover $\norm{a_1}^2=\norm{b_1^*}^2\leq2\norm{b_2^*}^2\leq2^2\norm{b_3^*}^2\leq\dots\leq2^{n-1}\norm{b_n^*}^2$. It follows that $\norm{a_1}\leq 2^{\frac{n-1}{2}}\min_i\norm{b_i^*}\leq 2^{\frac{n-1}{2}}SV(\Lambda)$\\\\
 \emph{The LLL Algorithm}\begin{enumerate}
     \item Normalize $B$ ($\vert\mu_{ji}\vert\leq \frac{1}{2}$)
     \item While $B$ is not LLL-reduced\begin{enumerate}
@@ -905,9 +908,9 @@ The idea of normalizing is simply to subtract a integer multiple of a column $i$
     Exercise
 \end{proof}
 This lemma implies that when we do the normalization part we stay in a GSO of $B\cdot U_1\cdots U_m$.\\
-We are now going to study the impact of the swap of two consecutive column of $B$ on the GSO. Let $(b_1,\dots b_i,b_{i+1},\dots,b_n)$ the columns of $B$ and $(b_1^*\dots b_i^*,b_{i+1}^*,\dots,b_n^*)$ the colums of the GSO of $B$. Now let $(b_1,\dots b_{i+1},b_{i},\dots,b_n)$ be the columns of $B'$ hence by construction of the GSO we have that the columns of $B'^*$ are $(b_1^*,\dots c_i^*,c_{i+1}^*,b_{i+2}^*\dots,b_n^*)$. Now by construction we know that $b_{i+1}^*=b_{i+1}-\sum_{j=1}^i\mu_{ji}b_j^*$ hence by construction of the GSO it follows that $c_i^*=b_{i+1}^*+\mu_{i+1,i}b_i^*$ which implies that $\norm{c_i^*}=\norm {b_{i+1}^*}+\norm{b_i^*}\mu_{i+1,i}^2$.\\ Therefore if the basis $(b_1,\dots b_i,b_{i+1},\dots,b_n)$ was normalized we know that $\vert\mu_{i,i+1}\vert\leq \frac{1}{2}$ and $\norm{b_i^*}^2> 2\norm{b_{i+1}}^2$, hence from the last equality we obtain : \begin{equation*}\label{3/4}
+We are now going to study the impact of the swap of two consecutive column of $B$ on the GSO. Let $(b_1,\dots b_i,b_{i+1},\dots,b_n)$ the columns of $B$ and $(b_1^*\dots b_i^*,b_{i+1}^*,\dots,b_n^*)$ the colums of the GSO of $B$. Now let $(b_1,\dots b_{i+1},b_{i},\dots,b_n)$ be the columns of $B'$ hence by construction of the GSO we have that the columns of $B'^*$ are $(b_1^*,\dots c_i^*,c_{i+1}^*,b_{i+2}^*\dots,b_n^*)$. Now by construction we know that $b_{i+1}^*=b_{i+1}-\sum_{j=1}^i\mu_{ji}b_j^*$ hence by construction of the GSO it follows that $c_i^*=b_{i+1}^*+\mu_{i+1,i}b_i^*$ which implies that $\norm{c_i^*}=\norm {b_{i+1}^*}+\norm{b_i^*}\mu_{i+1,i}^2$.\\ Therefore if the basis $(b_1,\dots b_i,b_{i+1},\dots,b_n)$ was normalized we know that $\vert\mu_{i,i+1}\vert\leq \frac{1}{2}$ and $\norm{b_i^*}^2> 2\norm{b_{i+1}}^2$, hence from the last equality we obtain : \begin{equation}\label{3/4}
     \norm{c_i^*}^2<\frac{1}{2}\norm{b_i^*}^2+\frac{1}{4}\norm{b_i^*}^2=\frac{3}{4}\norm{b_i^*}^2.
-\end{equation*}.\\
+\end{equation}.\\
 \begin{theorem}
     The LLL-Algorithm terminates.
 \end{theorem}
@@ -951,8 +954,8 @@ We call the \emph{potential of a matrix $B$}: $\Phi(B)=\Pi^n_{i=1} \det(B^{(i)\t
 Now we let $(q,p_1,\dots,p_n)\in (\N_+\times\Z^n)$ such that $v=\Lambda\cdot (q,p_1,\dots,p_n)^\top$, we have that\begin{enumerate}
     \item $q\leq 0$ otherwise we could just take $(-q,-p_1,\dots,-p_n)$
     \item $q\neq 0$ because then if at least one $p_i\neq 0$ then $\norm{v}_2\geq 1$ by definition of $\Lambda$
-    \item $\vert q\cdot\alpha_i-p_i\vert =\vert v_{i+1}\leq\norm{v}_2\leq\frac{1}{Q}$
-    \item $\frac{q}{(2^n\cdot Q)^{n+1}}=v_1\leq\norm{v}_2\leq\frac{1}{Q}\iff q\leq 2^{n(n+1}\cdot Q^n$
+    \item $\vert q\cdot\alpha_i-p_i\vert =\vert v_{i+1}\vert\leq\norm{v}_2\leq\frac{1}{Q}$
+    \item $\frac{q}{(2^n\cdot Q)^{n+1}}=v_1\leq\norm{v}_2\leq\frac{1}{Q}\iff q\leq 2^{n(n+1)}\cdot Q^n$
 \end{enumerate}
 \end{proof}
 %\emph{Application: Split a subspace of \{\pm1\}^n}\\
@@ -961,7 +964,7 @@ Let $H_{\alpha}=\{x\in\R^n\vert \alpha^\top\cdot x=0\}$ where $\alpha\in\R^n$, t
 $$S_1=\{x\in\{\pm1\}^n\vert\alpha\cdot x\geq 0\}$$
 $$S_2=\{x\in\{\pm1\}^n\vert\alpha\cdot x< 0\}$$
 \begin{theorem}
-    It exists $d\Z^n$, $\norm{d}_{\infty}\leq n^{O(n^2)}$ such that $H_d$ splits $\{\pm 1\}^n$ also in $S_1,S_2$
+    It exists $d\in\Z^n$, $\norm{d}_{\infty}\leq n^{O(n^2)}$ such that $H_d$ splits $\{\pm 1\}^n$ also in $S_1,S_2$
 \end{theorem}
 \begin{definition}
     Let $x\in \R$ then we define $\sign(x)$ as follows $\sign (x)=...$
@@ -970,12 +973,12 @@ $$S_2=\{x\in\{\pm1\}^n\vert\alpha\cdot x< 0\}$$
     Let $(q,p_1,\dots,p_n)\in (\N_+\times\Z^n)$ the "Dirichlet vector for $\alpha_1,\dots,\alpha_n,Q=n$". Let $y\in\{\pm 1\}^n$, if $p^\top\cdot y\neq 0$ then $\sign(p^\top y)=\sign(\alpha^\top y)$
 \end{lemma}
 \begin{proof}
-    Let $y\in\{\pm 1\}^n$, $\vert q\cdot\alpha^\top\cdot y-p^\top\cdot y\vert\leq \Sigma_{i=1}^n\underbrace{\vert q\cdot\alpha_i-P_{i}\vert}_{< \frac{1}{n}}< 1$. Now, by definition, we have that if $p^\top\cdot y\neq 0$ then $\vert p^\top\cdot y\vert \geq 1$ hence suppose that $\sign(p^\top y)\neq\sign(\alpha^\top y)$ then it follows directly that $\vert q\cdot\alpha^\top\cdot y-p^\top\cdot y\vert> 1$ which is a contradiction.
+    Let $y\in\{\pm 1\}^n$, $\vert q\cdot\alpha^\top\cdot y-p^\top\cdot y\vert\leq \Sigma_{i=1}^n\underbrace{\vert q\cdot\alpha_i-P_{i}\vert}_{<\frac{1}{Q}=\frac{1}{n}}\underbrace{\vert y_i\vert}_{<1}< 1$. Now, by definition, we have that if $p^\top\cdot y\neq 0$ then $\vert p^\top\cdot y\vert \geq 1$ hence suppose that $\sign(p^\top y)\neq\sign(\alpha^\top y)$ then it follows directly that $\vert q\cdot\alpha^\top\cdot y-p^\top\cdot y\vert> 1$ which is a contradiction.
 \end{proof}
 \subsection*{24 November 2023}
 \emph{Observation :} We can assume without loss of generalities that $\norm{\alpha}_{\infty}$ (otherwise we could just take $\alpha'=\frac{\alpha}{\norm{\alpha}_{\infty}}$) and, knowing that $\norm{\alpha}_{\infty}=1,$ we also can assume that $\alpha_1=1$. It follows, as $q\in\N_+$, $p_1\in\Z$ and $\vert q-p_1\vert<\frac{1}{n}$, that $\vert q-p_1\vert=0$.\\
 \begin{lemma}
-    Let $(q\cdot \alpha_1-p_1)=\begin{pmatrix}
+    Let $(q\cdot \alpha-p)=\begin{pmatrix}
         0\\
         \alpha'
     \end{pmatrix}$ where $\alpha'\in\R^{n-1}$. Let $v'\in\Z^{n-1}$ such that $\forall y\in\{\pm\}^{n-1}$ we have $\sign(v'^\top\cdot y)=\sign(\alpha^\top\cdot y)$. Then $\forall y\in\{\pm\}^n$ we have that $\sign[(q\cdot\alpha-p)^\top\cdot y]=\sign(\begin{pmatrix}
@@ -989,7 +992,7 @@ $$S_2=\{x\in\{\pm1\}^n\vert\alpha\cdot x< 0\}$$
 Suppose now that $v'\in\Z^{n-1}$ such that $\sign[(q\cdots\alpha-p)^\top\cdot y]=\sign(\begin{pmatrix}
         0\\
         v'
-    \end{pmatrix}^\top\cdot y)$ has been found. The objective is now to construct $v\in\Z^n$ such that $\forall y\in\{\pm\}^{n}$ we have $\sign(v^\top\cdot y)=\sign(\alpha^\top\cdot y)$ .\\
+    \end{pmatrix}^\top\cdot y)$ has been found. The objective is now to construct $v\in\Z^n$ such that $\forall y\in\{\pm1\}^{n}$ we have $\sign(v^\top\cdot y)=\sign(\alpha^\top\cdot y)$ .\\
     We already know from the lemma that $$ \text{if } p^\top\cdot y\neq 0\implies\sign(\alpha^\top\cdot y)=\sign(p^\top\cdot y)$$ and if $ p^\top\cdot y=0$ then \begin{align*}
         \sign(\alpha^\top \cdot y)&=\sign(q\cdot \alpha^\top y)=\sign(q\alpha^\top\cdot y-p^\top\cdot y)\\
         &=\sign((q\cdot\alpha-p)^\top\cdot y)=\sign(\begin{pmatrix}
@@ -1001,7 +1004,7 @@ Suppose now that $v'\in\Z^{n-1}$ such that $\sign[(q\cdots\alpha-p)^\top\cdot y]
         Using the same notations as before, if we construct $v$ as follows: $v=M\cdot P+\begin{pmatrix}
         0\\
         v'
-    \end{pmatrix}$ where $M=n\cdot\norm{v'}_{\infty}$ then $v$ is such that $\forall y\in\{\pm\}^{n}$ we have $\sign(v^\top\cdot y)=\sign(\alpha^\top\cdot y)$
+    \end{pmatrix}$ where $M=n\cdot\norm{v'}_{\infty}$ then $v$ is such that $\forall y\in\{\pm1\}^{n}$ we have $\sign(v^\top\cdot y)=\sign(\alpha^\top\cdot y)$
     \end{lemma}
     \begin{proof}
         If $p^\top\cdot y\neq 0$ then $\vert p^\top\cdot y\vert\geq 1$ and we have $\sign(\alpha^\top\cdot y)=\sign(p^\top\cdot y)$. Moreover, as $\vert \begin{pmatrix}
@@ -1034,7 +1037,7 @@ If $n>1$\begin{itemize}
     $\norm{v}_\infty\leq n^{\frac{(n+2)\cdot(n+3)}{2}}$ for $\alpha\in\R^n$
 \end{lemma}
 \begin{proof}
-    By the recursive construction of $v$ we define $\norm{v}_\infty=T(n)$. Now by construction we have that $T(n)\leq n^n\cdot T(n-1)+ T(n-1)= T(n-1)\cdot(n^n+1)\leq T(n-1)\cdot n^n+1$. Now construction of $v$ we have that $$T(n)\leq n^{(n+1)}\cdot (n-1)^n\cdot (n-2)^{n-1}\cdots1\cdot \underbrace{T(1)}_{=1 }\leq n^{\Sigma_{i=1}^n+1}=n^{\frac{(n+1)(n)}{2}}=n^{O(n^2)}$$
+    By the recursive construction of $v$ we define $\norm{v}_\infty=T(n)$. Now by construction we have that $T(n)\leq n^n\cdot T(n-1)+ T(n-1)= T(n-1)\cdot(n^n+1)\leq T(n-1)\cdot n^{n+1}$. Now construction of $v$ we have that $$T(n)\leq n^{(n+1)}\cdot (n-1)^n\cdot (n-2)^{n-1}\cdots1\cdot \underbrace{T(1)}_{=1 }\leq n^{\Sigma_{i=1}^n i}=n^{\frac{(n+1)(n)}{2}}=n^{O(n^2)}$$
 \end{proof}
 \begin{definition}[$0-1$ optimization problems]
  Given $\alpha\in\R^n$ and $F\subseteq\{0,1\}^n$. Find $x\in F$ such that $\alpha^\top x\geq \alpha^\top \cdot y$ for all $y\in F$
@@ -1055,23 +1058,21 @@ We are going to talk about on open problem called the $\emph{Sums of square root
 Which is  as follows:  Given
  $x_1,\dots,x_n \in \Z$ and  $a_1,\dots,a_n \in \N$
  decide whether $ E= \sum_{i=1}^n x_i \sqrt{a_i} \geq0$.\\
- The idea is now to know wether this problem can be solved in a polynomial time.\\
- \emph{Recall:} Let $a\in\N$ the \emph{binary of $a$} is the following $a=\sum_{i=1}^ky_i\cdot2^{-i}$ for $y_i\in\{0;1\}$\\
- We know that it exists an algorithm which gives a solution in a time of order $2^n\cdot\emph{Polynomial}(\log\max(\vert x_i\vert\cdot a_i$.\\
- First we can find a bound : $\vert E\vert \geq f(x,a)$ if $E\neq 0$ and we will see that this bound $f(x,a)=(\frac{1}{n\cdot\max_i(\vert x_i\vert a_i)})^{2^n}$\\
+ The idea is now to know whether this problem can be solved in a polynomial time.\\
+ \emph{Recall:} Let $a\in\N$ the \emph{binary of $a$} is the following $a=\sum_{i=1}^ky_i\cdot2^{-i}$ for $y_i\in\{0;1\}$.\\
+ We know that it exists an algorithm which gives a solution in a time of order $2^n\cdot\emph{Polynomial}(\log\max(\vert x_i\vert\cdot a_i)$.\\
+ First we can find a bound : $\vert E\vert \geq f(x,a)$ if $E\neq 0$ and we will see that this bound $f(x,a)=(\frac{1}{n\cdot\max_i(\vert x_i\vert a_i)})^{2^n}$.\\
  Secondly suppose that, for $\epsilon>0$, we have computed $\frac{p_i}{q_i}\in\Q$ such that $\frac{p_i}{q_i}-\epsilon\leq x_i\cdot\sqrt{a_i}\leq \frac{p_i}{q_i}+ \epsilon$. We then call $\sum \frac{p_i}{q_i}$ the approximation and we obtain that $$(\sum\frac{p_i}{q_i})-n\epsilon=\sum\frac{p_i}{q_i}-\epsilon\leq E\leq \sum\frac{p_i}{q_i}+\epsilon=\sum\frac{p_i}{q_i}+n\epsilon$$
  From this we obtain that if $n\cdot\epsilon<f(a,x)$ we have that the sign of the approximation is the same as the sign of $E$\\
- \begin{theorem}[Johanes Blomer (around 200)]
+ \begin{theorem}[Johanes Blomer (around 2000)]
      If we are trying to decide if $E=0$ then this is possible in a polynomial time
  \end{theorem}
- \begin{proof}
      Suppose that $E\neq 0$ then $E=x_1\cdot \sqrt{a_1}+\dots+ x_n\sqrt{a_n}$ is an algebraic integer (i.e it exists $p(x)\in\Z[x]\backslash\{0\}$ such that $p(E)=0$) because $x_1\cdot \sqrt{a_1}$ is a root of the polynomial $x^2-a_1x_1^2$ and the algebraic integers is a ring.
- \end{proof}
  \begin{theorem}
-     If $E\neq 0$ then $\vert E\vert (\frac{1}{n\cdot\max_i(\vert x_i\vert a_i)})^{2^n}$ 
+     If $E\neq 0$ then $\vert E\vert \geq(\frac{1}{n\cdot\max_i(\vert x_i\vert a_i)})^{2^n}$ 
  \end{theorem}
  \begin{proof}
-     Let $p(x)\in\Z[x]$ the minimal polynomial of $E$ and we an assume without loss of generalities that $p(x)$ is monic. We have $p(x)=\Pi^{k=\deg P}_{i=1}(x-c_i)$ where the $c_i\in \R$ are conjugates of $E$, hence $p(x)=x^k+a_{k-1}x^{k-1}+\dots +a_0$ where $a_0\neq 0$ otherwise $p(x)$ is would not be a minimal polynomial. It follows that $\Pi^k_{i=1}c_i=a_0\in\Z\backslash\{0\}$ which means that $\vert E\vert\cdot \vert\Pi_{i=1,c_i\neq E}^kc_i\vert\geq 1\iff \vert E\vert\geq\frac{1}{\vert\Pi_{i=1,c_i\neq E}^kc_i\vert}$. Now the number of conjugate is less or equal to $2^{n-1}$ and $\vert c_i\vert\leq n\cdot \max_i\vert x_i\vert a_i$ therefore $\vert E\vert (\frac{1}{n\cdot\max_i(\vert x_i\vert a_i)})^{2^n}$. 
+     Let $p(x)\in\Z[x]$ the minimal polynomial of $E$ and we assume, without loss of generalities, that $p(x)$ is monic. We have $p(x)=\Pi^{k=\deg P}_{i=1}(x-c_i)$ where the $c_i\in \R$ are conjugates of $E$, hence $p(x)=x^k+a_{k-1}x^{k-1}+\dots +a_0$ where $a_0\neq 0$ otherwise $p(x)$ is would not be a minimal polynomial. It follows that $\Pi^k_{i=1}c_i=a_0\in\Z\backslash\{0\}$ which means that $\vert E\vert\cdot \vert\Pi_{i=1,c_i\neq E}^kc_i\vert\geq 1\iff \vert E\vert\geq\frac{1}{\vert\Pi_{i=1,c_i\neq E}^kc_i\vert}$. Now the number of conjugate is less or equal to $2^{n-1}$ and $\vert c_i\vert\leq n\cdot \max_i\vert x_i\vert a_i$ therefore $\vert E\vert\geq (\frac{1}{n\cdot\max_i(\vert x_i\vert a_i)})^{2^n}$. 
  \end{proof}
  \begin{theorem}[Eisenbrand, Haeberle, Singer]
   \label{thr:6}
@@ -1083,7 +1084,7 @@ Which is  as follows:  Given
   \end{equation}
 \end{theorem}
 
-\subsection{8 December 2023}
+\subsection*{8 December 2023}
 Denote $\beta_i = \sqrt{a_i}$ for $i=1,\dots,n$ and 
  $$ B = 
    \begin{pmatrix}
@@ -1098,26 +1099,26 @@ $$
  Remember that the absolute value of the determinant of any basis of a lattice $\Lambda \subseteq \R^n$ is an invariant of the lattice. It is called the \emph{lattice determinant} and is denoted by $\det(\Lambda)$.
 
 \begin{theorem}[Minkowski's theorem for $l_\infty$]
-  \label{thr:2}
+  \label{thr:8}
   Let $\Lambda \subseteq \R^n$ be a lattice. One has
   \begin{equation}
-    \label{eq:7}
-    \Lambda_1 \cdots \Lambda_n \leq \det(\Lambda), 
+    \label{eq:13}
+    \lambda_1 \cdots \lambda_n \leq \det(\Lambda), 
   \end{equation}
-  where the successive minima $\Lambda_i$ are with respect to the $l_\infty$-norm. 
+  where the successive minima $\lambda_i$ are with respect to the $l_\infty$-norm. 
   In particular, one has
   \begin{displaymath}
-    \Lambda_1 \leq \det(\Lambda)^{1/n}. 
+    \lambda_1 \leq \det(\Lambda)^{1/n}. 
   \end{displaymath}
 \end{theorem}
 
 \begin{theorem}
-  \label{thr:4}
+  \label{thr:9}
 Consider $ E = \sum_{i=1}^n x_i \sqrt{a_i}$ with  
 $a_1,\dots,a_n\in \N$  and $x = (x_1,\dots,x_n)\in\Z^n\backslash\{0\}$ and let $\Lambda(B)$ be the lattice generated by $B$ then if 
 \begin{enumerate}
     \item $Q \geq \left(2 n \vert x\vert _\infty\right)^{3/2}$
-    \item $\Lambda_1 \geq 1/Q^{1 + \frac{1}{3n}}$
+    \item $\lambda_1 \geq 1/Q^{1 + \frac{1}{3n}}$
 \end{enumerate} then
   \begin{equation*}
     \vert E\vert  \geq \frac{1}{Q^{n+1}}. 
@@ -1151,10 +1152,10 @@ B \cdot \begin{pmatrix} q \\ -p \end{pmatrix}
 %    p_n\\
 %  \end{pmatrix}
 \end{displaymath}
-with $q \in \N$ and $p = (p_1,\dots,p_n)\top  \in \Z^n$ such that $p\top  x \neq0$. Since $p\top x \in \Z$, one has
+with $q \in \N$ and $p = (p_1,\dots,p_n)^\top  \in \Z^n$ such that $p^\top  x \neq0$. Since $p\top x \in \Z$, one has
 \begin{equation}
   \label{eq:10}
-  \vert p\top x\vert  \geq1.
+  \vert p^\top x\vert  \geq1.
 \end{equation}
 The condition $\vert v\vert _\infty \leq 1/Q^{2/3}$ implies that
 \begin{eqnarray*}
@@ -1162,14 +1163,14 @@ The condition $\vert v\vert _\infty \leq 1/Q^{2/3}$ implies that
 \end{eqnarray*}
 By the triangle inequality, 
 \begin{displaymath}
- \vert q \beta\top  x - p\top  x \vert  \leq \frac12
+ \vert q \beta^\top  x - p^\top  x \vert  \leq \frac12
 \end{displaymath}
-which, together with $\vert p\top  x\vert \geq1$ implies that \begin{equation*}
-    \vert q\cdot\beta^\top\cdot x\vert\geq \vert p\top  x\vert-\frac{1}{2}\geq \frac{\vert p\top  x\vert}{2}
+which, together with $\vert p^\top  x\vert \geq1$ implies that \begin{equation*}
+    \vert q\cdot\beta^\top\cdot x\vert\geq \vert p^\top  x\vert-\frac{1}{2}\geq \frac{\vert p^\top  x\vert}{2}
 \end{equation*}
 from which it follows that
 \begin{equation*}
-  \vert \beta\top  x \vert  \geq \frac{1}{2 q}.
+  \vert \beta^\top  x \vert  \geq \frac{1}{2 q}.
 \end{equation*}
 %
 On the other hand, $\vert v\vert _\infty \leq 1/ Q^{2/3}$ implies that $q \leq Q^{n+\frac{1}{3}}$. The claim follows since $2 \cdot Q^{n+\frac{1}{3}} \leq Q^{n+1}$ for $Q \geq (2 n \vert x\vert _\infty)^{3/2}\geq 2^{3/2}$.
@@ -1177,7 +1178,7 @@ On the other hand, $\vert v\vert _\infty \leq 1/ Q^{2/3}$ implies that $q \leq Q
 
 The \emph{subspace theorem} of Wolfgang Schmidt implies a lower bound that is almost tight. 
 \begin{theorem}[Subspace]
-  \label{thr:3}
+  \label{thr:7}
   Let $\beta_1,\dots,\beta_n \in \R$ be real algebraic numbers such that $\{1,\beta_1,\dots,\beta_n\}$ is linearly independent over $\Q$ and let $\delta>0$. There are only finitely many positive integers $q \in \N_+$ such that
   \begin{displaymath}
     q^{1+\delta} \cdot dist_\Z(q\cdot\beta_1) \cdots dist_\Z(q\cdot\beta_n) <1. 
@@ -1204,11 +1205,118 @@ We are now ready to prove the theorem.
     \left\{1, \beta_1 = \sqrt{a_1} ,\dots, \beta_n = \sqrt{a_n}\right\} 
   \end{displaymath}
   is linearly independent over $\Q$ (Exercice).
-  From the corollary there exists some $Q_0 \in \N_+$ such that the first successive minimum $\Lambda_1$ of the lattice $\Lambda(B)$ verifies $\Lambda_1 \geq 1/Q^{1 + \frac{1}{3n}}$ for all $Q \geq Q_0$. 
-Then from the Theorem \ref{thr:4} applied to $Q = (Q_0 \cdot (2n\vert  x\vert _\infty)^{3/2})$we have that $\vert E\vert \geq \frac{1}{Q^{n+1}}$. Hence $$\vert E\vert\geq\min\{\frac{1}{Q_0^{n+1}},\underbrace{\frac{1}{(\left(2 n \vert x\vert _\infty\right)^{3/2})^{n+1}}}_{\geq\frac{1}{(2 n \vert x\vert _\infty)^{2n}}}\}\implies \vert E\vert  \geq  \left( \frac{1}{n \cdot \vert x\vert _\infty}\right)^{2n} \cdot \gamma.$$ 
+  From the corollary there exists some $Q_0 \in \N_+$ such that the first successive minimum $\lambda_1$ of the lattice $\Lambda(B)$ verifies $\lambda_1 \geq 1/Q^{1 + \frac{1}{3n}}$ for all $Q \geq Q_0$. 
+Then from the Theorem \ref{thr:9} applied to $Q = (Q_0 \cdot (2n\vert  x\vert _\infty)^{3/2})$we have that $\vert E\vert \geq \frac{1}{Q^{n+1}}$. Hence $$\vert E\vert\geq\min\{\frac{1}{Q_0^{n+1}},\underbrace{\frac{1}{(\left(2 n \vert x\vert _\infty\right)^{3/2})^{n+1}}}_{\geq\frac{1}{(2 n \vert x\vert _\infty)^{2n}}}\}\implies \vert E\vert  \geq  \left( \frac{1}{n \cdot \vert x\vert _\infty}\right)^{2n} \cdot \gamma.$$ 
 
 \end{proof}
-\bibliographystyle{plain}
+\subsection*{15 December 2023, Continuous fractions and quadratic irrationals}
+As we remember the continued fraction expansion of $\sqrt{2}$ is the following :\begin{align*}
+    \sqrt{2}&=1+(\sqrt{2}-1)=1+(\sqrt{2}-1)\dfrac{(\sqrt{2}+1)}{(\sqrt{2}+1)}\\
+    &=1+\dfrac{1}{1+\sqrt{2}}=1+\cfrac{1}{1+(1+\cfrac{1}{1+\sqrt{2}})}\\
+    &=1+\cfrac{1}{2+\cfrac{1}{1+\sqrt{2}}}=1+\cfrac{1}{2+\cfrac{1}{2+\cfrac{1}{2+\cfrac{1}{...}}}}
+\end{align*}
+Hence $\sqrt{2}=[1,2,2,2,\dots]=[1,\overline{2}]$ and this are the numbers we are interested in.\\
+\begin{definition}
+    $a$ is called \emph{periodic} if for $a=[a_0,a_1,\dots]$ it exists $k_0$ and $p\in\N$ such that for all $i\geq k_0$ we have $a_i=a_{p+i}$.
+\end{definition}
+\begin{definition}
+    $\alpha\in\R\backslash\Q$ is called a \emph{quadratic irrational} if it exists a polynomial $p(x)=ax^2+bx+c\in\Z[x]\backslash\{0\}$ such that $p(\alpha)=0$.
+\end{definition}
+\emph{Remark} If we establish that $a\in\N_+$ and $\gcd (a,b,c)=1$ then $p(x)$ is unique.
+\\
+\begin{definition}
+    The \emph{discriminant of p} is defined as follows $\vartriangle=b^2-4ac$
+\end{definition}
+\emph{Exercise} Prove that $\alpha=\frac{-b\pm\sqrt{\vartriangle}}{2\cdot a}$\\
+\emph{Remark:} Note that for $\alpha'$ (the conjugate of $\alpha$) we have that the discriminant of $\alpha'$ is the same as the one of $\alpha$\\
+Recall that $[a_0,a_1,\dots,a_n]=\frac{p_n}{q_n}$ where $\begin{pmatrix}
+    p_k & p_{k-1} \\
+    q_k & q_{k-1}
+  \end{pmatrix} =
+  \begin{pmatrix}
+    a_0 & 1\\
+    1 & 0
+  \end{pmatrix} \cdots
+  \begin{pmatrix}
+    a_k & 1 \\
+    1 & 0
+  \end{pmatrix}$, $G=\{U\in\Z^{2\times2}:\det(U)=\pm1\}$ and $r_n=[a_n;a_{n+1},\dots]>1$.
+\begin{definition}
+    Let $U\in G,\alpha\in\R\backslash\Q$ with $U=\begin{pmatrix}
+        a & b\\
+        c & d
+    \end{pmatrix}$ then we define $U\circ \alpha$ as follows $U\circ \alpha=\underbrace{\frac{a\alpha+b}{c\alpha+d}}_{\neq 0}$
+\end{definition}
+\begin{proposition}
+    Let $U,V\in G,\alpha\in\R\backslash\Q$, then $(U\cdot V)\circ\alpha=U\circ (V\circ \alpha)$ and  $\Id\circ\alpha$.
+\end{proposition}
+\begin{proof}
+    Exercice
+\end{proof}
+\begin{definition}
+    For $\alpha,\beta\in\R\backslash\Q$ we have $\alpha\equiv\beta$ if it exists $U\in G$ such that $\alpha=U\circ\beta$
+\end{definition}
+You can prove that this is indeed an equivalence relation
+\begin{lemma}
+    Let $\alpha$ be a q.i. and $U\in G$ then $disc(\alpha)=disc(U\circ \alpha)$
+ \end{lemma}
+ The proof is left as an exercise.
+ \begin{corollary}
+     For $m\in\Z$ then $disc(\alpha)=disc(\alpha+m)$.
+ \end{corollary}
+ \begin{proof}
+     Let $U=\begin{pmatrix}
+         1 & m\\
+         0 & 0\\
+         \end{pmatrix}$
+ \end{proof}
+ \begin{definition}
+     Let $\alpha\in\R\backslash\Q$ a q.i. we say that $\alpha$ is reduced if $\alpha>1$ and $-1<\alpha'<0$.
+ \end{definition}
+ \begin{proposition}
+     $\alpha$ is reduced if and only if $\frac{-1}{\alpha'}$ is reduced.
+ \end{proposition}
+ \begin{proof}
+    First we can see that $$\alpha'>-1\iff\frac{-1}{\alpha'}>1.$$
+    Secondly we note that $(\frac{-1}{\alpha'})'=\frac{-1}{\alpha}$, from this we can see that 
+    $$\alpha>1\iff\frac{1}{\alpha}<1\iff\frac{-1}{\alpha}>-1\;\text{and } \alpha>0\iff\frac{-1}{\alpha}<0$$
+ \end{proof}
+ \begin{theorem}\label{thr:11}
+     Let $\vartriangle\in\N$, it exists only a finite number of q.i. with discriminant $\vartriangle$ that are reduced.
+     \end{theorem}
+     \begin{proof}
+         Let $\alpha=\frac{-b+\epsilon\sqrt{\vartriangle}}{2a}$ reduced hence $\frac{-b+\epsilon\sqrt{\vartriangle}}{\underbrace{2a}_{\geq2}}>1$ and $-1<\frac{-b-\epsilon\sqrt{\vartriangle}}{2a}<0$.\\
+         If $\epsilon=-1$ we have $-b-\sqrt{\vartriangle}>0$ and $-b+\sqrt{\vartriangle}<0$ which is a contradiction.\\
+         Hence $\epsilon=1,$ now as $-1<\frac{-b-\sqrt{\vartriangle}}{2a}$ and $\frac{-b+\sqrt{\vartriangle}}{\underbrace{2a}_{\geq2}}>1$ it follows that $$-b+\sqrt{\vartriangle}>2a>b+\sqrt{\vartriangle}.$$
+         Which combined with the fact that $\frac{-b-\sqrt{\vartriangle}}{2a}<0$ implies that 
+         $$\vert b\vert=-b<\sqrt{\vartriangle}.$$
+         This means that $b$ is bounded. Moreover, using once again that $\frac{-b+\sqrt{\vartriangle}}{2a}>1$ we have $-b+\sqrt{\vartriangle}>{2a}$. From those results we obtain that there is only a finite number of candidate of reduced q.i. with discriminant $\vartriangle$.
+     \end{proof}
+     \begin{theorem}\label{thr:12}
+         Let $\alpha\in\R\backslash\Q$ a q.i. then 
+         \begin{itemize}
+             \item $\alpha=[a_0;a_1,\dots,a_{n-1},r_n]$ then $disc(\alpha)=disc(r_n)$\\
+             \item If $r_n$ is reduced then $r_{n+1}$ is also reduced \\
+             \item It exists $N_0\in\N$ such that $r_n$ is reduced for all $n\geq N_0$
+         \end{itemize}
+     \end{theorem}
+     \begin{proof}
+         Exercise
+     \end{proof}
+     \begin{theorem}
+         Let $\alpha\in\R\backslash \Q$ then $\alpha$ is a quadratic irrational if and only if $\alpha$ is periodic.
+     \end{theorem}
+     \begin{proof}
+         Suppose $\alpha$ is periodic, hence by definition we have $\alpha=[a_0;a_1,\dots, a_{k_0},\dots a_{k_0+p},\dots]$ such that $a_{k_0}=a_{k_0+p}$. Hence for all $n\geq k_0$ we have that $r_n=r_{n+p}$ hence we have :
+         \begin{equation*}
+             \alpha=\frac{p_n\cdot r_n+p_{n-1}}{q_n\cdot r_n+q_{n-1}} \text{ and } \alpha =\frac{p_{n+p}\cdot r_n+p_{n-1+p}}{q_{n+p}\cdot r_n+q_{n-1+p}} 
+         \end{equation*}
+         Combining those two equalities we obtain that $r_n\in\R\backslash\Q$ is such that it exists $P(x)\in\Z[x]\backslash\{0\}$ with $\deg(P)=2$ such that $P(r_n)=0$. Hence $r_n=x+y\sqrt{d}$ or in other terms $r_n\in\Q(\sqrt{d})$ and as it is a field it follows that $\alpha$ too is contained in $\Q(\sqrt{d})$ hence $\alpha$ is also a quadratic irrational by definition.
+         We just want to be sure that the polynomial $P$ is indeed non trivial, we can see that the dominant coefficient is $p_{n}\cdot q_{n+p}-p_{n+p}\cdot q_{n}$. Now we suppose that the dominant coefficient is 0 hence it follows that $$\frac{p_n}{q_n}=\frac{p_{n+p}}{q_{n+p}}$$
+         This is a contradiction because we know that those values should improve the approximation of $\alpha$ hence the values cannot be equal.\\
+         Now we suppose that $\alpha$ is a quadratic irrational: Then by Theorem \eqref{thr:12} for all $n\geq N_0$ we have that $r_n$ is reduced and they all have the same discriminant. Now by the theorem \eqref{thr:11} we have that as the number of reduced q.i with the same discriminant is finite we have that it has to exist $p$ such that $r_{n+p}=r_n$ which means that $\alpha$ is indeed periodic.
+     \end{proof}
+ \bibliographystyle{plain}
 \bibliography{references}
 \end{document}
 
@@ -1217,4 +1325,3 @@ Then from the Theorem \ref{thr:4} applied to $Q = (Q_0 \cdot (2n\vert  x\vert _\
 %%% mode: latex
 %%% TeX-master: t
 %%% End:
-
